@@ -1,0 +1,52 @@
+Domain: ../resources/IPC4/PIPESWORLD-TANKAGE/domain/DOMAIN.PDDL
+Problem: ../resources/IPC4/PIPESWORLD-TANKAGE/problems/P01_NET1_B6_G2_T50.PDDL
+DETAILED SOLUTION
+7
+0 init(<Instance>)[A1,A2,A3,lco,gasoleo,rat-a,oca1,oc1b,B0,B3,B1,B4,B2,B5,TA1-1-lco,TA1-1-gasoleo,TA1-1-rat-a,TA1-1-oca1,TA1-1-oc1b,TA2-1-lco,TA2-1-gasoleo,TA2-1-rat-a,TA2-1-oca1,TA2-1-oc1b,TA3-1-lco,TA3-1-gasoleo,TA3-1-rat-a,TA3-1-oca1,TA3-1-oc1b,S12,S13] {} {+occupied[TA3-1-lco],+on[B1,A3],+not-occupied[TA1-1-oca1],+not-occupied[TA2-1-gasoleo],+last[B5,S13],+not-occupied[TA2-1-oc1b],+not-occupied[TA3-1-gasoleo],+occupied[TA1-1-gasoleo],+not-occupied[TA1-1-lco],+not-occupied[TA2-1-oca1],+not-occupied[TA3-1-oca1],+first[B5,S13],+last[B4,S12],+not-occupied[TA3-1-rat-a],+first[B4,S12],+on[B0,A1],+not-occupied[TA2-1-lco],+not-occupied[TA2-1-rat-a],+occupied[TA1-1-rat-a],+on[B2,A1],+on[B3,A1],+occupied[TA1-1-oc1b],+not-occupied[TA3-1-oc1b]} {}
+1 goal(<Instance>)[A1,A2,A3,lco,gasoleo,rat-a,oca1,oc1b,B0,B3,B1,B4,B2,B5,TA1-1-lco,TA1-1-gasoleo,TA1-1-rat-a,TA1-1-oca1,TA1-1-oc1b,TA2-1-lco,TA2-1-gasoleo,TA2-1-rat-a,TA2-1-oca1,TA2-1-oc1b,TA3-1-lco,TA3-1-gasoleo,TA3-1-rat-a,TA3-1-oca1,TA3-1-oc1b,S12,S13] {+on[B2,A3],+on[B5,A2]} {} {}
+2 PUSH-UNITARYPIPE[S12,B0,A1,A2,B5,oc1b,oca1,TA1-1-oc1b,TA2-1-oca1] {+first[B5,S12],+on[B0,A1],+occupied[TA1-1-oc1b],+not-occupied[TA2-1-oca1]} {+occupied[TA2-1-oca1],+first[B0,S12],+not-occupied[TA1-1-oc1b],+on[B5,A2],+last[B0,S12]} {+last[B5,S12],+first[B5,S12],+occupied[TA1-1-oc1b],+on[B0,A1],+not-occupied[TA2-1-oca1]}
+3 PUSH-UNITARYPIPE[S13,B3,A1,A3,B2,rat-a,gasoleo,TA1-1-rat-a,TA3-1-gasoleo] {+first[B2,S13],+on[B3,A1],+occupied[TA1-1-rat-a],+not-occupied[TA3-1-gasoleo]} {+first[B3,S13],+on[B2,A3],+last[B3,S13],+occupied[TA3-1-gasoleo],+not-occupied[TA1-1-rat-a]} {+not-occupied[TA3-1-gasoleo],+last[B2,S13],+occupied[TA1-1-rat-a],+first[B2,S13],+on[B3,A1]}
+4 PUSH-UNITARYPIPE[S12,B5,A1,A2,B4,oca1,lco,TA1-1-oca1,TA2-1-lco] {+first[B4,S12],+on[B5,A1],+occupied[TA1-1-oca1],+not-occupied[TA2-1-lco]} {+not-occupied[TA1-1-oca1],+last[B5,S12],+occupied[TA2-1-lco],+first[B5,S12],+on[B4,A2]} {+last[B4,S12],+not-occupied[TA2-1-lco],+occupied[TA1-1-oca1],+first[B4,S12],+on[B5,A1]}
+5 POP-UNITARYPIPE[S13,B1,A1,A3,B5,lco,oca1,TA1-1-oca1,TA3-1-lco] {+first[B5,S13],+on[B1,A3],+occupied[TA3-1-lco],+not-occupied[TA1-1-oca1]} {+occupied[TA1-1-oca1],+last[B1,S13],+on[B5,A1],+first[B1,S13],+not-occupied[TA3-1-lco]} {+occupied[TA3-1-lco],+not-occupied[TA1-1-oca1],+first[B5,S13],+last[B5,S13],+on[B1,A3]}
+6 PUSH-UNITARYPIPE[S13,B2,A1,A3,B1,gasoleo,lco,TA1-1-gasoleo,TA3-1-lco] {+first[B1,S13],+on[B2,A1],+occupied[TA1-1-gasoleo],+not-occupied[TA3-1-lco]} {+occupied[TA3-1-lco],+on[B1,A3],+first[B2,S13],+last[B2,S13],+not-occupied[TA1-1-gasoleo]} {+not-occupied[TA3-1-lco],+last[B1,S13],+occupied[TA1-1-gasoleo],+on[B2,A1],+first[B1,S13]}
+22
+2 +on[B5,A2] 1
+3 +on[B2,A3] 1
+0 +not-occupied[TA2-1-oca1] 2
+0 +not-occupied[TA3-1-gasoleo] 3
+4 +first[B5,S12] 2
+0 +on[B3,A1] 3
+0 +occupied[TA1-1-rat-a] 3
+5 +on[B5,A1] 4
+0 +on[B1,A3] 5
+5 +occupied[TA1-1-oca1] 4
+0 +on[B0,A1] 2
+0 +occupied[TA1-1-oc1b] 2
+6 +first[B2,S13] 3
+0 +first[B5,S13] 5
+0 +not-occupied[TA1-1-oca1] 5
+5 +first[B1,S13] 6
+5 +not-occupied[TA3-1-lco] 6
+0 +first[B4,S12] 4
+0 +not-occupied[TA2-1-lco] 4
+0 +occupied[TA3-1-lco] 5
+0 +on[B2,A1] 6
+0 +occupied[TA1-1-gasoleo] 6
+17
+0 1
+0 2
+0 3
+0 4
+0 5
+0 6
+5 1
+5 2
+5 3
+5 4
+5 6
+6 1
+6 3
+2 1
+3 1
+4 1
+4 2

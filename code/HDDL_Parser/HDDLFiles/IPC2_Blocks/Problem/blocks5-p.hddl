@@ -1,0 +1,75 @@
+(define (problem probBLOCKS051pddl)
+(:domain domainpddl)
+(:objects 
+   o - object 
+)
+(:htn 
+   :tasks (and
+   (stackdc)
+   (stackcb)
+   (stackae)
+   (stackba)
+   (pick-upd)
+   (pick-upc)
+   (unstackad)
+   (pick-upb)
+   (put-downb)
+   (unstackba)
+))
+
+(:init 
+   (clearb)
+   (ontabled)
+   (ontablee)
+   (clearc)
+   (onba)
+   (handempty)
+   (cleare)
+   (ontablec)
+   (onad)
+)
+(:goal (and 
+   (ondc)
+   (oncb)
+   (onba)
+   (onae)
+))
+
+)(define (problem probBLOCKS051pddl)
+(:domain domainpddl)
+(:objects 
+   o - object 
+)
+(:htn 
+   :tasks (and
+   (stackdc)
+   (stackcb)
+   (stackae)
+   (stackba)
+   (pick-upd)
+   (pick-upc)
+   (unstackad)
+   (pick-upb)
+   (put-downb)
+   (unstackba)
+))
+
+(:init 
+   (clearb)
+   (ontabled)
+   (ontablee)
+   (clearc)
+   (onba)
+   (handempty)
+   (cleare)
+   (ontablec)
+   (onad)
+)
+(:goal (and 
+   (ondc)
+   (oncb)
+   (onba)
+   (onae)
+))
+
+)

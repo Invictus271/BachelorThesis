@@ -1,0 +1,716 @@
+Domain: ../resources/IPC3/DriverLog/domain/driverlog.pddl
+Problem: ../resources/IPC3/DriverLog/problems/pfile1
+DETAILED SOLUTION
+10
+0 init(<Instance>)[driver1,driver2,package1,package2,truck1,truck2,s0,s1,s2,p1-0,p1-2] {} {+at[driver2,s2],+at[package1,s0],+empty[truck2],+at[package2,s0],+at[truck1,s0],+at[truck2,s0],+at[driver1,s2],+empty[truck1]} {}
+1 goal(<Instance>)[driver1,driver2,package1,package2,truck1,truck2,s0,s1,s2,p1-0,p1-2] {+at[driver1,s1],+at[truck1,s1],+at[package1,s0],+at[package2,s0]} {} {}
+2 WALK[driver1,p1-2,s1] {+at[driver1,p1-2]} {+at[driver1,s1]} {+at[driver1,p1-2]}
+3 WALK[driver1,s2,p1-2] {+at[driver1,s2]} {+at[driver1,p1-2]} {+at[driver1,s2]}
+4 DRIVE-TRUCK[truck1,s0,s1,driver2] {+at[truck1,s0],+driving[driver2,truck1]} {+at[truck1,s1]} {+at[truck1,s0]}
+5 BOARD-TRUCK[driver2,truck1,s0] {+at[truck1,s0],+at[driver2,s0],+empty[truck1]} {+driving[driver2,truck1]} {+at[driver2,s0],+empty[truck1]}
+6 WALK[driver2,p1-0,s0] {+at[driver2,p1-0]} {+at[driver2,s0]} {+at[driver2,p1-0]}
+7 WALK[driver2,s1,p1-0] {+at[driver2,s1]} {+at[driver2,p1-0]} {+at[driver2,s1]}
+8 WALK[driver2,p1-2,s1] {+at[driver2,p1-2]} {+at[driver2,s1]} {+at[driver2,p1-2]}
+9 WALK[driver2,s2,p1-2] {+at[driver2,s2]} {+at[driver2,p1-2]} {+at[driver2,s2]}
+15
+2 +at[driver1,s1] 1
+3 +at[driver1,p1-2] 2
+4 +at[truck1,s1] 1
+5 +driving[driver2,truck1] 4
+6 +at[driver2,s0] 5
+7 +at[driver2,p1-0] 6
+0 +at[package1,s0] 1
+0 +at[package2,s0] 1
+8 +at[driver2,s1] 7
+9 +at[driver2,p1-2] 8
+0 +at[driver1,s2] 3
+0 +at[driver2,s2] 9
+0 +at[truck1,s0] 4
+0 +at[truck1,s0] 5
+0 +empty[truck1] 5
+33
+0 1
+0 2
+0 3
+0 4
+0 5
+0 6
+0 7
+0 8
+0 9
+5 1
+5 4
+6 1
+6 4
+6 5
+9 1
+9 4
+9 5
+9 6
+9 7
+9 8
+2 1
+7 1
+7 4
+7 5
+7 6
+3 1
+3 2
+8 1
+8 4
+8 5
+8 6
+8 7
+4 1
+Domain: ../resources/IPC3/DriverLog/domain/driverlog.pddl
+Problem: ../resources/IPC3/DriverLog/problems/pfile10
+DETAILED SOLUTION
+23
+0 init(<Instance>)[driver1,driver2,package1,package2,package3,package4,package5,package6,truck1,truck2,truck3,s0,s1,s2,s3,s4,s5,p1-0,p1-4,p1-5,p2-1,p2-3,p3-0,p3-1,p3-5,p4-5] {} {+at[package6,s2],+at[driver1,s4],+at[truck3,s5],+empty[truck3],+empty[truck2],+at[package2,s0],+at[truck1,s0],+at[driver2,s0],+at[truck2,s4],+at[package5,s4],+at[package3,s4],+at[package1,s1],+at[package4,s4],+empty[truck1]} {}
+1 goal(<Instance>)[driver1,driver2,package1,package2,package3,package4,package5,package6,truck1,truck2,truck3,s0,s1,s2,s3,s4,s5,p1-0,p1-4,p1-5,p2-1,p2-3,p3-0,p3-1,p3-5,p4-5] {+at[driver1,s1],+at[driver2,s0],+at[package1,s5],+at[package2,s1],+at[package3,s5],+at[package4,s1],+at[package5,s3],+at[package6,s2]} {} {}
+2 UNLOAD-TRUCK[package1,truck2,s5] {+at[truck2,s5],+in[package1,truck2]} {+at[package1,s5]} {+in[package1,truck2]}
+3 UNLOAD-TRUCK[package2,truck1,s1] {+at[truck1,s1],+in[package2,truck1]} {+at[package2,s1]} {+in[package2,truck1]}
+4 UNLOAD-TRUCK[package3,truck2,s5] {+at[truck2,s5],+in[package3,truck2]} {+at[package3,s5]} {+in[package3,truck2]}
+5 UNLOAD-TRUCK[package4,truck2,s1] {+at[truck2,s1],+in[package4,truck2]} {+at[package4,s1]} {+in[package4,truck2]}
+6 UNLOAD-TRUCK[package5,truck2,s3] {+at[truck2,s3],+in[package5,truck2]} {+at[package5,s3]} {+in[package5,truck2]}
+7 LOAD-TRUCK[package1,truck2,s1] {+at[truck2,s1],+at[package1,s1]} {+in[package1,truck2]} {+at[package1,s1]}
+8 LOAD-TRUCK[package2,truck1,s0] {+at[truck1,s0],+at[package2,s0]} {+in[package2,truck1]} {+at[package2,s0]}
+9 LOAD-TRUCK[package3,truck2,s4] {+at[truck2,s4],+at[package3,s4]} {+in[package3,truck2]} {+at[package3,s4]}
+10 LOAD-TRUCK[package4,truck2,s4] {+at[truck2,s4],+at[package4,s4]} {+in[package4,truck2]} {+at[package4,s4]}
+11 LOAD-TRUCK[package5,truck2,s4] {+at[truck2,s4],+at[package5,s4]} {+in[package5,truck2]} {+at[package5,s4]}
+12 DISEMBARK-TRUCK[driver2,truck1,s0] {+at[truck1,s0],+driving[driver2,truck1]} {+at[driver2,s0],+empty[truck1]} {+driving[driver2,truck1]}
+13 BOARD-TRUCK[driver2,truck1,s0] {+at[truck1,s0],+at[driver2,s0],+empty[truck1]} {+driving[driver2,truck1]} {+at[driver2,s0],+empty[truck1]}
+14 DISEMBARK-TRUCK[driver1,truck2,s1] {+at[truck2,s1],+driving[driver1,truck2]} {+at[driver1,s1],+empty[truck2]} {+driving[driver1,truck2]}
+15 BOARD-TRUCK[driver1,truck2,s4] {+at[truck2,s4],+at[driver1,s4],+empty[truck2]} {+driving[driver1,truck2]} {+at[driver1,s4],+empty[truck2]}
+16 DRIVE-TRUCK[truck2,s4,s5,driver1] {+at[truck2,s4],+driving[driver1,truck2]} {+at[truck2,s5]} {+at[truck2,s4]}
+17 DRIVE-TRUCK[truck1,s0,s1,driver2] {+at[truck1,s0],+driving[driver2,truck1]} {+at[truck1,s1]} {+at[truck1,s0]}
+18 DRIVE-TRUCK[truck2,s4,s1,driver1] {+at[truck2,s4],+driving[driver1,truck2]} {+at[truck2,s1]} {+at[truck2,s4]}
+19 DRIVE-TRUCK[truck2,s5,s3,driver1] {+at[truck2,s5],+driving[driver1,truck2]} {+at[truck2,s3]} {+at[truck2,s5]}
+20 DRIVE-TRUCK[truck2,s1,s4,driver1] {+at[truck2,s1],+driving[driver1,truck2]} {+at[truck2,s4]} {+at[truck2,s1]}
+21 DRIVE-TRUCK[truck2,s3,s1,driver1] {+at[truck2,s3],+driving[driver1,truck2]} {+at[truck2,s1]} {+at[truck2,s3]}
+22 DRIVE-TRUCK[truck1,s1,s0,driver2] {+at[truck1,s1],+driving[driver2,truck1]} {+at[truck1,s0]} {+at[truck1,s1]}
+52
+2 +at[package1,s5] 1
+3 +at[package2,s1] 1
+4 +at[package3,s5] 1
+5 +at[package4,s1] 1
+6 +at[package5,s3] 1
+0 +at[package6,s2] 1
+7 +in[package1,truck2] 2
+0 +at[package1,s1] 7
+8 +in[package2,truck1] 3
+0 +at[package2,s0] 8
+9 +in[package3,truck2] 4
+0 +at[package3,s4] 9
+10 +in[package4,truck2] 5
+0 +at[package4,s4] 10
+11 +in[package5,truck2] 6
+0 +at[package5,s4] 11
+12 +at[driver2,s0] 1
+13 +driving[driver2,truck1] 12
+0 +at[driver2,s0] 13
+14 +at[driver1,s1] 1
+15 +driving[driver1,truck2] 14
+0 +at[driver1,s4] 15
+16 +at[truck2,s5] 2
+15 +driving[driver1,truck2] 16
+16 +at[truck2,s5] 4
+17 +at[truck1,s1] 3
+13 +driving[driver2,truck1] 17
+18 +at[truck2,s1] 5
+15 +driving[driver1,truck2] 18
+19 +at[truck2,s3] 6
+15 +driving[driver1,truck2] 19
+16 +at[truck2,s5] 19
+0 +at[truck2,s4] 9
+0 +at[truck2,s4] 10
+0 +at[truck2,s4] 11
+0 +at[truck2,s4] 15
+20 +at[truck2,s4] 16
+15 +driving[driver1,truck2] 20
+0 +at[truck2,s4] 18
+18 +at[truck2,s1] 7
+21 +at[truck2,s1] 14
+15 +driving[driver1,truck2] 21
+18 +at[truck2,s1] 20
+19 +at[truck2,s3] 21
+0 +at[truck1,s0] 8
+22 +at[truck1,s0] 12
+13 +driving[driver2,truck1] 22
+17 +at[truck1,s1] 22
+0 +at[truck1,s0] 13
+0 +at[truck1,s0] 17
+0 +empty[truck1] 13
+0 +empty[truck2] 15
+154
+0 1
+0 2
+0 3
+0 4
+0 5
+0 6
+0 7
+0 8
+0 9
+0 10
+0 11
+0 12
+0 13
+0 14
+0 15
+0 16
+0 17
+0 18
+0 19
+0 20
+0 21
+0 22
+5 1
+5 2
+5 4
+5 6
+5 14
+5 16
+5 19
+5 20
+5 21
+10 1
+10 2
+10 4
+10 5
+10 6
+10 7
+10 14
+10 16
+10 18
+10 19
+10 20
+10 21
+14 1
+20 1
+20 2
+20 4
+20 6
+20 14
+20 16
+20 19
+20 21
+6 1
+6 14
+6 21
+21 1
+21 14
+9 1
+9 2
+9 4
+9 5
+9 6
+9 7
+9 14
+9 16
+9 18
+9 19
+9 20
+9 21
+13 1
+13 3
+13 12
+13 17
+13 22
+2 1
+2 6
+2 14
+2 19
+2 21
+17 1
+17 3
+17 12
+17 22
+22 1
+22 12
+12 1
+7 1
+7 2
+7 4
+7 6
+7 14
+7 16
+7 19
+7 20
+7 21
+3 1
+3 12
+3 22
+18 1
+18 2
+18 4
+18 5
+18 6
+18 7
+18 14
+18 16
+18 19
+18 20
+18 21
+16 1
+16 2
+16 4
+16 6
+16 14
+16 19
+16 21
+11 1
+11 2
+11 4
+11 5
+11 6
+11 7
+11 14
+11 16
+11 18
+11 19
+11 20
+11 21
+8 1
+8 3
+8 12
+8 17
+8 22
+19 1
+19 6
+19 14
+19 21
+4 1
+4 6
+4 14
+4 19
+4 21
+15 1
+15 2
+15 4
+15 5
+15 6
+15 7
+15 14
+15 16
+15 18
+15 19
+15 20
+15 21
+Domain: ../resources/IPC3/DriverLog/domain/driverlog.pddl
+Problem: ../resources/IPC3/DriverLog/problems/pfile3
+DETAILED SOLUTION
+15
+0 init(<Instance>)[driver1,driver2,package1,package2,package3,package4,truck1,truck2,s0,s1,s2,p0-1,p2-0,p2-1] {} {+at[truck2,s2],+at[package1,s0],+at[package3,s1],+empty[truck2],+at[package2,s0],+at[truck1,s1],+at[driver2,s0],+at[driver1,s1],+at[package4,s1],+empty[truck1]} {}
+1 goal(<Instance>)[driver1,driver2,package1,package2,package3,package4,truck1,truck2,s0,s1,s2,p0-1,p2-0,p2-1] {+at[driver2,s2],+at[truck1,s1],+at[truck2,s2],+at[package1,s1],+at[package2,s1],+at[package3,s2]} {} {}
+2 UNLOAD-TRUCK[package1,truck1,s1] {+at[truck1,s1],+in[package1,truck1]} {+at[package1,s1]} {+in[package1,truck1]}
+3 UNLOAD-TRUCK[package2,truck1,s1] {+at[truck1,s1],+in[package2,truck1]} {+at[package2,s1]} {+in[package2,truck1]}
+4 UNLOAD-TRUCK[package3,truck1,s2] {+at[truck1,s2],+in[package3,truck1]} {+at[package3,s2]} {+in[package3,truck1]}
+5 LOAD-TRUCK[package1,truck1,s0] {+at[truck1,s0],+at[package1,s0]} {+in[package1,truck1]} {+at[package1,s0]}
+6 LOAD-TRUCK[package2,truck1,s0] {+at[truck1,s0],+at[package2,s0]} {+in[package2,truck1]} {+at[package2,s0]}
+7 LOAD-TRUCK[package3,truck1,s1] {+at[truck1,s1],+at[package3,s1]} {+in[package3,truck1]} {+at[package3,s1]}
+8 WALK[driver2,p2-0,s2] {+at[driver2,p2-0]} {+at[driver2,s2]} {+at[driver2,p2-0]}
+9 WALK[driver2,s0,p2-0] {+at[driver2,s0]} {+at[driver2,p2-0]} {+at[driver2,s0]}
+10 DRIVE-TRUCK[truck1,s1,s2,driver1] {+at[truck1,s1],+driving[driver1,truck1]} {+at[truck1,s2]} {+at[truck1,s1]}
+11 BOARD-TRUCK[driver1,truck1,s1] {+at[truck1,s1],+at[driver1,s1],+empty[truck1]} {+driving[driver1,truck1]} {+at[driver1,s1],+empty[truck1]}
+12 DRIVE-TRUCK[truck1,s1,s0,driver1] {+at[truck1,s1],+driving[driver1,truck1]} {+at[truck1,s0]} {+at[truck1,s1]}
+13 DRIVE-TRUCK[truck1,s2,s1,driver1] {+at[truck1,s2],+driving[driver1,truck1]} {+at[truck1,s1]} {+at[truck1,s2]}
+14 DRIVE-TRUCK[truck1,s0,s1,driver1] {+at[truck1,s0],+driving[driver1,truck1]} {+at[truck1,s1]} {+at[truck1,s0]}
+31
+2 +at[package1,s1] 1
+3 +at[package2,s1] 1
+4 +at[package3,s2] 1
+5 +in[package1,truck1] 2
+6 +in[package2,truck1] 3
+7 +in[package3,truck1] 4
+8 +at[driver2,s2] 1
+9 +at[driver2,p2-0] 8
+10 +at[truck1,s2] 4
+11 +driving[driver1,truck1] 10
+12 +at[truck1,s0] 5
+0 +at[package1,s0] 5
+0 +at[package2,s0] 6
+0 +at[package3,s1] 7
+11 +driving[driver1,truck1] 12
+12 +at[truck1,s0] 6
+13 +at[truck1,s1] 1
+11 +driving[driver1,truck1] 13
+10 +at[truck1,s2] 13
+0 +at[truck2,s2] 1
+0 +at[truck1,s1] 7
+0 +at[driver2,s0] 9
+14 +at[truck1,s1] 10
+11 +driving[driver1,truck1] 14
+12 +at[truck1,s0] 14
+0 +at[truck1,s1] 11
+0 +at[driver1,s1] 11
+0 +at[truck1,s1] 12
+13 +at[truck1,s1] 2
+13 +at[truck1,s1] 3
+0 +empty[truck1] 11
+80
+0 1
+0 2
+0 3
+0 4
+0 5
+0 6
+0 7
+0 8
+0 9
+0 10
+0 11
+0 12
+0 13
+0 14
+5 1
+5 2
+5 3
+5 4
+5 10
+5 13
+5 14
+10 1
+10 2
+10 3
+10 4
+10 13
+14 1
+14 2
+14 3
+14 4
+14 10
+14 13
+6 1
+6 2
+6 3
+6 4
+6 10
+6 13
+6 14
+9 1
+9 8
+13 1
+13 2
+13 3
+2 1
+12 1
+12 2
+12 3
+12 4
+12 5
+12 6
+12 10
+12 13
+12 14
+7 1
+7 2
+7 3
+7 4
+7 5
+7 6
+7 10
+7 12
+7 13
+7 14
+3 1
+11 1
+11 2
+11 3
+11 4
+11 5
+11 6
+11 10
+11 12
+11 13
+11 14
+8 1
+4 1
+4 2
+4 3
+4 13
+Domain: ../resources/IPC3/DriverLog/domain/driverlog.pddl
+Problem: ../resources/IPC3/DriverLog/problems/pfile6
+DETAILED SOLUTION
+13
+0 init(<Instance>)[driver1,driver2,driver3,package1,package2,package3,package4,package5,truck1,truck2,truck3,s0,s1,s2,p1-2,p2-0] {} {+at[driver2,s2],+at[driver3,s1],+empty[truck3],+empty[truck2],+at[truck1,s0],+at[package5,s1],+at[truck3,s1],+at[truck2,s1],+at[package1,s1],+at[driver1,s2],+at[package2,s1],+at[package4,s1],+at[package3,s0],+empty[truck1]} {}
+1 goal(<Instance>)[driver1,driver2,driver3,package1,package2,package3,package4,package5,truck1,truck2,truck3,s0,s1,s2,p1-2,p2-0] {+at[driver1,s1],+at[driver2,s0],+at[truck1,s0],+at[truck2,s0],+at[truck3,s2],+at[package1,s2],+at[package2,s1],+at[package3,s0],+at[package4,s1],+at[package5,s1]} {} {}
+2 UNLOAD-TRUCK[package1,truck3,s2] {+at[truck3,s2],+in[package1,truck3]} {+at[package1,s2]} {+in[package1,truck3]}
+3 LOAD-TRUCK[package1,truck3,s1] {+at[truck3,s1],+at[package1,s1]} {+in[package1,truck3]} {+at[package1,s1]}
+4 WALK[driver1,p1-2,s1] {+at[driver1,p1-2]} {+at[driver1,s1]} {+at[driver1,p1-2]}
+5 WALK[driver1,s2,p1-2] {+at[driver1,s2]} {+at[driver1,p1-2]} {+at[driver1,s2]}
+6 DISEMBARK-TRUCK[driver2,truck2,s0] {+at[truck2,s0],+driving[driver2,truck2]} {+at[driver2,s0],+empty[truck2]} {+driving[driver2,truck2]}
+7 BOARD-TRUCK[driver2,truck2,s1] {+at[truck2,s1],+at[driver2,s1],+empty[truck2]} {+driving[driver2,truck2]} {+at[driver2,s1],+empty[truck2]}
+8 WALK[driver2,p1-2,s1] {+at[driver2,p1-2]} {+at[driver2,s1]} {+at[driver2,p1-2]}
+9 WALK[driver2,s2,p1-2] {+at[driver2,s2]} {+at[driver2,p1-2]} {+at[driver2,s2]}
+10 DRIVE-TRUCK[truck2,s1,s0,driver2] {+at[truck2,s1],+driving[driver2,truck2]} {+at[truck2,s0]} {+at[truck2,s1]}
+11 DRIVE-TRUCK[truck3,s1,s2,driver3] {+at[truck3,s1],+driving[driver3,truck3]} {+at[truck3,s2]} {+at[truck3,s1]}
+12 BOARD-TRUCK[driver3,truck3,s1] {+at[truck3,s1],+at[driver3,s1],+empty[truck3]} {+driving[driver3,truck3]} {+at[driver3,s1],+empty[truck3]}
+30
+2 +at[package1,s2] 1
+3 +in[package1,truck3] 2
+4 +at[driver1,s1] 1
+5 +at[driver1,p1-2] 4
+6 +at[driver2,s0] 1
+7 +driving[driver2,truck2] 6
+8 +at[driver2,s1] 7
+9 +at[driver2,p1-2] 8
+0 +at[package2,s1] 1
+0 +at[package3,s0] 1
+0 +at[package4,s1] 1
+0 +at[package5,s1] 1
+0 +at[package1,s1] 3
+10 +at[truck2,s0] 1
+7 +driving[driver2,truck2] 10
+11 +at[truck3,s2] 1
+12 +driving[driver3,truck3] 11
+0 +at[driver3,s1] 12
+11 +at[truck3,s2] 2
+0 +at[driver1,s2] 5
+10 +at[truck2,s0] 6
+0 +at[driver2,s2] 9
+0 +at[truck1,s0] 1
+0 +at[truck3,s1] 3
+0 +at[truck2,s1] 7
+0 +at[truck2,s1] 10
+0 +at[truck3,s1] 11
+0 +at[truck3,s1] 12
+0 +empty[truck2] 7
+0 +empty[truck3] 12
+39
+0 1
+0 2
+0 3
+0 4
+0 5
+0 6
+0 7
+0 8
+0 9
+0 10
+0 11
+0 12
+5 1
+5 4
+10 1
+10 6
+6 1
+9 1
+9 6
+9 7
+9 8
+9 10
+2 1
+12 1
+12 2
+12 11
+7 1
+7 6
+7 10
+3 1
+3 2
+3 11
+11 1
+11 2
+8 1
+8 6
+8 7
+8 10
+4 1
+Domain: ../resources/IPC3/DriverLog/domain/driverlog.pddl
+Problem: ../resources/IPC3/DriverLog/problems/pfile7
+DETAILED SOLUTION
+19
+0 init(<Instance>)[driver1,driver2,driver3,package1,package2,package3,package4,package5,package6,truck1,truck2,truck3,s0,s1,s2,p0-1,p0-2,p2-1] {} {+at[driver2,s2],+at[package1,s0],+at[package3,s1],+empty[truck3],+empty[truck2],+at[package6,s0],+at[package5,s1],+at[truck1,s1],+at[driver1,s1],+at[driver3,s2],+at[truck3,s1],+at[truck2,s1],+at[package4,s1],+at[package2,s2],+empty[truck1]} {}
+1 goal(<Instance>)[driver1,driver2,driver3,package1,package2,package3,package4,package5,package6,truck1,truck2,truck3,s0,s1,s2,p0-1,p0-2,p2-1] {+at[driver1,s0],+at[driver2,s0],+at[truck1,s1],+at[truck2,s0],+at[package1,s0],+at[package2,s1],+at[package3,s1],+at[package4,s2],+at[package5,s0],+at[package6,s0]} {} {}
+2 UNLOAD-TRUCK[package2,truck2,s1] {+at[truck2,s1],+in[package2,truck2]} {+at[package2,s1]} {+in[package2,truck2]}
+3 UNLOAD-TRUCK[package4,truck2,s2] {+at[truck2,s2],+in[package4,truck2]} {+at[package4,s2]} {+in[package4,truck2]}
+4 UNLOAD-TRUCK[package5,truck2,s0] {+at[truck2,s0],+in[package5,truck2]} {+at[package5,s0]} {+in[package5,truck2]}
+5 LOAD-TRUCK[package2,truck2,s2] {+at[truck2,s2],+at[package2,s2]} {+in[package2,truck2]} {+at[package2,s2]}
+6 LOAD-TRUCK[package4,truck2,s1] {+at[truck2,s1],+at[package4,s1]} {+in[package4,truck2]} {+at[package4,s1]}
+7 LOAD-TRUCK[package5,truck2,s1] {+at[truck2,s1],+at[package5,s1]} {+in[package5,truck2]} {+at[package5,s1]}
+8 WALK[driver1,p0-1,s0] {+at[driver1,p0-1]} {+at[driver1,s0]} {+at[driver1,p0-1]}
+9 WALK[driver1,s1,p0-1] {+at[driver1,s1]} {+at[driver1,p0-1]} {+at[driver1,s1]}
+10 WALK[driver2,p0-2,s0] {+at[driver2,p0-2]} {+at[driver2,s0]} {+at[driver2,p0-2]}
+11 WALK[driver2,s2,p0-2] {+at[driver2,s2]} {+at[driver2,p0-2]} {+at[driver2,s2]}
+12 DRIVE-TRUCK[truck2,s1,s0,driver1] {+at[truck2,s1],+driving[driver1,truck2]} {+at[truck2,s0]} {+at[truck2,s1]}
+13 BOARD-TRUCK[driver1,truck2,s1] {+at[truck2,s1],+at[driver1,s1],+empty[truck2]} {+driving[driver1,truck2]} {+at[driver1,s1],+empty[truck2]}
+14 DRIVE-TRUCK[truck2,s1,s2,driver1] {+at[truck2,s1],+driving[driver1,truck2]} {+at[truck2,s2]} {+at[truck2,s1]}
+15 WALK[driver1,p0-1,s1] {+at[driver1,p0-1]} {+at[driver1,s1]} {+at[driver1,p0-1]}
+16 WALK[driver1,s0,p0-1] {+at[driver1,s0]} {+at[driver1,p0-1]} {+at[driver1,s0]}
+17 DISEMBARK-TRUCK[driver1,truck2,s0] {+at[truck2,s0],+driving[driver1,truck2]} {+at[driver1,s0],+empty[truck2]} {+driving[driver1,truck2]}
+18 DRIVE-TRUCK[truck2,s2,s1,driver1] {+at[truck2,s2],+driving[driver1,truck2]} {+at[truck2,s1]} {+at[truck2,s2]}
+39
+2 +at[package2,s1] 1
+3 +at[package4,s2] 1
+4 +at[package5,s0] 1
+5 +in[package2,truck2] 2
+6 +in[package4,truck2] 3
+7 +in[package5,truck2] 4
+8 +at[driver1,s0] 1
+9 +at[driver1,p0-1] 8
+10 +at[driver2,s0] 1
+11 +at[driver2,p0-2] 10
+0 +at[package1,s0] 1
+0 +at[package3,s1] 1
+0 +at[package6,s0] 1
+0 +at[package2,s2] 5
+0 +at[package4,s1] 6
+0 +at[package5,s1] 7
+12 +at[truck2,s0] 1
+13 +driving[driver1,truck2] 12
+14 +at[truck2,s2] 3
+13 +driving[driver1,truck2] 14
+12 +at[truck2,s0] 4
+14 +at[truck2,s2] 5
+15 +at[driver1,s1] 9
+16 +at[driver1,p0-1] 15
+17 +at[driver1,s0] 16
+13 +driving[driver1,truck2] 17
+0 +at[driver2,s2] 11
+0 +at[driver1,s1] 13
+12 +at[truck2,s0] 17
+0 +at[truck1,s1] 1
+18 +at[truck2,s1] 2
+13 +driving[driver1,truck2] 18
+14 +at[truck2,s2] 18
+0 +at[truck2,s1] 6
+0 +at[truck2,s1] 13
+0 +at[truck2,s1] 14
+18 +at[truck2,s1] 7
+18 +at[truck2,s1] 12
+0 +empty[truck2] 13
+133
+0 1
+0 2
+0 3
+0 4
+0 5
+0 6
+0 7
+0 8
+0 9
+0 10
+0 11
+0 12
+0 13
+0 14
+0 15
+0 16
+0 17
+0 18
+5 1
+5 2
+5 4
+5 7
+5 8
+5 9
+5 12
+5 15
+5 16
+5 17
+5 18
+10 1
+14 1
+14 2
+14 3
+14 4
+14 5
+14 7
+14 8
+14 9
+14 12
+14 15
+14 16
+14 17
+14 18
+6 1
+6 2
+6 3
+6 4
+6 5
+6 7
+6 8
+6 9
+6 12
+6 14
+6 15
+6 16
+6 17
+6 18
+9 1
+9 8
+13 1
+13 2
+13 3
+13 4
+13 5
+13 7
+13 8
+13 9
+13 12
+13 14
+13 15
+13 16
+13 17
+13 18
+2 1
+2 4
+2 8
+2 9
+2 12
+2 15
+2 16
+2 17
+17 1
+17 8
+17 9
+17 15
+17 16
+12 1
+12 4
+12 8
+12 9
+12 15
+12 16
+12 17
+7 1
+7 4
+7 8
+7 9
+7 12
+7 15
+7 16
+7 17
+3 1
+3 2
+3 4
+3 7
+3 8
+3 9
+3 12
+3 15
+3 16
+3 17
+3 18
+18 1
+18 2
+18 4
+18 7
+18 8
+18 9
+18 12
+18 15
+18 16
+18 17
+16 1
+16 8
+16 9
+16 15
+11 1
+11 10
+8 1
+4 1
+15 1
+15 8
+15 9

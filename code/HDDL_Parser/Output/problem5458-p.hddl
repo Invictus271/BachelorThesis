@@ -1,0 +1,49 @@
+(define (problem unnamedProblem)
+(:domain unnamedDomain)
+(:objects 
+   o - object 
+)
+(:htn 
+   :tasks (and
+   (flyplane1city0city1fl3fl2)
+   (refuelplane1city0fl2fl3)
+   (refuelplane1city0fl1fl2)
+))
+
+(:init 
+   (atperson2city2)
+   (atplane1city0)
+   (fuel-levelplane1fl1)
+   (atperson1city0)
+)
+(:goal (and 
+   (atplane1city1)
+   (atperson1city0)
+   (atperson2city2)
+))
+
+)(define (problem unnamedProblem)
+(:domain unnamedDomain)
+(:objects 
+   o - object 
+)
+(:htn 
+   :tasks (and
+   (flyplane1city0city1fl3fl2)
+   (refuelplane1city0fl2fl3)
+   (refuelplane1city0fl1fl2)
+))
+
+(:init 
+   (atperson2city2)
+   (atplane1city0)
+   (fuel-levelplane1fl1)
+   (atperson1city0)
+)
+(:goal (and 
+   (atplane1city1)
+   (atperson1city0)
+   (atperson2city2)
+))
+
+)

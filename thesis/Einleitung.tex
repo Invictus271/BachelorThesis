@@ -1,0 +1,60 @@
+\chapter{Introduction}
+
+%\textbf{ACHTUNG:} Dieses Dokument enthält per Default eine Creative-Commons-Lizenz, mit der \emph{jedem} spezielle Nutzungsrechte gewährt werden, welche \emph{niemals} zurück genommen werden können (Details siehe Lizenz). Es ist im Interesse der Universität und auch des Instituts der KI, dass diese Lizenz im Dokument enthalten bleibt, jedoch obliegt diese Entscheidung einzig und allein Ihnen.
+
+%Falls Sie Ihre Arbeit auf Englisch schreiben, denken Sie bitte daran, alles bis auf die erste Seite zu übersetzen, z.B. ``Fassung'' auf der zweiten Seite. Womöglich schreibt die Prüfungsordnung in jedem Fall ein deutsches Abstract vor (bitte prüfen).
+
+
+
+Creating and executing a plan will get you from a starting point to a goal.
+The faster a plan is being created the faster it can be executed.
+That is why planning systems want to produce plans with as little computation time as possible.
+Some planning systems will crate non-optimal plans in order to enhance their performance.
+
+This work will present ways to deal with non-optimal plans through optimization.
+The plan justification approach follows the idea of removing plan steps 
+in non-optimal plans that are not necessary for reaching a goal.
+For example, a plan is given which is supposed to provide coffee supply for an office.
+The first plan step is \enquote{boil hot water}, the second is \enquote{filter coffee} and the third and final plan step is \enquote{boil hot water}.
+Instead of trying to search better options to brew coffee, justification algorithms will search plan steps that can 
+be removed while still achieving the goal.
+For the purpose of identifying unnecessary plan steps \cite{Justification} have defined 
+justification criteria.
+If there is a plan step that can not satisfy a justification criteria, the plan 
+step is unjustified and can be removed.
+However, if a plan step is justified it could still be unnecessary for achieving the goal.
+In general finding optimal plans can be a very high complex problem depending on the planning domain \cite{Helmert}.
+That is why there are 4 types of justification that vary in strength.
+The stronger the justification the harder it gets for a plan step to fulfill the criteria.
+Therefore, algorithms using stronger justification types can potentially remove more plan steps.
+Along with the strength of justification the runtime of the related algorithm increases.
+The best possible plan is called perfectly justified, which is the strongest justification type.
+Finding a perfectly justified plan is a NP-complete problem \cite{Justification}.
+Since computation is an important property to optimization algorithms, the presented
+justification algorithms are limited to polynomial time.
+Therefore, perfect justification will not be evaluated in this work.
+For the same reason the tested justification algorithms are also not able to rearrange ordering constraints to repair a plan,
+which is a NP-complete problem as showed in \cite{RemoveRepair}.
+While the concept of justification can be used in total-order plans as in the example above,
+the focus of this work is on the application on PO and POCL plans \cite{McAllester}.
+The concept of plan step justification can also be used to provide explanations for a plan to a user.
+Which can increase the trust and ability to understand a plan to a user which was shown in \cite{HomeTheater}. 
+
+Since PO and POCL plans allow nonlinear ordering of plan steps, multiple plan steps can be executed at 
+the same time.
+The more plan steps that can be executed parallel the better the plan is.
+The makespan of a plan describes the length of the longest path from the initial state to the first goal state.
+It serves as a metric on how fast a plan can be executed thanks to parallel execution of plan steps.
+If the justification algorithms remove plan steps that cannot be executed parallel to another plan step,
+they reduce the makespan of a plan.
+
+In addition to that a second method of makespan optimization is presented in this work.
+This method will not remove plan steps, instead it will reorder the plan steps in a 
+way that allows for more parallel execution.
+This is accomplished by translating the problem of creating an ordering of plan steps 
+into a hierarchical planning problem which can be solved by the hybrid planning system PANDA \cite{Panda}.
+For this the ordering constraints and causal links of a plan have to be removed and 
+the plan steps have to be handled as primitive tasks.
+Then PANDA is able to solve these hierarchical planning problems with a makespan minimizing A-star heuristic.
+Therefore, PANDA is able to insert ordering constraints in a way that 
+creates an optimal makespan for the given plan steps. 

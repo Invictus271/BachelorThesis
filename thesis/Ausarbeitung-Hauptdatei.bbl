@@ -1,0 +1,81 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{BBG{\etalchar{+}}14}
+
+\bibitem[B{\"{a}}c98]{Backstrom}
+Christer B{\"{a}}ckstr{\"{o}}m.
+\newblock Computational aspects of reordering plans.
+\newblock {\em Journal of Artificial Intelligence Research}, 9:99--137, 1998.
+
+\bibitem[BBG{\etalchar{+}}14]{HomeTheater}
+Pascal Bercher, Susanne Biundo, Thomas Geier, Thilo Hoernle, Florian Nothdurft,
+  Felix Richter, and Bernd Schattenberg.
+\newblock Plan, repair, execute, explain -- how planning helps to assemble your
+  home theater.
+\newblock In {\em Proceedings of the Twenty-Fourth International Conference on
+  Automated Planning and Scheduling, {ICAPS} 2014}. {AAAI}, 2014.
+
+\bibitem[BKB14]{Panda}
+Pascal Bercher, Shawn Keen, and Susanne Biundo.
+\newblock Hybrid planning heuristics based on task decomposition graphs.
+\newblock In {\em Proceedings of the Seventh Annual Symposium on Combinatorial
+  Search, {SOCS} 2014}. {AAAI} Press, 2014.
+
+\bibitem[DM91]{DBLP:conf/aaai/1991-2}
+Thomas~L. Dean and Kathleen~R. McKeown, editors.
+\newblock {\em Proceedings of the 9th National Conference on Artificial
+  Intelligence, Volume 2}. {AAAI} Press / The {MIT} Press, 1991.
+
+\bibitem[EHN94]{HTN}
+Kutluhan Erol, James~A. Hendler, and Dana~S. Nau.
+\newblock {UMCP:} {A} sound and complete procedure for hierarchical
+  task-network planning.
+\newblock In {\em Proceedings of the Second International Conference on
+  Artificial Intelligence Planning Systems, University of Chicago, Chicago,
+  Illinois, USA, June 13-15, 1994}, pages 249--254. {AAAI}, 1994.
+
+\bibitem[Flo62]{Floyd}
+Robert~W. Floyd.
+\newblock Algorithm 97: Shortest path.
+\newblock {\em Communications of the ACM}, 5(6):345, 1962.
+
+\bibitem[FN71]{STRIPS}
+Richard Fikes and Nils~J. Nilsson.
+\newblock {STRIPS:} {A} new approach to the application of theorem proving to
+  problem solving.
+\newblock {\em Artificial Intelligence}, 2(3-4):189--208, 1971.
+
+\bibitem[FY92]{Justification}
+Eugene Fink and Qiang Yang.
+\newblock Formalizing plan justifications.
+\newblock {\em Proceedings of the 9th Conference of the Canadian Society for
+  Computational Studies of Intelligence}, pages 9--14, 1992.
+
+\bibitem[Hel03]{Helmert}
+Malte Helmert.
+\newblock Complexity results for standard benchmark domains in planning.
+\newblock {\em Artificial Intelligence}, 143(2):219--262, 2003.
+
+\bibitem[KN96]{Kambhampti}
+Subbarao Kambhampati and Dana~S. Nau.
+\newblock On the nature and role of modal truth criteria in planning.
+\newblock {\em Artificial Intelligence}, 82(1-2):129--155, 1996.
+
+\bibitem[KTY91]{Knoblock}
+Craig~A. Knoblock, Josh~D. Tenenberg, and Qiang Yang.
+\newblock Characterizing abstraction hierarchies for planning.
+\newblock In Dean and McKeown \cite{DBLP:conf/aaai/1991-2}, pages 692--697.
+
+\bibitem[MR91]{McAllester}
+David~A. McAllester and David Rosenblitt.
+\newblock Systematic nonlinear planning.
+\newblock In Dean and McKeown \cite{DBLP:conf/aaai/1991-2}, pages 634--639.
+
+\bibitem[OB19]{RemoveRepair}
+Conny Olz and Pascal Bercher.
+\newblock Eliminating redundant actions in partially ordered plans -- {A}
+  complexity analysis.
+\newblock In {\em Proceedings of the Twenty-Ninth International Conference on
+  Automated Planning and Scheduling, {IiCAPS} 2019}, pages 310--319. {AAAI}
+  Press, 2019.
+
+\end{thebibliography}

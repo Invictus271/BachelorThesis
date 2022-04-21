@@ -1,0 +1,57 @@
+(define (problem s034pddl)
+(:domain domainpddl)
+(:objects 
+   o - object 
+)
+(:htn 
+   :tasks (and
+   (departf0p0)
+   (departf0p1)
+   (departf4p2)
+   (boardf3p0)
+   (boardf2p1)
+   (boardf0p2)
+   (upf0f4)
+   (upf0f3)
+   (downf3f2)
+   (downf2f0)
+))
+
+(:init 
+   (lift-atf0)
+)
+(:goal (and 
+   (servedp0)
+   (servedp1)
+   (servedp2)
+))
+
+)(define (problem s034pddl)
+(:domain domainpddl)
+(:objects 
+   o - object 
+)
+(:htn 
+   :tasks (and
+   (departf0p0)
+   (departf0p1)
+   (departf4p2)
+   (boardf3p0)
+   (boardf2p1)
+   (boardf0p2)
+   (upf0f4)
+   (upf0f3)
+   (downf3f2)
+   (downf2f0)
+))
+
+(:init 
+   (lift-atf0)
+)
+(:goal (and 
+   (servedp0)
+   (servedp1)
+   (servedp2)
+))
+
+)

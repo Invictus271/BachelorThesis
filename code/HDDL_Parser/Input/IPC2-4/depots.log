@@ -1,0 +1,1430 @@
+Domain: ../resources/IPC3/Depots/domain/Depots.pddl
+Problem: ../resources/IPC3/Depots/problems/pfile1
+DETAILED SOLUTION
+13
+0 init(<Instance>)[depot0,truck0,truck1,pallet0,pallet1,pallet2,crate0,crate1,distributor0,distributor1,hoist0,hoist1,hoist2] {} {+clear[pallet2],+available[hoist2],+at[truck0,distributor1],+on[crate1,pallet0],+clear[crate1],+at[crate0,distributor0],+available[hoist1],+on[crate0,pallet1],+at[crate1,depot0],+at[truck1,depot0],+available[hoist0],+clear[crate0]} {}
+1 goal(<Instance>)[depot0,truck0,truck1,pallet0,pallet1,pallet2,crate0,crate1,distributor0,distributor1,hoist0,hoist1,hoist2] {+on[crate0,pallet2],+on[crate1,pallet1]} {} {}
+2 Drop[hoist2,crate0,pallet2,distributor1] {+clear[pallet2],+lifting[hoist2,crate0]} {+at[crate0,distributor1],+available[hoist2],+on[crate0,pallet2],+clear[crate0]} {+clear[pallet2],+lifting[hoist2,crate0]}
+3 Drop[hoist1,crate1,pallet1,distributor0] {+clear[pallet1],+lifting[hoist1,crate1]} {+on[crate1,pallet1],+at[crate1,distributor0],+clear[crate1],+available[hoist1]} {+lifting[hoist1,crate1],+clear[pallet1]}
+4 Lift[hoist1,crate0,pallet1,distributor0] {+available[hoist1],+at[crate0,distributor0],+on[crate0,pallet1],+clear[crate0]} {+lifting[hoist1,crate0],+clear[pallet1]} {+at[crate0,distributor0],+on[crate0,pallet1],+available[hoist1],+clear[crate0]}
+5 Unload[hoist2,crate0,truck0,distributor1] {+at[truck0,distributor1],+available[hoist2],+in[crate0,truck0]} {+lifting[hoist2,crate0]} {+in[crate0,truck0],+available[hoist2]}
+6 Load[hoist1,crate0,truck0,distributor0] {+at[truck0,distributor0],+lifting[hoist1,crate0]} {+in[crate0,truck0],+available[hoist1]} {+lifting[hoist1,crate0]}
+7 Drive[truck0,distributor1,distributor0] {+at[truck0,distributor1]} {+at[truck0,distributor0]} {+at[truck0,distributor1]}
+8 Drive[truck0,distributor0,distributor1] {+at[truck0,distributor0]} {+at[truck0,distributor1]} {+at[truck0,distributor0]}
+9 Unload[hoist1,crate1,truck1,distributor0] {+at[truck1,distributor0],+available[hoist1],+in[crate1,truck1]} {+lifting[hoist1,crate1]} {+in[crate1,truck1],+available[hoist1]}
+10 Drive[truck1,depot0,distributor0] {+at[truck1,depot0]} {+at[truck1,distributor0]} {+at[truck1,depot0]}
+11 Load[hoist0,crate1,truck1,depot0] {+at[truck1,depot0],+lifting[hoist0,crate1]} {+in[crate1,truck1],+available[hoist0]} {+lifting[hoist0,crate1]}
+12 Lift[hoist0,crate1,pallet0,depot0] {+available[hoist0],+at[crate1,depot0],+on[crate1,pallet0],+clear[crate1]} {+lifting[hoist0,crate1],+clear[pallet0]} {+at[crate1,depot0],+available[hoist0],+on[crate1,pallet0],+clear[crate1]}
+27
+2 +on[crate0,pallet2] 1
+3 +on[crate1,pallet1] 1
+4 +clear[pallet1] 3
+0 +on[crate0,pallet1] 4
+0 +at[crate0,distributor0] 4
+5 +lifting[hoist2,crate0] 2
+6 +in[crate0,truck0] 5
+7 +at[truck0,distributor0] 6
+8 +at[truck0,distributor1] 5
+7 +at[truck0,distributor0] 8
+0 +at[truck0,distributor1] 7
+9 +lifting[hoist1,crate1] 3
+10 +at[truck1,distributor0] 9
+11 +in[crate1,truck1] 9
+0 +at[truck1,depot0] 10
+0 +at[truck1,depot0] 11
+12 +lifting[hoist0,crate1] 11
+0 +on[crate1,pallet0] 12
+0 +at[crate1,depot0] 12
+0 +clear[pallet2] 2
+4 +lifting[hoist1,crate0] 6
+0 +available[hoist1] 4
+0 +available[hoist2] 5
+0 +available[hoist0] 12
+6 +available[hoist1] 9
+0 +clear[crate0] 4
+0 +clear[crate1] 12
+53
+0 1
+0 2
+0 3
+0 4
+0 5
+0 6
+0 7
+0 8
+0 9
+0 10
+0 11
+0 12
+5 1
+5 2
+10 1
+10 3
+10 9
+6 1
+6 2
+6 3
+6 5
+6 8
+6 9
+9 1
+9 3
+2 1
+12 1
+12 3
+12 9
+12 10
+12 11
+7 1
+7 2
+7 3
+7 5
+7 6
+7 8
+7 9
+3 1
+11 1
+11 3
+11 9
+11 10
+8 1
+8 2
+8 5
+4 1
+4 2
+4 3
+4 5
+4 6
+4 8
+4 9
+Domain: ../resources/IPC3/Depots/domain/Depots.pddl
+Problem: ../resources/IPC3/Depots/problems/pfile13
+DETAILED SOLUTION
+28
+0 init(<Instance>)[depot0,depot1,depot2,truck0,truck1,pallet0,pallet1,pallet2,pallet3,pallet4,pallet5,pallet6,pallet7,pallet8,pallet9,crate0,crate1,crate2,crate3,crate4,crate5,distributor0,distributor1,distributor2,hoist0,hoist1,hoist2,hoist3,hoist4,hoist5] {} {+at[crate5,depot2],+on[crate1,crate0],+at[crate1,depot2],+clear[crate3],+available[hoist3],+clear[pallet5],+at[crate2,depot0],+at[crate3,depot0],+clear[pallet7],+available[hoist2],+clear[pallet4],+clear[pallet9],+at[truck0,distributor1],+on[crate5,crate1],+on[crate0,pallet2],+clear[crate5],+on[crate2,pallet0],+clear[crate4],+clear[pallet6],+available[hoist1],+available[hoist5],+on[crate3,pallet8],+available[hoist4],+clear[pallet1],+clear[crate2],+at[crate4,distributor0],+at[crate0,depot2],+at[truck1,depot0],+available[hoist0],+on[crate4,pallet3]} {}
+1 goal(<Instance>)[depot0,depot1,depot2,truck0,truck1,pallet0,pallet1,pallet2,pallet3,pallet4,pallet5,pallet6,pallet7,pallet8,pallet9,crate0,crate1,crate2,crate3,crate4,crate5,distributor0,distributor1,distributor2,hoist0,hoist1,hoist2,hoist3,hoist4,hoist5] {+on[crate0,pallet0],+on[crate1,pallet5],+on[crate2,pallet4],+on[crate3,pallet7],+on[crate4,pallet9],+on[crate5,pallet1]} {} {}
+2 Drop[hoist0,crate0,pallet0,depot0] {+clear[pallet0],+lifting[hoist0,crate0]} {+at[crate0,depot0],+on[crate0,pallet0],+available[hoist0],+clear[crate0]} {+lifting[hoist0,crate0],+clear[pallet0]}
+3 Drop[hoist5,crate1,pallet5,distributor2] {+clear[pallet5],+lifting[hoist5,crate1]} {+on[crate1,pallet5],+at[crate1,distributor2],+clear[crate1],+available[hoist5]} {+lifting[hoist5,crate1],+clear[pallet5]}
+4 Drop[hoist4,crate2,pallet4,distributor1] {+clear[pallet4],+lifting[hoist4,crate2]} {+on[crate2,pallet4],+available[hoist4],+at[crate2,distributor1],+clear[crate2]} {+lifting[hoist4,crate2],+clear[pallet4]}
+5 Drop[hoist0,crate3,pallet7,depot0] {+clear[pallet7],+lifting[hoist0,crate3]} {+clear[crate3],+at[crate3,depot0],+on[crate3,pallet7],+available[hoist0]} {+lifting[hoist0,crate3],+clear[pallet7]}
+6 Drop[hoist3,crate4,pallet9,distributor0] {+clear[pallet9],+lifting[hoist3,crate4]} {+available[hoist3],+on[crate4,pallet9],+clear[crate4],+at[crate4,distributor0]} {+clear[pallet9],+lifting[hoist3,crate4]}
+7 Drop[hoist1,crate5,pallet1,depot1] {+clear[pallet1],+lifting[hoist1,crate5]} {+at[crate5,depot1],+clear[crate5],+on[crate5,pallet1],+available[hoist1]} {+lifting[hoist1,crate5],+clear[pallet1]}
+8 Unload[hoist0,crate0,truck1,depot0] {+at[truck1,depot0],+available[hoist0],+in[crate0,truck1]} {+lifting[hoist0,crate0]} {+in[crate0,truck1],+available[hoist0]}
+9 Load[hoist2,crate0,truck1,depot2] {+at[truck1,depot2],+lifting[hoist2,crate0]} {+in[crate0,truck1],+available[hoist2]} {+lifting[hoist2,crate0]}
+10 Drive[truck1,depot0,depot2] {+at[truck1,depot0]} {+at[truck1,depot2]} {+at[truck1,depot0]}
+11 Drive[truck1,depot2,depot0] {+at[truck1,depot2]} {+at[truck1,depot0]} {+at[truck1,depot2]}
+12 Unload[hoist5,crate1,truck1,distributor2] {+at[truck1,distributor2],+available[hoist5],+in[crate1,truck1]} {+lifting[hoist5,crate1]} {+in[crate1,truck1],+available[hoist5]}
+13 Drive[truck1,depot0,distributor2] {+at[truck1,depot0]} {+at[truck1,distributor2]} {+at[truck1,depot0]}
+14 Load[hoist2,crate1,truck1,depot2] {+at[truck1,depot2],+lifting[hoist2,crate1]} {+in[crate1,truck1],+available[hoist2]} {+lifting[hoist2,crate1]}
+15 Unload[hoist4,crate2,truck1,distributor1] {+at[truck1,distributor1],+available[hoist4],+in[crate2,truck1]} {+lifting[hoist4,crate2]} {+in[crate2,truck1],+available[hoist4]}
+16 Drive[truck1,distributor2,distributor1] {+at[truck1,distributor2]} {+at[truck1,distributor1]} {+at[truck1,distributor2]}
+17 Load[hoist0,crate2,truck1,depot0] {+at[truck1,depot0],+lifting[hoist0,crate2]} {+in[crate2,truck1],+available[hoist0]} {+lifting[hoist0,crate2]}
+18 Lift[hoist0,crate3,pallet8,depot0] {+available[hoist0],+at[crate3,depot0],+on[crate3,pallet8],+clear[crate3]} {+lifting[hoist0,crate3],+clear[pallet8]} {+available[hoist0],+at[crate3,depot0],+clear[crate3],+on[crate3,pallet8]}
+19 Lift[hoist3,crate4,pallet3,distributor0] {+available[hoist3],+at[crate4,distributor0],+on[crate4,pallet3],+clear[crate4]} {+clear[pallet3],+lifting[hoist3,crate4]} {+at[crate4,distributor0],+available[hoist3],+on[crate4,pallet3],+clear[crate4]}
+20 Unload[hoist1,crate5,truck0,depot1] {+at[truck0,depot1],+available[hoist1],+in[crate5,truck0]} {+lifting[hoist1,crate5]} {+in[crate5,truck0],+available[hoist1]}
+21 Drive[truck0,depot2,depot1] {+at[truck0,depot2]} {+at[truck0,depot1]} {+at[truck0,depot2]}
+22 Load[hoist2,crate5,truck0,depot2] {+at[truck0,depot2],+lifting[hoist2,crate5]} {+in[crate5,truck0],+available[hoist2]} {+lifting[hoist2,crate5]}
+23 Drive[truck0,distributor1,depot2] {+at[truck0,distributor1]} {+at[truck0,depot2]} {+at[truck0,distributor1]}
+24 Lift[hoist2,crate0,pallet2,depot2] {+available[hoist2],+at[crate0,depot2],+on[crate0,pallet2],+clear[crate0]} {+clear[pallet2],+lifting[hoist2,crate0]} {+on[crate0,pallet2],+at[crate0,depot2],+clear[crate0],+available[hoist2]}
+25 Lift[hoist2,crate1,crate0,depot2] {+available[hoist2],+at[crate1,depot2],+on[crate1,crate0],+clear[crate1]} {+lifting[hoist2,crate1],+clear[crate0]} {+at[crate1,depot2],+on[crate1,crate0],+available[hoist2],+clear[crate1]}
+26 Lift[hoist0,crate2,pallet0,depot0] {+available[hoist0],+at[crate2,depot0],+on[crate2,pallet0],+clear[crate2]} {+clear[pallet0],+lifting[hoist0,crate2]} {+clear[crate2],+available[hoist0],+at[crate2,depot0],+on[crate2,pallet0]}
+27 Lift[hoist2,crate5,crate1,depot2] {+available[hoist2],+at[crate5,depot2],+on[crate5,crate1],+clear[crate5]} {+clear[crate1],+lifting[hoist2,crate5]} {+clear[crate5],+at[crate5,depot2],+on[crate5,crate1],+available[hoist2]}
+68
+2 +on[crate0,pallet0] 1
+3 +on[crate1,pallet5] 1
+4 +on[crate2,pallet4] 1
+5 +on[crate3,pallet7] 1
+6 +on[crate4,pallet9] 1
+7 +on[crate5,pallet1] 1
+8 +lifting[hoist0,crate0] 2
+9 +in[crate0,truck1] 8
+10 +at[truck1,depot2] 9
+11 +at[truck1,depot0] 8
+10 +at[truck1,depot2] 11
+0 +at[truck1,depot0] 10
+12 +lifting[hoist5,crate1] 3
+13 +at[truck1,distributor2] 12
+14 +in[crate1,truck1] 12
+10 +at[truck1,depot2] 14
+11 +at[truck1,depot0] 13
+15 +lifting[hoist4,crate2] 4
+16 +at[truck1,distributor1] 15
+17 +in[crate2,truck1] 15
+13 +at[truck1,distributor2] 16
+0 +at[truck1,depot0] 17
+18 +lifting[hoist0,crate3] 5
+0 +on[crate3,pallet8] 18
+0 +at[crate3,depot0] 18
+19 +lifting[hoist3,crate4] 6
+0 +on[crate4,pallet3] 19
+0 +at[crate4,distributor0] 19
+20 +lifting[hoist1,crate5] 7
+21 +at[truck0,depot1] 20
+22 +in[crate5,truck0] 20
+23 +at[truck0,depot2] 21
+23 +at[truck0,depot2] 22
+0 +at[truck0,distributor1] 23
+24 +lifting[hoist2,crate0] 9
+0 +on[crate0,pallet2] 24
+0 +at[crate0,depot2] 24
+25 +lifting[hoist2,crate1] 14
+0 +on[crate1,crate0] 25
+0 +at[crate1,depot2] 25
+26 +lifting[hoist0,crate2] 17
+0 +on[crate2,pallet0] 26
+0 +at[crate2,depot0] 26
+27 +lifting[hoist2,crate5] 22
+0 +on[crate5,crate1] 27
+0 +at[crate5,depot2] 27
+26 +clear[pallet0] 2
+0 +clear[pallet5] 3
+0 +clear[pallet4] 4
+0 +clear[pallet7] 5
+0 +clear[pallet9] 6
+0 +clear[pallet1] 7
+0 +available[hoist5] 12
+0 +available[hoist1] 20
+14 +available[hoist2] 24
+0 +available[hoist2] 27
+22 +available[hoist2] 25
+0 +available[hoist4] 15
+0 +available[hoist3] 19
+5 +available[hoist0] 26
+0 +available[hoist0] 18
+17 +available[hoist0] 8
+25 +clear[crate0] 24
+27 +clear[crate1] 25
+0 +clear[crate3] 18
+0 +clear[crate4] 19
+0 +clear[crate2] 26
+0 +clear[crate5] 27
+246
+0 1
+0 2
+0 3
+0 4
+0 5
+0 6
+0 7
+0 8
+0 9
+0 10
+0 11
+0 12
+0 13
+0 14
+0 15
+0 16
+0 17
+0 18
+0 19
+0 20
+0 21
+0 22
+0 23
+0 24
+0 25
+0 26
+0 27
+5 1
+5 2
+5 3
+5 4
+5 8
+5 9
+5 10
+5 11
+5 12
+5 13
+5 14
+5 15
+5 16
+5 17
+5 24
+5 26
+10 1
+10 2
+10 3
+10 4
+10 8
+10 9
+10 11
+10 12
+10 13
+10 14
+10 15
+10 16
+10 24
+24 1
+24 2
+24 3
+24 4
+24 8
+24 9
+24 11
+24 12
+24 13
+24 15
+24 16
+25 1
+25 2
+25 3
+25 4
+25 8
+25 9
+25 11
+25 12
+25 13
+25 14
+25 15
+25 16
+25 24
+14 1
+14 2
+14 3
+14 4
+14 8
+14 9
+14 11
+14 12
+14 13
+14 15
+14 16
+14 24
+20 1
+20 7
+6 1
+21 1
+21 7
+21 20
+9 1
+9 2
+9 3
+9 4
+9 8
+9 11
+9 12
+9 13
+9 15
+9 16
+13 1
+13 3
+13 4
+13 12
+13 15
+13 16
+2 1
+17 1
+17 2
+17 3
+17 4
+17 8
+17 9
+17 10
+17 11
+17 12
+17 13
+17 14
+17 15
+17 16
+17 24
+22 1
+22 2
+22 3
+22 4
+22 7
+22 8
+22 9
+22 11
+22 12
+22 13
+22 14
+22 15
+22 16
+22 20
+22 21
+22 24
+22 25
+27 1
+27 2
+27 3
+27 4
+27 7
+27 8
+27 9
+27 11
+27 12
+27 13
+27 14
+27 15
+27 16
+27 20
+27 21
+27 22
+27 24
+27 25
+12 1
+12 3
+12 4
+12 15
+12 16
+7 1
+3 1
+18 1
+18 2
+18 3
+18 4
+18 5
+18 8
+18 9
+18 10
+18 11
+18 12
+18 13
+18 14
+18 15
+18 16
+18 17
+18 24
+18 26
+16 1
+16 4
+16 15
+11 1
+11 2
+11 3
+11 4
+11 8
+11 12
+11 13
+11 15
+11 16
+26 1
+26 2
+26 3
+26 4
+26 8
+26 9
+26 10
+26 11
+26 12
+26 13
+26 14
+26 15
+26 16
+26 17
+26 24
+23 1
+23 2
+23 3
+23 4
+23 7
+23 8
+23 9
+23 11
+23 12
+23 13
+23 14
+23 15
+23 16
+23 20
+23 21
+23 22
+23 24
+23 25
+8 1
+8 2
+8 3
+8 4
+8 12
+8 13
+8 15
+8 16
+19 1
+19 6
+4 1
+15 1
+15 4
+Domain: ../resources/IPC3/Depots/domain/Depots.pddl
+Problem: ../resources/IPC3/Depots/problems/pfile2
+DETAILED SOLUTION
+17
+0 init(<Instance>)[depot0,truck0,truck1,pallet0,pallet1,pallet2,crate0,crate1,crate2,crate3,distributor0,distributor1,hoist0,hoist1,hoist2] {} {+at[crate3,distributor0],+clear[crate3],+at[truck0,depot0],+available[hoist2],+on[crate3,pallet1],+at[crate1,distributor1],+at[crate0,depot0],+on[crate2,crate1],+available[hoist1],+on[crate0,pallet0],+at[crate2,distributor1],+clear[crate2],+at[truck1,depot0],+available[hoist0],+on[crate1,pallet2],+clear[crate0]} {}
+1 goal(<Instance>)[depot0,truck0,truck1,pallet0,pallet1,pallet2,crate0,crate1,crate2,crate3,distributor0,distributor1,hoist0,hoist1,hoist2] {+on[crate0,pallet2],+on[crate1,crate3],+on[crate2,pallet0],+on[crate3,pallet1]} {} {}
+2 Drop[hoist2,crate0,pallet2,distributor1] {+clear[pallet2],+lifting[hoist2,crate0]} {+at[crate0,distributor1],+available[hoist2],+on[crate0,pallet2],+clear[crate0]} {+clear[pallet2],+lifting[hoist2,crate0]}
+3 Drop[hoist0,crate2,pallet0,depot0] {+clear[pallet0],+lifting[hoist0,crate2]} {+at[crate2,depot0],+on[crate2,pallet0],+clear[crate2],+available[hoist0]} {+lifting[hoist0,crate2],+clear[pallet0]}
+4 Drop[hoist1,crate1,crate3,distributor0] {+at[crate3,distributor0],+clear[crate3],+lifting[hoist1,crate1]} {+at[crate1,distributor0],+clear[crate1],+on[crate1,crate3],+available[hoist1]} {+lifting[hoist1,crate1],+clear[crate3]}
+5 Unload[hoist2,crate0,truck0,distributor1] {+at[truck0,distributor1],+available[hoist2],+in[crate0,truck0]} {+lifting[hoist2,crate0]} {+in[crate0,truck0],+available[hoist2]}
+6 Drive[truck0,depot0,distributor1] {+at[truck0,depot0]} {+at[truck0,distributor1]} {+at[truck0,depot0]}
+7 Load[hoist0,crate0,truck0,depot0] {+at[truck0,depot0],+lifting[hoist0,crate0]} {+in[crate0,truck0],+available[hoist0]} {+lifting[hoist0,crate0]}
+8 Unload[hoist0,crate2,truck0,depot0] {+at[truck0,depot0],+available[hoist0],+in[crate2,truck0]} {+lifting[hoist0,crate2]} {+in[crate2,truck0],+available[hoist0]}
+9 Load[hoist2,crate2,truck0,distributor1] {+at[truck0,distributor1],+lifting[hoist2,crate2]} {+in[crate2,truck0],+available[hoist2]} {+lifting[hoist2,crate2]}
+10 Drive[truck0,distributor1,depot0] {+at[truck0,distributor1]} {+at[truck0,depot0]} {+at[truck0,distributor1]}
+11 Unload[hoist1,crate1,truck0,distributor0] {+at[truck0,distributor0],+available[hoist1],+in[crate1,truck0]} {+lifting[hoist1,crate1]} {+in[crate1,truck0],+available[hoist1]}
+12 Drive[truck0,depot0,distributor0] {+at[truck0,depot0]} {+at[truck0,distributor0]} {+at[truck0,depot0]}
+13 Load[hoist2,crate1,truck0,distributor1] {+at[truck0,distributor1],+lifting[hoist2,crate1]} {+in[crate1,truck0],+available[hoist2]} {+lifting[hoist2,crate1]}
+14 Lift[hoist0,crate0,pallet0,depot0] {+available[hoist0],+at[crate0,depot0],+on[crate0,pallet0],+clear[crate0]} {+lifting[hoist0,crate0],+clear[pallet0]} {+on[crate0,pallet0],+available[hoist0],+clear[crate0],+at[crate0,depot0]}
+15 Lift[hoist2,crate2,crate1,distributor1] {+available[hoist2],+at[crate2,distributor1],+on[crate2,crate1],+clear[crate2]} {+lifting[hoist2,crate2],+clear[crate1]} {+clear[crate2],+at[crate2,distributor1],+available[hoist2],+on[crate2,crate1]}
+16 Lift[hoist2,crate1,pallet2,distributor1] {+available[hoist2],+at[crate1,distributor1],+on[crate1,pallet2],+clear[crate1]} {+lifting[hoist2,crate1],+clear[pallet2]} {+at[crate1,distributor1],+available[hoist2],+clear[crate1],+on[crate1,pallet2]}
+41
+2 +on[crate0,pallet2] 1
+3 +on[crate2,pallet0] 1
+4 +on[crate1,crate3] 1
+0 +on[crate3,pallet1] 1
+0 +at[crate3,distributor0] 4
+5 +lifting[hoist2,crate0] 2
+6 +at[truck0,distributor1] 5
+7 +in[crate0,truck0] 5
+0 +at[truck0,depot0] 6
+0 +at[truck0,depot0] 7
+8 +lifting[hoist0,crate2] 3
+9 +in[crate2,truck0] 8
+6 +at[truck0,distributor1] 9
+10 +at[truck0,depot0] 8
+6 +at[truck0,distributor1] 10
+11 +lifting[hoist1,crate1] 4
+12 +at[truck0,distributor0] 11
+13 +in[crate1,truck0] 11
+6 +at[truck0,distributor1] 13
+10 +at[truck0,depot0] 12
+14 +lifting[hoist0,crate0] 7
+0 +on[crate0,pallet0] 14
+0 +at[crate0,depot0] 14
+15 +lifting[hoist2,crate2] 9
+0 +on[crate2,crate1] 15
+0 +at[crate2,distributor1] 15
+16 +lifting[hoist2,crate1] 13
+0 +on[crate1,pallet2] 16
+0 +at[crate1,distributor1] 16
+16 +clear[pallet2] 2
+14 +clear[pallet0] 3
+15 +clear[crate1] 16
+0 +clear[crate3] 4
+0 +clear[crate0] 14
+0 +clear[crate2] 15
+0 +available[hoist1] 11
+0 +available[hoist0] 14
+0 +available[hoist2] 15
+7 +available[hoist0] 8
+9 +available[hoist2] 16
+13 +available[hoist2] 5
+124
+0 1
+0 2
+0 3
+0 4
+0 5
+0 6
+0 7
+0 8
+0 9
+0 10
+0 11
+0 12
+0 13
+0 14
+0 15
+0 16
+5 1
+5 2
+5 3
+5 4
+5 8
+5 10
+5 11
+5 12
+10 1
+10 3
+10 4
+10 8
+10 11
+10 12
+14 1
+14 2
+14 3
+14 4
+14 5
+14 6
+14 7
+14 8
+14 9
+14 10
+14 11
+14 12
+14 13
+14 16
+6 1
+6 2
+6 3
+6 4
+6 5
+6 8
+6 9
+6 10
+6 11
+6 12
+6 13
+6 16
+9 1
+9 2
+9 3
+9 4
+9 5
+9 8
+9 10
+9 11
+9 12
+9 13
+9 16
+13 1
+13 2
+13 3
+13 4
+13 5
+13 8
+13 10
+13 11
+13 12
+2 1
+12 1
+12 4
+12 11
+7 1
+7 2
+7 3
+7 4
+7 5
+7 6
+7 8
+7 9
+7 10
+7 11
+7 12
+7 13
+7 16
+3 1
+16 1
+16 2
+16 3
+16 4
+16 5
+16 8
+16 10
+16 11
+16 12
+16 13
+11 1
+11 4
+8 1
+8 3
+8 4
+8 11
+8 12
+4 1
+15 1
+15 2
+15 3
+15 4
+15 5
+15 8
+15 9
+15 10
+15 11
+15 12
+15 13
+15 16
+Domain: ../resources/IPC3/Depots/domain/Depots.pddl
+Problem: ../resources/IPC3/Depots/problems/pfile21
+DETAILED SOLUTION
+35
+0 init(<Instance>)[depot0,depot1,depot2,depot3,depot4,depot5,truck0,truck1,truck2,truck3,truck4,truck5,pallet0,pallet1,pallet2,pallet3,pallet4,pallet5,pallet6,pallet7,pallet8,pallet9,pallet10,pallet11,pallet12,pallet13,pallet14,pallet15,pallet16,pallet17,pallet18,pallet19,crate0,crate1,crate2,crate3,crate4,crate5,crate6,crate7,crate8,crate9,distributor0,distributor1,distributor2,distributor3,distributor4,distributor5,hoist0,hoist1,hoist2,hoist3,hoist4,hoist5,hoist6,hoist7,hoist8,hoist9,hoist10,hoist11,hoist12,hoist13,hoist14] {} {+at[crate4,distributor2],+clear[pallet3],+at[crate9,depot1],+at[truck2,distributor3],+on[crate6,pallet4],+available[hoist8],+clear[crate3],+at[crate3,depot1],+available[hoist3],+on[crate7,pallet18],+clear[pallet10],+clear[pallet5],+at[crate0,depot1],+available[hoist14],+available[hoist6],+available[hoist11],+on[crate8,pallet7],+at[truck4,depot0],+clear[pallet17],+clear[pallet2],+at[crate2,distributor5],+available[hoist2],+at[truck0,distributor2],+available[hoist10],+clear[pallet9],+clear[crate6],+at[crate5,depot1],+on[crate1,pallet0],+clear[crate5],+on[crate3,pallet15],+clear[crate1],+clear[pallet14],+at[crate6,depot4],+available[hoist7],+on[crate5,pallet1],+clear[pallet12],+on[crate4,pallet8],+clear[crate4],+on[crate0,pallet16],+clear[pallet6],+available[hoist12],+at[truck5,depot4],+at[crate7,depot4],+available[hoist1],+available[hoist5],+clear[crate9],+clear[crate7],+on[crate9,pallet19],+at[crate8,distributor1],+available[hoist4],+at[truck3,distributor0],+available[hoist13],+clear[crate2],+at[crate1,depot0],+at[truck1,depot0],+clear[pallet11],+available[hoist9],+available[hoist0],+clear[crate8],+clear[crate0],+on[crate2,pallet13]} {}
+1 goal(<Instance>)[depot0,depot1,depot2,depot3,depot4,depot5,truck0,truck1,truck2,truck3,truck4,truck5,pallet0,pallet1,pallet2,pallet3,pallet4,pallet5,pallet6,pallet7,pallet8,pallet9,pallet10,pallet11,pallet12,pallet13,pallet14,pallet15,pallet16,pallet17,pallet18,pallet19,crate0,crate1,crate2,crate3,crate4,crate5,crate6,crate7,crate8,crate9,distributor0,distributor1,distributor2,distributor3,distributor4,distributor5,hoist0,hoist1,hoist2,hoist3,hoist4,hoist5,hoist6,hoist7,hoist8,hoist9,hoist10,hoist11,hoist12,hoist13,hoist14] {+on[crate0,pallet2],+on[crate1,pallet7],+on[crate2,pallet11],+on[crate3,pallet3],+on[crate5,pallet5],+on[crate6,pallet12],+on[crate7,pallet18],+on[crate8,pallet15]} {} {}
+2 Drop[hoist2,crate0,pallet2,depot2] {+clear[pallet2],+lifting[hoist2,crate0]} {+available[hoist2],+on[crate0,pallet2],+at[crate0,depot2],+clear[crate0]} {+clear[pallet2],+lifting[hoist2,crate0]}
+3 Drop[hoist7,crate1,pallet7,distributor1] {+clear[pallet7],+lifting[hoist7,crate1]} {+on[crate1,pallet7],+at[crate1,distributor1],+clear[crate1],+available[hoist7]} {+lifting[hoist7,crate1],+clear[pallet7]}
+4 Drop[hoist11,crate2,pallet11,distributor5] {+clear[pallet11],+lifting[hoist11,crate2]} {+on[crate2,pallet11],+available[hoist11],+at[crate2,distributor5],+clear[crate2]} {+clear[pallet11],+lifting[hoist11,crate2]}
+5 Drop[hoist3,crate3,pallet3,depot3] {+clear[pallet3],+lifting[hoist3,crate3]} {+clear[crate3],+available[hoist3],+on[crate3,pallet3],+at[crate3,depot3]} {+clear[pallet3],+lifting[hoist3,crate3]}
+6 Drop[hoist7,crate6,pallet12,distributor1] {+clear[pallet12],+lifting[hoist7,crate6]} {+at[crate6,distributor1],+clear[crate6],+on[crate6,pallet12],+available[hoist7]} {+clear[pallet12],+lifting[hoist7,crate6]}
+7 Drop[hoist5,crate5,pallet5,depot5] {+clear[pallet5],+lifting[hoist5,crate5]} {+clear[crate5],+at[crate5,depot5],+on[crate5,pallet5],+available[hoist5]} {+lifting[hoist5,crate5],+clear[pallet5]}
+8 Drop[hoist13,crate8,pallet15,depot1] {+clear[pallet15],+lifting[hoist13,crate8]} {+on[crate8,pallet15],+available[hoist13],+clear[crate8],+at[crate8,depot1]} {+clear[pallet15],+lifting[hoist13,crate8]}
+9 Unload[hoist2,crate0,truck5,depot2] {+at[truck5,depot2],+available[hoist2],+in[crate0,truck5]} {+lifting[hoist2,crate0]} {+in[crate0,truck5],+available[hoist2]}
+10 Drive[truck5,depot1,depot2] {+at[truck5,depot1]} {+at[truck5,depot2]} {+at[truck5,depot1]}
+11 Drive[truck5,depot4,depot1] {+at[truck5,depot4]} {+at[truck5,depot1]} {+at[truck5,depot4]}
+12 Load[hoist1,crate0,truck5,depot1] {+at[truck5,depot1],+lifting[hoist1,crate0]} {+in[crate0,truck5],+available[hoist1]} {+lifting[hoist1,crate0]}
+13 Unload[hoist7,crate1,truck4,distributor1] {+at[truck4,distributor1],+available[hoist7],+in[crate1,truck4]} {+lifting[hoist7,crate1]} {+in[crate1,truck4],+available[hoist7]}
+14 Drive[truck4,depot0,distributor1] {+at[truck4,depot0]} {+at[truck4,distributor1]} {+at[truck4,depot0]}
+15 Load[hoist0,crate1,truck4,depot0] {+at[truck4,depot0],+lifting[hoist0,crate1]} {+in[crate1,truck4],+available[hoist0]} {+lifting[hoist0,crate1]}
+16 Lift[hoist11,crate2,pallet13,distributor5] {+available[hoist11],+at[crate2,distributor5],+on[crate2,pallet13],+clear[crate2]} {+lifting[hoist11,crate2],+clear[pallet13]} {+clear[crate2],+on[crate2,pallet13],+available[hoist11],+at[crate2,distributor5]}
+17 Unload[hoist3,crate3,truck5,depot3] {+at[truck5,depot3],+available[hoist3],+in[crate3,truck5]} {+lifting[hoist3,crate3]} {+in[crate3,truck5],+available[hoist3]}
+18 Drive[truck5,depot2,depot3] {+at[truck5,depot2]} {+at[truck5,depot3]} {+at[truck5,depot2]}
+19 Load[hoist13,crate3,truck5,depot1] {+at[truck5,depot1],+lifting[hoist13,crate3]} {+in[crate3,truck5],+available[hoist13]} {+lifting[hoist13,crate3]}
+20 Unload[hoist7,crate6,truck5,distributor1] {+at[truck5,distributor1],+available[hoist7],+in[crate6,truck5]} {+lifting[hoist7,crate6]} {+in[crate6,truck5],+available[hoist7]}
+21 Drive[truck5,depot3,distributor1] {+at[truck5,depot3]} {+at[truck5,distributor1]} {+at[truck5,depot3]}
+22 Load[hoist4,crate6,truck5,depot4] {+at[truck5,depot4],+lifting[hoist4,crate6]} {+in[crate6,truck5],+available[hoist4]} {+lifting[hoist4,crate6]}
+23 Unload[hoist5,crate5,truck5,depot5] {+at[truck5,depot5],+available[hoist5],+in[crate5,truck5]} {+lifting[hoist5,crate5]} {+in[crate5,truck5],+available[hoist5]}
+24 Drive[truck5,distributor1,depot5] {+at[truck5,distributor1]} {+at[truck5,depot5]} {+at[truck5,distributor1]}
+25 Load[hoist13,crate5,truck5,depot1] {+at[truck5,depot1],+lifting[hoist13,crate5]} {+in[crate5,truck5],+available[hoist13]} {+lifting[hoist13,crate5]}
+26 Unload[hoist13,crate8,truck4,depot1] {+at[truck4,depot1],+available[hoist13],+in[crate8,truck4]} {+lifting[hoist13,crate8]} {+in[crate8,truck4],+available[hoist13]}
+27 Drive[truck4,distributor1,depot1] {+at[truck4,distributor1]} {+at[truck4,depot1]} {+at[truck4,distributor1]}
+28 Load[hoist7,crate8,truck4,distributor1] {+at[truck4,distributor1],+lifting[hoist7,crate8]} {+in[crate8,truck4],+available[hoist7]} {+lifting[hoist7,crate8]}
+29 Lift[hoist1,crate0,pallet16,depot1] {+available[hoist1],+at[crate0,depot1],+on[crate0,pallet16],+clear[crate0]} {+lifting[hoist1,crate0],+clear[pallet16]} {+available[hoist1],+at[crate0,depot1],+clear[crate0],+on[crate0,pallet16]}
+30 Lift[hoist0,crate1,pallet0,depot0] {+available[hoist0],+at[crate1,depot0],+on[crate1,pallet0],+clear[crate1]} {+lifting[hoist0,crate1],+clear[pallet0]} {+at[crate1,depot0],+available[hoist0],+on[crate1,pallet0],+clear[crate1]}
+31 Lift[hoist13,crate3,pallet15,depot1] {+available[hoist13],+at[crate3,depot1],+on[crate3,pallet15],+clear[crate3]} {+clear[pallet15],+lifting[hoist13,crate3]} {+at[crate3,depot1],+on[crate3,pallet15],+available[hoist13],+clear[crate3]}
+32 Lift[hoist4,crate6,pallet4,depot4] {+available[hoist4],+at[crate6,depot4],+on[crate6,pallet4],+clear[crate6]} {+lifting[hoist4,crate6],+clear[pallet4]} {+available[hoist4],+at[crate6,depot4],+on[crate6,pallet4],+clear[crate6]}
+33 Lift[hoist13,crate5,pallet1,depot1] {+available[hoist13],+at[crate5,depot1],+on[crate5,pallet1],+clear[crate5]} {+lifting[hoist13,crate5],+clear[pallet1]} {+at[crate5,depot1],+clear[crate5],+available[hoist13],+on[crate5,pallet1]}
+34 Lift[hoist7,crate8,pallet7,distributor1] {+available[hoist7],+at[crate8,distributor1],+on[crate8,pallet7],+clear[crate8]} {+lifting[hoist7,crate8],+clear[pallet7]} {+at[crate8,distributor1],+clear[crate8],+on[crate8,pallet7],+available[hoist7]}
+87
+2 +on[crate0,pallet2] 1
+3 +on[crate1,pallet7] 1
+4 +on[crate2,pallet11] 1
+5 +on[crate3,pallet3] 1
+6 +on[crate6,pallet12] 1
+7 +on[crate5,pallet5] 1
+8 +on[crate8,pallet15] 1
+0 +on[crate7,pallet18] 1
+9 +lifting[hoist2,crate0] 2
+10 +at[truck5,depot2] 9
+11 +at[truck5,depot1] 10
+0 +at[truck5,depot4] 11
+12 +in[crate0,truck5] 9
+11 +at[truck5,depot1] 12
+13 +lifting[hoist7,crate1] 3
+14 +at[truck4,distributor1] 13
+0 +at[truck4,depot0] 14
+15 +in[crate1,truck4] 13
+0 +at[truck4,depot0] 15
+16 +lifting[hoist11,crate2] 4
+0 +on[crate2,pallet13] 16
+0 +at[crate2,distributor5] 16
+17 +lifting[hoist3,crate3] 5
+18 +at[truck5,depot3] 17
+10 +at[truck5,depot2] 18
+19 +in[crate3,truck5] 17
+11 +at[truck5,depot1] 19
+20 +lifting[hoist7,crate6] 6
+21 +at[truck5,distributor1] 20
+18 +at[truck5,depot3] 21
+22 +in[crate6,truck5] 20
+0 +at[truck5,depot4] 22
+23 +lifting[hoist5,crate5] 7
+24 +at[truck5,depot5] 23
+21 +at[truck5,distributor1] 24
+25 +in[crate5,truck5] 23
+11 +at[truck5,depot1] 25
+26 +lifting[hoist13,crate8] 8
+27 +at[truck4,depot1] 26
+14 +at[truck4,distributor1] 27
+28 +in[crate8,truck4] 26
+14 +at[truck4,distributor1] 28
+29 +lifting[hoist1,crate0] 12
+0 +on[crate0,pallet16] 29
+0 +at[crate0,depot1] 29
+30 +lifting[hoist0,crate1] 15
+0 +on[crate1,pallet0] 30
+0 +at[crate1,depot0] 30
+31 +lifting[hoist13,crate3] 19
+0 +on[crate3,pallet15] 31
+0 +at[crate3,depot1] 31
+32 +lifting[hoist4,crate6] 22
+0 +on[crate6,pallet4] 32
+0 +at[crate6,depot4] 32
+33 +lifting[hoist13,crate5] 25
+0 +on[crate5,pallet1] 33
+0 +at[crate5,depot1] 33
+34 +lifting[hoist7,crate8] 28
+0 +on[crate8,pallet7] 34
+0 +at[crate8,distributor1] 34
+34 +clear[pallet7] 3
+31 +clear[pallet15] 8
+0 +clear[pallet2] 2
+0 +clear[pallet11] 4
+0 +clear[pallet3] 5
+0 +clear[pallet12] 6
+0 +clear[pallet5] 7
+0 +available[hoist3] 17
+0 +available[hoist5] 23
+0 +available[hoist0] 30
+0 +available[hoist2] 9
+0 +available[hoist11] 16
+0 +available[hoist4] 32
+6 +available[hoist7] 34
+0 +available[hoist7] 20
+28 +available[hoist7] 13
+0 +available[hoist1] 29
+25 +available[hoist13] 31
+0 +available[hoist13] 33
+19 +available[hoist13] 26
+0 +clear[crate2] 16
+0 +clear[crate0] 29
+0 +clear[crate1] 30
+0 +clear[crate3] 31
+0 +clear[crate6] 32
+0 +clear[crate5] 33
+0 +clear[crate8] 34
+397
+0 1
+0 2
+0 3
+0 4
+0 5
+0 6
+0 7
+0 8
+0 9
+0 10
+0 11
+0 12
+0 13
+0 14
+0 15
+0 16
+0 17
+0 18
+0 19
+0 20
+0 21
+0 22
+0 23
+0 24
+0 25
+0 26
+0 27
+0 28
+0 29
+0 30
+0 31
+0 32
+0 33
+0 34
+5 1
+10 1
+10 2
+10 3
+10 5
+10 6
+10 7
+10 8
+10 9
+10 13
+10 17
+10 18
+10 20
+10 21
+10 23
+10 24
+10 26
+10 27
+10 28
+10 34
+24 1
+24 7
+24 23
+25 1
+25 2
+25 3
+25 5
+25 6
+25 7
+25 8
+25 9
+25 10
+25 13
+25 17
+25 18
+25 19
+25 20
+25 21
+25 23
+25 24
+25 26
+25 27
+25 28
+25 31
+25 34
+14 1
+14 3
+14 8
+14 13
+14 26
+14 27
+14 28
+20 1
+20 3
+20 6
+20 7
+20 8
+20 13
+20 23
+20 24
+20 26
+20 27
+20 28
+20 34
+29 1
+29 2
+29 3
+29 5
+29 6
+29 7
+29 8
+29 9
+29 10
+29 12
+29 13
+29 17
+29 18
+29 20
+29 21
+29 23
+29 24
+29 26
+29 27
+29 28
+29 34
+6 1
+6 3
+6 8
+6 13
+6 26
+6 27
+6 28
+6 34
+28 1
+28 3
+28 8
+28 13
+28 26
+28 27
+21 1
+21 3
+21 6
+21 7
+21 8
+21 13
+21 20
+21 23
+21 24
+21 26
+21 27
+21 28
+21 34
+33 1
+33 2
+33 3
+33 5
+33 6
+33 7
+33 8
+33 9
+33 10
+33 13
+33 17
+33 18
+33 19
+33 20
+33 21
+33 23
+33 24
+33 25
+33 26
+33 27
+33 28
+33 31
+33 34
+9 1
+9 2
+9 3
+9 5
+9 6
+9 7
+9 8
+9 13
+9 17
+9 18
+9 20
+9 21
+9 23
+9 24
+9 26
+9 27
+9 28
+9 34
+13 1
+13 3
+13 8
+13 26
+13 27
+2 1
+32 1
+32 2
+32 3
+32 5
+32 6
+32 7
+32 8
+32 9
+32 10
+32 11
+32 12
+32 13
+32 17
+32 18
+32 19
+32 20
+32 21
+32 22
+32 23
+32 24
+32 25
+32 26
+32 27
+32 28
+32 31
+32 34
+34 1
+34 3
+34 8
+34 13
+34 26
+34 27
+34 28
+17 1
+17 3
+17 5
+17 6
+17 7
+17 8
+17 13
+17 20
+17 21
+17 23
+17 24
+17 26
+17 27
+17 28
+17 34
+22 1
+22 2
+22 3
+22 5
+22 6
+22 7
+22 8
+22 9
+22 10
+22 11
+22 12
+22 13
+22 17
+22 18
+22 19
+22 20
+22 21
+22 23
+22 24
+22 25
+22 26
+22 27
+22 28
+22 31
+22 34
+27 1
+27 8
+27 26
+12 1
+12 2
+12 3
+12 5
+12 6
+12 7
+12 8
+12 9
+12 10
+12 13
+12 17
+12 18
+12 20
+12 21
+12 23
+12 24
+12 26
+12 27
+12 28
+12 34
+7 1
+3 1
+18 1
+18 3
+18 5
+18 6
+18 7
+18 8
+18 13
+18 17
+18 20
+18 21
+18 23
+18 24
+18 26
+18 27
+18 28
+18 34
+16 1
+16 4
+31 1
+31 2
+31 3
+31 5
+31 6
+31 7
+31 8
+31 9
+31 10
+31 13
+31 17
+31 18
+31 19
+31 20
+31 21
+31 23
+31 24
+31 26
+31 27
+31 28
+31 34
+11 1
+11 2
+11 3
+11 5
+11 6
+11 7
+11 8
+11 9
+11 10
+11 12
+11 13
+11 17
+11 18
+11 19
+11 20
+11 21
+11 23
+11 24
+11 25
+11 26
+11 27
+11 28
+11 31
+11 34
+26 1
+26 8
+23 1
+23 7
+8 1
+30 1
+30 3
+30 8
+30 13
+30 14
+30 15
+30 26
+30 27
+30 28
+19 1
+19 2
+19 3
+19 5
+19 6
+19 7
+19 8
+19 9
+19 10
+19 13
+19 17
+19 18
+19 20
+19 21
+19 23
+19 24
+19 26
+19 27
+19 28
+19 34
+4 1
+15 1
+15 3
+15 8
+15 13
+15 14
+15 26
+15 27
+15 28
+Domain: ../resources/IPC3/Depots/domain/Depots.pddl
+Problem: ../resources/IPC3/Depots/problems/pfile7
+DETAILED SOLUTION
+23
+0 init(<Instance>)[depot0,truck0,truck1,pallet0,pallet1,pallet2,pallet3,pallet4,pallet5,crate0,crate1,crate2,crate3,crate4,crate5,distributor0,distributor1,hoist0,hoist1,hoist2] {} {+clear[pallet3],+clear[crate3],+on[crate2,pallet2],+on[crate4,crate0],+on[crate5,pallet0],+available[hoist2],+at[truck0,distributor1],+at[crate1,distributor1],+on[crate1,pallet5],+clear[crate5],+clear[crate1],+at[crate0,distributor0],+clear[crate4],+on[crate0,pallet4],+available[hoist1],+at[crate2,distributor1],+clear[pallet1],+at[crate4,distributor0],+at[truck1,depot0],+on[crate3,crate2],+available[hoist0],+at[crate3,distributor1],+at[crate5,depot0]} {}
+1 goal(<Instance>)[depot0,truck0,truck1,pallet0,pallet1,pallet2,pallet3,pallet4,pallet5,crate0,crate1,crate2,crate3,crate4,crate5,distributor0,distributor1,hoist0,hoist1,hoist2] {+on[crate0,pallet3],+on[crate1,crate4],+on[crate3,pallet1],+on[crate4,pallet5],+on[crate5,crate1]} {} {}
+2 Drop[hoist1,crate0,pallet3,distributor0] {+clear[pallet3],+lifting[hoist1,crate0]} {+on[crate0,pallet3],+at[crate0,distributor0],+available[hoist1],+clear[crate0]} {+clear[pallet3],+lifting[hoist1,crate0]}
+3 Drop[hoist1,crate3,pallet1,distributor0] {+clear[pallet1],+lifting[hoist1,crate3]} {+at[crate3,distributor0],+clear[crate3],+on[crate3,pallet1],+available[hoist1]} {+lifting[hoist1,crate3],+clear[pallet1]}
+4 Drop[hoist2,crate4,pallet5,distributor1] {+clear[pallet5],+lifting[hoist2,crate4]} {+on[crate4,pallet5],+at[crate4,distributor1],+available[hoist2],+clear[crate4]} {+lifting[hoist2,crate4],+clear[pallet5]}
+5 Drop[hoist2,crate1,crate4,distributor1] {+at[crate4,distributor1],+clear[crate4],+lifting[hoist2,crate1]} {+available[hoist2],+at[crate1,distributor1],+clear[crate1],+on[crate1,crate4]} {+clear[crate4],+lifting[hoist2,crate1]}
+6 Drop[hoist2,crate5,crate1,distributor1] {+at[crate1,distributor1],+clear[crate1],+lifting[hoist2,crate5]} {+at[crate5,distributor1],+available[hoist2],+on[crate5,crate1],+clear[crate5]} {+lifting[hoist2,crate5],+clear[crate1]}
+7 Lift[hoist1,crate0,pallet4,distributor0] {+available[hoist1],+at[crate0,distributor0],+on[crate0,pallet4],+clear[crate0]} {+lifting[hoist1,crate0],+clear[pallet4]} {+on[crate0,pallet4],+at[crate0,distributor0],+available[hoist1],+clear[crate0]}
+8 Unload[hoist1,crate3,truck0,distributor0] {+at[truck0,distributor0],+available[hoist1],+in[crate3,truck0]} {+lifting[hoist1,crate3]} {+in[crate3,truck0],+available[hoist1]}
+9 Drive[truck0,distributor1,distributor0] {+at[truck0,distributor1]} {+at[truck0,distributor0]} {+at[truck0,distributor1]}
+10 Load[hoist2,crate3,truck0,distributor1] {+at[truck0,distributor1],+lifting[hoist2,crate3]} {+in[crate3,truck0],+available[hoist2]} {+lifting[hoist2,crate3]}
+11 Unload[hoist2,crate4,truck0,distributor1] {+at[truck0,distributor1],+available[hoist2],+in[crate4,truck0]} {+lifting[hoist2,crate4]} {+in[crate4,truck0],+available[hoist2]}
+12 Load[hoist1,crate4,truck0,distributor0] {+at[truck0,distributor0],+lifting[hoist1,crate4]} {+in[crate4,truck0],+available[hoist1]} {+lifting[hoist1,crate4]}
+13 Drive[truck0,distributor0,distributor1] {+at[truck0,distributor0]} {+at[truck0,distributor1]} {+at[truck0,distributor0]}
+14 Unload[hoist2,crate1,truck0,distributor1] {+at[truck0,distributor1],+available[hoist2],+in[crate1,truck0]} {+lifting[hoist2,crate1]} {+in[crate1,truck0],+available[hoist2]}
+15 Load[hoist2,crate1,truck0,distributor1] {+at[truck0,distributor1],+lifting[hoist2,crate1]} {+in[crate1,truck0],+available[hoist2]} {+lifting[hoist2,crate1]}
+16 Unload[hoist2,crate5,truck1,distributor1] {+at[truck1,distributor1],+available[hoist2],+in[crate5,truck1]} {+lifting[hoist2,crate5]} {+in[crate5,truck1],+available[hoist2]}
+17 Drive[truck1,depot0,distributor1] {+at[truck1,depot0]} {+at[truck1,distributor1]} {+at[truck1,depot0]}
+18 Load[hoist0,crate5,truck1,depot0] {+at[truck1,depot0],+lifting[hoist0,crate5]} {+in[crate5,truck1],+available[hoist0]} {+lifting[hoist0,crate5]}
+19 Lift[hoist2,crate3,crate2,distributor1] {+available[hoist2],+at[crate3,distributor1],+on[crate3,crate2],+clear[crate3]} {+lifting[hoist2,crate3],+clear[crate2]} {+on[crate3,crate2],+at[crate3,distributor1],+clear[crate3],+available[hoist2]}
+20 Lift[hoist1,crate4,crate0,distributor0] {+available[hoist1],+at[crate4,distributor0],+on[crate4,crate0],+clear[crate4]} {+lifting[hoist1,crate4],+clear[crate0]} {+at[crate4,distributor0],+available[hoist1],+on[crate4,crate0],+clear[crate4]}
+21 Lift[hoist2,crate1,pallet5,distributor1] {+available[hoist2],+at[crate1,distributor1],+on[crate1,pallet5],+clear[crate1]} {+lifting[hoist2,crate1],+clear[pallet5]} {+on[crate1,pallet5],+at[crate1,distributor1],+available[hoist2],+clear[crate1]}
+22 Lift[hoist0,crate5,pallet0,depot0] {+available[hoist0],+at[crate5,depot0],+on[crate5,pallet0],+clear[crate5]} {+clear[pallet0],+lifting[hoist0,crate5]} {+clear[crate5],+available[hoist0],+on[crate5,pallet0],+at[crate5,depot0]}
+60
+2 +on[crate0,pallet3] 1
+3 +on[crate3,pallet1] 1
+4 +on[crate4,pallet5] 1
+5 +on[crate1,crate4] 1
+6 +on[crate5,crate1] 1
+4 +at[crate4,distributor1] 5
+5 +at[crate1,distributor1] 6
+7 +lifting[hoist1,crate0] 2
+0 +on[crate0,pallet4] 7
+0 +at[crate0,distributor0] 7
+8 +lifting[hoist1,crate3] 3
+9 +at[truck0,distributor0] 8
+10 +in[crate3,truck0] 8
+0 +at[truck0,distributor1] 9
+0 +at[truck0,distributor1] 10
+11 +lifting[hoist2,crate4] 4
+12 +in[crate4,truck0] 11
+9 +at[truck0,distributor0] 12
+13 +at[truck0,distributor1] 11
+9 +at[truck0,distributor0] 13
+14 +lifting[hoist2,crate1] 5
+15 +in[crate1,truck0] 14
+13 +at[truck0,distributor1] 14
+13 +at[truck0,distributor1] 15
+16 +lifting[hoist2,crate5] 6
+17 +at[truck1,distributor1] 16
+18 +in[crate5,truck1] 16
+0 +at[truck1,depot0] 17
+0 +at[truck1,depot0] 18
+19 +lifting[hoist2,crate3] 10
+0 +on[crate3,crate2] 19
+0 +at[crate3,distributor1] 19
+20 +lifting[hoist1,crate4] 12
+0 +on[crate4,crate0] 20
+0 +at[crate4,distributor0] 20
+21 +lifting[hoist2,crate1] 15
+0 +on[crate1,pallet5] 21
+0 +at[crate1,distributor1] 21
+22 +lifting[hoist0,crate5] 18
+0 +on[crate5,pallet0] 22
+0 +at[crate5,depot0] 22
+21 +clear[pallet5] 4
+0 +clear[pallet3] 2
+0 +clear[pallet1] 3
+20 +clear[crate0] 7
+0 +clear[crate3] 19
+0 +clear[crate4] 20
+0 +clear[crate1] 21
+0 +clear[crate5] 22
+4 +clear[crate4] 5
+5 +clear[crate1] 6
+0 +available[hoist0] 22
+0 +available[hoist2] 19
+10 +available[hoist2] 21
+15 +available[hoist2] 11
+4 +available[hoist2] 14
+5 +available[hoist2] 16
+3 +available[hoist1] 20
+0 +available[hoist1] 8
+12 +available[hoist1] 7
+181
+0 1
+0 2
+0 3
+0 4
+0 5
+0 6
+0 7
+0 8
+0 9
+0 10
+0 11
+0 12
+0 13
+0 14
+0 15
+0 16
+0 17
+0 18
+0 19
+0 20
+0 21
+0 22
+5 1
+5 6
+5 16
+10 1
+10 2
+10 3
+10 4
+10 5
+10 6
+10 7
+10 8
+10 9
+10 11
+10 12
+10 13
+10 14
+10 15
+10 16
+10 20
+10 21
+14 1
+14 5
+14 6
+14 16
+20 1
+20 2
+20 4
+20 5
+20 6
+20 7
+20 11
+20 12
+20 13
+20 14
+20 15
+20 16
+6 1
+21 1
+21 4
+21 5
+21 6
+21 11
+21 14
+21 15
+21 16
+9 1
+9 2
+9 3
+9 4
+9 5
+9 6
+9 7
+9 8
+9 11
+9 12
+9 13
+9 14
+9 15
+9 16
+9 20
+13 1
+13 4
+13 5
+13 6
+13 11
+13 14
+13 15
+13 16
+2 1
+17 1
+17 6
+17 16
+22 1
+22 6
+22 16
+22 17
+22 18
+12 1
+12 2
+12 4
+12 5
+12 6
+12 7
+12 11
+12 13
+12 14
+12 15
+12 16
+7 1
+7 2
+3 1
+3 2
+3 4
+3 5
+3 6
+3 7
+3 11
+3 12
+3 13
+3 14
+3 15
+3 16
+3 20
+18 1
+18 6
+18 16
+18 17
+16 1
+16 6
+11 1
+11 4
+11 5
+11 6
+11 14
+11 16
+8 1
+8 2
+8 3
+8 4
+8 5
+8 6
+8 7
+8 11
+8 12
+8 13
+8 14
+8 15
+8 16
+8 20
+19 1
+19 2
+19 3
+19 4
+19 5
+19 6
+19 7
+19 8
+19 9
+19 10
+19 11
+19 12
+19 13
+19 14
+19 15
+19 16
+19 20
+19 21
+4 1
+4 5
+4 6
+4 14
+4 16
+15 1
+15 4
+15 5
+15 6
+15 11
+15 14
+15 16

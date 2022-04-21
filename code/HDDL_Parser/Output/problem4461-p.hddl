@@ -1,0 +1,73 @@
+(define (problem unnamedProblem)
+(:domain unnamedDomain)
+(:objects 
+   o - object 
+)
+(:htn 
+   :tasks (and
+   (communicate_soil_datarover0generalwaypoint2waypoint2waypoint0)
+   (navigaterover0waypoint1waypoint2)
+   (sample_soilrover0rover0storewaypoint2)
+   (navigaterover0waypoint3waypoint1)
+   (communicate_rock_datarover0generalwaypoint3waypoint1waypoint0)
+   (sample_rockrover0rover0storewaypoint3)
+   (communicate_image_datarover0generalobjective1high_reswaypoint2waypoint0)
+   (droprover0rover0store)
+   (navigaterover0waypoint2waypoint1)
+   (take_imagerover0waypoint2objective1camera0high_res)
+   (calibraterover0camera0objective1waypoint1)
+))
+
+(:init 
+   (at_rock_samplewaypoint1)
+   (emptyrover0store)
+   (atrover0waypoint3)
+   (at_soil_samplewaypoint2)
+   (at_soil_samplewaypoint0)
+   (at_rock_samplewaypoint2)
+   (at_rock_samplewaypoint3)
+   (at_soil_samplewaypoint3)
+)
+(:goal (and 
+   (communicated_soil_datawaypoint2)
+   (communicated_rock_datawaypoint3)
+   (communicated_image_dataobjective1high_res)
+))
+
+)(define (problem unnamedProblem)
+(:domain unnamedDomain)
+(:objects 
+   o - object 
+)
+(:htn 
+   :tasks (and
+   (communicate_soil_datarover0generalwaypoint2waypoint2waypoint0)
+   (navigaterover0waypoint1waypoint2)
+   (sample_soilrover0rover0storewaypoint2)
+   (navigaterover0waypoint3waypoint1)
+   (communicate_rock_datarover0generalwaypoint3waypoint1waypoint0)
+   (sample_rockrover0rover0storewaypoint3)
+   (communicate_image_datarover0generalobjective1high_reswaypoint2waypoint0)
+   (droprover0rover0store)
+   (navigaterover0waypoint2waypoint1)
+   (take_imagerover0waypoint2objective1camera0high_res)
+   (calibraterover0camera0objective1waypoint1)
+))
+
+(:init 
+   (at_rock_samplewaypoint1)
+   (emptyrover0store)
+   (atrover0waypoint3)
+   (at_soil_samplewaypoint2)
+   (at_soil_samplewaypoint0)
+   (at_rock_samplewaypoint2)
+   (at_rock_samplewaypoint3)
+   (at_soil_samplewaypoint3)
+)
+(:goal (and 
+   (communicated_soil_datawaypoint2)
+   (communicated_rock_datawaypoint3)
+   (communicated_image_dataobjective1high_res)
+))
+
+)

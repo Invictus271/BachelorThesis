@@ -1,0 +1,355 @@
+\chapter{Formal Framework}
+
+\tikzset{
+  every picture/.style = {font issue=\tiny},
+  font issue/.style = {execute at begin picture={#1\selectfont}}
+}
+Planning problems in general want to change the world state through actions to achieve some sort of goal.
+STRIPS \cite{STRIPS} is a notation to formalize such problems.
+A planning domain $D=(V,A)$ in STRIPS is defined by a finite set of boolean state variables $V$ and a finite set of actions $A$.
+The current state $s$ of a planning domain is defined by the set of state variables.
+For every planning Domain there is a set of $S=2^V$ possible states.
+A planning problem $P=(D,s_{init},g)$ consists of a planning domain,
+an initial state $s_{init} \in S$ and a goal description $g \subseteq V$ which is a set
+of state variables. In order to solve a planning problem the initial state needs to be changed with actions to achieve a goal state.
+A state $s$ is a goal state $S_g$ if $g \subseteq s$.
+An action $a \in A$ is defined by a 3-tuple: $(p(a),e^-(a),e^+(a))$. $p(a)$ is the set of preconditions, which
+contains all state variables that have to be true, at the time $a$ is performed. $e^-(a)$ is the set of delete effects. If the action $a$
+is being performed, all state variables of the set $e^-(a)$, that are true in the current state are negated in the next state.
+$e^+(a)$ is the set of add effects. If the action $a$ is performed, all literals of $e^+(a)$ are true in the
+next state. A state variable cannot be set false and true at the same time, that is why $\forall a \in A$ $e^-(a) \cap e^+(a) = \emptyset$. 
+Therefore, every state variable is either true or false in every valid state. In state
+$s$ an action $a$ can be performed if and only if $p(a) \subseteq s$. If the action $a$ is performed in the state $s$, a new state 
+$s'$ is being obtained with $s'=(s\setminus e^-(a))\cup e^+(a)$.
+\section{TO-Planning}
+A total-order plan (TO plan) $\Pi$ is a solution to a planning problem and consists of a sequence of actions. 
+The sequence of a TO plan is transforming the state of the planning domain, starting with the initial state and finishing
+with a goal state. 
+\newline
+\newtheorem{Definition}{
+  Definition
+}
+\theoremstyle{definition}
+\begin{Definition}
+  \normalfont
+  \textbf{Establishment in total-order plans}
+  \textit{
+  Let $\Pi$ be a total-order plan. Let $ps_1$ and $ps_2$
+  be two plan steps of the plan $\Pi, ps_1, ps_2 \in \Pi, v \in e^+(action(ps_1))$, and $v \in p(action(ps_2))$.
+  Then $ps_1$ establishes $v$ for $ps_2$ if
+  }
+\begin{itemize}
+    \item \textit{1. $ps_2 \prec ps_1$, and}
+    \item \textit{2. $\forall ps \in \Pi$, if $ps_2 \prec ps \prec ps_1$ then $v \notin e^+(action(ps))$ and $v \notin e^-(action(ps))$}
+\end{itemize}
+
+\end{Definition}
+\begin{Definition}
+  \normalfont \textbf{Correctness of a TO plan}
+  \textit{A sequence of actions $\Pi$ is a TO plan for a planning problem if it is legal and achieves the goal.
+  A TO plan is legal if for every action $a_1 \in \Pi$ every precondition $v \in p(a)$
+  has been established by another plan step $a_2 \in \Pi$.
+  A TO plan achieves the goal if the application of $\Pi$ on the initial state results in a goal state.
+  }
+\end{Definition}
+Figure 2.1 provides an example for a plan which describes the task of getting groceries and paying for them.
+In this example the state variable $money$ is true in the initial state. This state needs to be transformed till a goal state is reached which has to 
+contain the set of variables $\{milk, eggs, bill\}$.
+
+\scheme{grabEggs1}{0}{
+  text = {\textbf{grab eggs}},
+  pres = {},
+  effs = {eggs
+  }
+}
+\scheme{grabMilk1}{0}{
+  text = {\textbf{grab Milk}},
+  pres = {},
+  effs = {milk}
+}
+\scheme{pay1}{0}{
+  text = {\textbf{pay}},
+  pres = {
+      {eggs},
+      {milk},
+      {money}
+  },
+  effs = {
+    {bill},
+    {$\neg$money}
+  }
+}
+\begin{figure}[h]
+\begin{tikzpicture}
+  \stage{20em}{27em}
+  {effs = {{money}}, eff length = 3em}
+  {pres = {{eggs},{milk},{bill}}, pre length = 3em,
+  }{initial state }{goal}
+  \action{grab1}{grabEggs1={},
+  body = {right = 4em of init},
+  pre length = 2em,
+  eff length = 2em}
+  \action{grab2}{grabMilk1={},
+  body={right = 3em of grab1},
+  pre length = 2em,
+  eff length = 2em}
+  \action{pay1}{pay1={},
+  body={right = 5em of grab2},
+  eff length = 3em,
+  pre length = 2em}
+  \ordering{init}{grab1.north}
+  \ordering{grab1.north}{grab2.north}
+  \ordering{grab2.north}{pay1.north}
+  \ordering{pay1.north}{goal}
+\end{tikzpicture}
+.
+\caption{A total-order plan for the problem in Figure 2.1. The arrows imply the order in which the actions are preformed.
+ Preconditions are on the left side of an action while add and delete effects are on the right side}
+\end{figure}
+\newpage
+\section{PO Planning}
+As an alternative to total-order plans, planning problems can be solved with partial-order plans (PO plans). A PO plan $\Pi=(PS,\prec)$ consists of a 
+set of plan steps $PS$ and a set of ordering constraints $ \prec $. To allow actions to be executed more than once, we
+need to differentiate between the actions of the planning domain, and the set of plan steps. In a planning domain there is the set of all
+available actions. To reach the goal they might need to be executed multiple times, or they could even be skipped if they are not necessary at all. The actions that are 
+used in a PO plan need to have a fixed amount of occurrences. So for example if an action needs to be executed twice in a PO plan, the set of plan steps contains 
+two occurrences of the same action. To avoid ambiguities, the plan steps $ps \in PS$ are tuples 
+$ps=(l,a)$ consisting of an action $a$ and a unique label $l$ (e.g. numbers). 
+An action $a$ that is part of a plan step $ps=(l,a)$ can get referred by using the function $action(ps)=a$
+An ordering constraint between two plan steps $ps_1,ps_2$ is defined by: $ps_1 \prec ps_2$. This constraint means that $ps_1$ has to be performed before $ps_2$ is performed. Ordering constraints are transitive 
+so if $ps_1 \prec ps_2$ and $ps_2 \prec ps_3$ would imply $ps_1 \prec ps_3$. A linearization $\overline{\Pi}$ of a PO plan $\Pi$ is a total-order version of the list of plan steps, that do not violate any of the ordering constraints.
+In a PO plan the set of ordering constraints is transitive which means if the ordering constraints $ps_1 \prec ps_2$ and $ps_2 \prec ps_3$ are given the ordering constraint $ps_1 \prec ps_3$ also holds.
+Therefore, some ordering constraints, which are already implied by the transitivity, can be added to a PO plan without changing the ordering of the plan.
+
+\begin{Definition}
+  \normalfont \textbf{Correctness of a PO plan}
+  \textit{
+    A Tuple $\Pi=(PS,\prec)$ is a PO plan for a planning problem if and only if every linearization of $\Pi$ is a TO plan for the planning problem.
+  }
+\end{Definition}
+\begin{Definition}
+  \normalfont \textbf{Establishment in PO plans \cite{Knoblock}}
+  \textit{
+    A plan step $ps_1$ with $v \in e^+(action(ps_1))$ establishes a variable $v$ for $ps_2$ with $v \in p(action(ps_2))$ in a PO plan
+    if and only if the following conditions hold:
+  }.
+  \begin{itemize}
+    \item  \textit{$ps_1 \prec ps_2$}
+    \item  \textit{$\forall ps_3 \in \Pi \text{ if } ps_1 \prec ps_3 \prec ps_2 \text{ then } v \notin e^+(action(ps_3), e^-(action(ps_3))$}
+  \end{itemize}
+
+\end{Definition}
+
+\begin{Definition}
+  \normalfont \textbf{White Knights \cite{Kambhampti}}
+  \textit{
+    If there are two plan steps $ps_1, ps_2$ in a PO plan with $v \in e^+(action(ps_1)),p(action(ps_2))$ and $ps_1 \prec ps_2$ 
+    then $ps_1$ does not establish $v$ for $ps_2$ if there is a plan step $ps_3$ with $ps_1 \prec ps_3 \prec ps_2$ and $v \in e^-(action(ps_3))$.
+    A plan step $ps_4$ is called a White Knight if $v \in e^+(action(ps_4))$ and $ps_3 \prec ps_4 \prec ps_2$ holds. 
+  }
+\end{Definition}
+
+\scheme{grabEggs2}{0}{
+  text = {\textbf{0: grab eggs}},
+  pres = {},
+  effs = {eggs
+  }
+}
+\scheme{grabMilk2}{0}{
+  text = {\textbf{1: grab Milk}},
+  pres = {},
+  effs = {milk
+  }
+}
+\scheme{pay2}{0}{
+  text = {\textbf{2: pay}},
+  pres = {
+      {eggs},
+      {milk},
+      {money}
+  },
+  effs = {
+    {bill},
+    {$\neg$money}
+  }
+}
+\begin{figure}[h]
+
+\begin{tikzpicture}
+
+   \stage{20em}{27em}
+  {effs = {{money}}, eff length = 3em}
+  {pres = {{eggs},{milk},{bill}},
+  pre length = 3em,
+  }{initial state}{goal}
+  \action{grab1}{grabEggs2={},
+  body = {below right = 2em and 13 em of init.north east},
+  pre lengths = {1/0.5em},
+  eff length = 2em}
+  \action{grab2}{grabMilk2={},
+  body={above right = 2em and 13 em of init.south east},
+  pre lengths = {1/0.5em},
+  eff length = 2em}
+  \action{pay1}{pay2={},
+  body={right = 35em of init},
+  eff length = 3em,
+  pre length = 2em}
+  \ordering{init}{grab1.north}
+  \ordering{grab1.north}{pay1.north}
+  \ordering{init}{grab2.north}
+  \ordering{grab2.north}{pay1.north}
+  \ordering{pay1.north}{goal}
+
+  \end{tikzpicture}
+  \caption{Partial-order plan for the problem of Figure 2.1.\newline
+    In the graphic representation an arrow depicts an ordering constraint e.g. an arrow from plan step 2 to plan step 4 means
+    $2\prec 4$.
+ }
+
+\end{figure}
+In Figure 2.3 plan steps grab eggs and grab milk are ordered after the initial state and ordered before pay.
+The goal is ordered after pay. Notice there is no constraint between grab eggs and grab milk, that means they can 
+be ordered arbitrarily. 
+
+
+
+\newpage
+\section{POCL Planning}
+Partial-order-causal-link plans (POCL plans) extend PO plans by a set of so-called causal links $CL$ \cite{McAllester}. 
+So a POCL plan $\Pi$ is defined by the tuple $(D,\prec,CL)$ 
+with $D$ being a planning domain, $\prec$ a set of ordering constraints and $CL$ a set of causal links.
+The purpose of a causal links is to specify that certain plan steps establishing state variables for other plan steps. 
+A causal link is a 3-tuple $(ps_1,v,ps_2)$ consisting of two plan steps $ps_1,ps_2$ and a 
+state variable $v \in p(action(ps_2)),v \in e^+(action(ps_1))$. $ps_1$ is called the 
+$producer$, and $ps_2$ is called the $consumer$ of the literal $v$.
+If a POCL plan contains a causal link $(ps_1,v,ps_2)$, it means $ps_1$ establishes $v$ for $ps_2$. If $ps_1$ gets performed, 
+the causal link protects the literal $v$ from being deleted before the execution of $ps_2$. 
+Every causal link implies an ordering constraint: $ps_1 \prec ps_2$. While In a PO plan every plan step possibly can 
+establish a variable for another plan step, in POCL plans every established variable has one fixed producer and consumer.
+
+In POCL plans every plan starts with the action $init$ which generates the 
+state $s_{init}$. $e^+(init)$ contains all state variables of $s_{init}$. $init$ has neither delete effects nor preconditions. 
+A plan reaches a goal $g$ if an action $goal$ can be executed, such an action has neither add nor delete effects. $p(goal)$ contains 
+all state variables of the goal description $g$. A PO plan has achieved a goal state if $goal$ is executable. 
+
+If there is a plan step $ps_3$ with $v \in e^-(ps_3)$ that may be executed after $ps_1$ and before $ps_2$ the related POCL plan has a causal threat.
+This is the case if the plan contains neither the constraint $ps_3 \prec ps_2$ nor $ps_1\prec ps_3$.
+In order to fix such a threat, $ps_3$ has to be either promoted or demoted. Meaning $ps_3$ needs either be ordered before $ps_1$ ($ps_3 \prec ps_1$) or after $ps_3$ ($ps_2 \prec ps_1$).
+\begin{Definition}
+  \normalfont \textbf{Correctness of POCL plan \cite{McAllester}}
+  \textit{
+    A 3-tuple $\Pi=(D,\prec,CL)$ is a POCL plan for a planning problem if
+  }
+  \begin{itemize}
+    \item  \textit{For every plan step $ps\in \Pi$ every of its preconditions $v\in action(ps)$ 
+is protected by exactly one causal link $\exists! cl\in CL, cl=(ps',v,ps) \text{ with } ps' \neq ps$}
+  \item  \textit{The plan contains a plan step with the action $goal$ $\exists ps_g \in Pi$ with $ \text{action}(ps_g)=goal$}
+  \item  \textit{The plan has no causal flaw $\forall ps \in \Pi,\forall cl=(ps_1,v,ps_2) \in CL$ with $v \in e^-(action(ps) \Rightarrow ps \prec ps_2 \lor ps_1 \prec ps$}
+  \end{itemize}
+\end{Definition}
+An example for such a plan is visualized in Figure 2.3. solving the planning problem of Figure 2.1.
+\scheme{grabEggs}{0}{
+  text = {\textbf{2: grab eggs}},
+  pres = {},
+  effs = {
+    {eggs}
+  }
+}
+
+\scheme{grabMilk}{0}{
+  text = {\textbf{3: grab Milk}},
+  pres = {},
+  effs = {
+    {milk}
+  }
+}
+\scheme{pay}{0}{
+  text = {\textbf{4: pay}},
+  pres = {
+      {eggs},
+      {milk},
+      {money}
+  },
+  effs = {
+    {bill},
+    {$\neg$money}
+  }
+}
+\scheme{setup}{3}{
+  text = {\textbf{setup}(#1,#2,#3)},
+  pre  = {signal(#1,#3)},
+  eff  = {signal(#2,#3)},
+}
+\begin{figure}[h]
+\begin{tikzpicture}
+  \stage{30em}{27em}
+   {effs = {{money}}, eff length = 3em}
+   {pres = {{eggs},{milk},{bill}},
+   pre length = 3em,
+   }{0: init}{1: goal}
+  \action{grab1}{grabEggs={},
+  body = {below right = 3 em and 6em of init.north east},
+  pre length = 3em,
+  eff length = 3em}
+  \action{grab2}{grabMilk={},
+  body={below = of grab1},
+  pre length = 3em,
+  eff length = 3em}
+  \action{pay1}{pay={},
+  body={below right = 15 em of grab2},
+  pre length = 3em,
+  eff length = 3em}
+  \link{init/eff/1}{pay1/pre/3}{edge[out=0,in=180,looseness=2,->]}
+  \link{pay1/eff/1}{goal/pre/3}{edge[out=0,in=180,looseness=2,->]}
+  \link{grab1/eff/1}{goal/pre/1}{edge[out=0,in=180,looseness=2,->]}
+  \link{grab2/eff/1}{goal/pre/2}{edge[out=0,in=180,looseness=2,->]}
+  \link{grab1/eff/1}{pay1/pre/1}{edge[out=0,in=180,looseness=2,->]}
+  \link{grab2/eff/1}{pay1/pre/2}{edge[out=0,in=180,looseness=2,->]}
+\end{tikzpicture}
+
+\caption{The PO plan of Figure 2.2. extended with causal links\newline
+every arrow depicts a causal link with the producer on the emitting and consumer at the receiving end}
+\end{figure}
+
+\section{Makespan}
+
+The Makespan is a metric for PO and POCL plans. It describes the length of the longest path from the initial state to the first goal state.
+A path in a PO/POCL plan is defined inside of the directed graph $G=\langle PS, \prec \rangle$, as a sequence of plan steps ($ps_1,ps_2,...,ps_n$)
+with $ps_i \prec ps_{i+1}$.
+The length of a path $p$ equals the makespan of a plan $\Pi$ if for every path in $p'$ in $\Pi$ with $\vert p' \vert < \vert p \vert$.
+In a TO plan the makespan is equal to the length of its sequence of actions.
+In PO and POCL plans parallel execution of plan steps is allowed that is why there can be multiple paths from the initial state to a goal state. 
+If there are a lot of parallel executable plan steps in a PO or POCL plan the makespan will be much smaller than the amount of overall plan steps. 
+In general a small makespan is preferred because parallel executable plan step have the potential to be faster performed than strictly ordered plan steps.
+The makespan is independent of causal links that is why there is an algorithm to calculate the makespan of both PO and POCL plans.
+Algorithm 1 from \cite{Backstrom} is capable to calculate the makespan from a given PO or POCL plan. 
+
+\begin{algorithm}
+  \SetAlgoLined
+  \SetKwInOut{Input}{input}
+  \SetKwInOut{Output}{output}
+  \Input{$\Pi$ a PO or POCL plan}
+  \Output{The makespan $m$ of $\Pi$}
+  Construct directed graph $G=\langle PS, \prec \rangle$ with a goal node $g$\;
+  \ForEach{$ps \in PS$}{
+      $m(ps) \leftarrow 0$\;
+      \While{$PS \neq \emptyset$}{
+        Select some node $ps \in PS$ without predecessors in $PS$\;
+        \ForEach{$ps' \in PS$ s.t. $ps \prec ps'$}{
+          $m(ps') \leftarrow max(m(ps'),m(ps)+1)$\;
+          $PS \leftarrow PS \setminus \{ps\}$
+        }
+      }
+  }
+  \Return $m(g)$\;
+  \caption{Calculate the makespan of a given PO or POCL plan}
+
+\end{algorithm}
+
+The algorithm works up every node starting with the first and ending with the last node to be executed.
+For every inspected node all of its successor gets assigned with their makespan value, which is either already assigned,
+or is the makespan of the inspected node plus one. The makespan of the goal node is the makespan of the plan. 
+
+
+
+

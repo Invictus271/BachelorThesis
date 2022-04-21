@@ -1,0 +1,10 @@
+﻿Domain: satellite
+Problem: strips-sat-x-1
+Panda says: Solution
+DETAILED SOLUTION
+5
+0 init(<Instance>) {} {a} {}
+1 goal(<Instance>) {c} {} {}
+2 X {} {a} {b}
+3 Y {a} {b} {}
+4 Z {a,b} {c} {}

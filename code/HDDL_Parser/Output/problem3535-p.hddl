@@ -1,0 +1,77 @@
+(define (problem unnamedProblem)
+(:domain unnamedDomain)
+(:objects 
+   o - object 
+)
+(:htn 
+   :tasks (and
+   (stackdc)
+   (stackcb)
+   (stackba)
+   (pick-upd)
+   (unstackcd)
+   (stackcd)
+   (unstackbc)
+   (stackbc)
+   (unstackcb)
+   (stackcb)
+   (pick-upb)
+   (pick-upc)
+))
+
+(:init 
+   (ontablea)
+   (cleara)
+   (clearb)
+   (ontabled)
+   (clearc)
+   (handempty)
+   (ontablec)
+   (cleard)
+   (ontableb)
+)
+(:goal (and 
+   (ondc)
+   (oncb)
+   (onba)
+))
+
+)(define (problem unnamedProblem)
+(:domain unnamedDomain)
+(:objects 
+   o - object 
+)
+(:htn 
+   :tasks (and
+   (stackdc)
+   (stackcb)
+   (stackba)
+   (pick-upd)
+   (unstackcd)
+   (stackcd)
+   (unstackbc)
+   (stackbc)
+   (unstackcb)
+   (stackcb)
+   (pick-upb)
+   (pick-upc)
+))
+
+(:init 
+   (ontablea)
+   (cleara)
+   (clearb)
+   (ontabled)
+   (clearc)
+   (handempty)
+   (ontablec)
+   (cleard)
+   (ontableb)
+)
+(:goal (and 
+   (ondc)
+   (oncb)
+   (onba)
+))
+
+)

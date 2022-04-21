@@ -1,0 +1,258 @@
+\chapter{Evaluation Justification Algorithms}
+
+The theoretical foundation for justification algorithms has already been established in \cite{Justification},
+therefore the purpose of this work is to test the justification algorithms in order to provide a proof of concept. 
+To achieve this an implementation for the algorithms that were discussed in Chapter 3 
+has been tested with planning domains from the IPCs (International Planning Competitions). With the PANDA \cite{Panda} planning
+system which has been developed by the Institute for Artificial Intelligence at Ulm University, solutions to 
+these domains have been computed.
+The computations of the justification algorithms took place on a Lenovo L480 Thinkpad with an Intel Core i5-8250U CPU at 1.6 GHz.
+The solutions are given in the form of POCL plans which can be transformed to PO plans by simply removing the causal links.
+
+Well and greedy justification have been tested with both POCL plans 
+and PO plans. Therefore, every plan has been tested with 4 different 
+justification algorithms. The tests on backward justification 
+have been unsuccessful because the related algorithm
+did not produce optimization on any of the tested plans,
+which is caused by the fact that the test plans have been created by a
+POCL planning system and are therefore backward justified by definition.  
+
+
+To evaluate an optimization five different metrics have been used.
+\begin{itemize}
+    \item Plan step-optimized plans: The amount of plans where plan steps were removed
+    \item Makespan-optimized plans: The amount of plans with reduced makespan
+    \item Optimized plan steps: The total amount of reduced plan steps
+    \item Optimized makespan: The total amount of reduced makespan
+    \item Optimization ratio: ($\frac{\vert \text{optimized plans} \vert}{\vert \text{Tested plans} \vert}$)
+    \item Plan step ratio: ($\frac{\vert \text{output plan steps} \vert}{\vert \text{input plan steps} \vert}$)
+    \item Average plan step optimization: ($\frac{\sum_{\Pi \in \text{plan step optimized plans}}\frac{\vert \text{output plan steps of } \Pi \vert} {\vert \text{input plan steps of } \Pi\vert}}{\vert \text{plan step optimized plans} \vert} $)
+    \item Makespan ratio: ($\frac{\vert \text{output makepspan} \vert}{\vert \text{input makespan} \vert}$)
+    \item Average makespan optimization: ($\frac{\sum_{\Pi \in  \text{makespan optimized plans}}\frac{\vert \text{output makespan of } \Pi \vert} {\vert \text{input makespan of } \Pi\vert}}{\vert \text{makespan optimized plans} \vert} $)
+    \item Computation time: The time it took to compute the optimizations 
+\end{itemize}
+
+In the test set there are 461\,363 different plans that contain an overall amount of 8\,358\,208 plan steps.
+The sum over the makespan of all plans is 6\,152\,343. 
+
+As discussed in Chapter 3, all of the justification algorithms have a non-deterministic element.
+The ordering in which the plan steps are being checked for their justification
+is non-deterministic and can have an impact on the outcome of the optimization.
+In order to take this problem into account, every algorithm will be executed with 10 different random seeds.
+Additionally, the same test set will be provided with only one random seed therefore the non-deterministic impact can be evaluated.
+For the tests with 10 random seeds 10 possibly different optimizations can arise.
+The results in table 4.3 and 4.4 were computed by choosing one of the 10 optimizations with 
+the highest amount of optimized plan steps.
+
+
+\begin{table}[]
+\begin{tabular}{lll}
+\hline
+Algorithm                 & Well justification on PO & Well justification on POCL \\ \hline
+Makespan optimized plans  & 248736                   & 81327                      \\
+Plan Step optimized plans & 270300                   & 100899                     \\
+Optimized plan steps      & 783381                   & 386845                     \\
+Optimized makespan        & 536471                   & 145243                     \\
+Optimization ratio        & 0.586                    & 0.219                      \\
+Plan step ratio           & 0.906                    & 0.948                      \\
+Average plan step optimization & 0.851               & 0.856                           \\
+Makespan ratio            & 0.913                    & 0.969                      \\
+Average makespan optimization &0.842                 &0.861                        \\
+Computation time in min   & 11.674                   & 6.351                      \\
+\end{tabular}
+\caption{Test Result for well justification with 1 random seed}
+\end{table}
+
+
+\begin{table}[]
+    \begin{tabular}{lll}
+        \hline
+        Algorithm                 & Greedy justification on PO & Greedy justification on POCL \\ \hline
+        Makespan optimized plans  & 432708                     & 431834                       \\
+        Plan Step optimized plans & 453117                     & 452423                       \\
+        Optimized plan steps      & 1791062                    & 1893068                      \\
+        Optimized makespan        & 1444539                    & 1545904                      \\
+        Optimization ratio        & 0.982                      & 0.981                        \\
+        Plan step ratio           & 0.786                      & 0.774                        \\
+        Average plan step optimization &0.773                 & 0.757                          \\
+        Makespan ratio            & 0.765                      & 0.749                        \\
+        Average makespan optimization &0.754                 & 0.737                          \\
+        Computation time in min   & 20.083                     & 18.791   
+    \end{tabular}
+    \caption{Test Result for greedy justification with 1 random seed}
+\end{table}
+Tables 4.1 and 4.2 show that the greedy justification algorithms generate a better overall optimization 
+which is excepted since greedy justification is a stronger justification type. 
+Both types of the greedy justification algorithms are optimizing over 10$\%$ more plan steps
+than their well justification counterparts.
+Even more significant is the differnce in the optimization ratio.
+While the greedy justification algorithms find an optimization for almost every plan,
+the well justification algorithms show much smaller optimization ratios with 
+0.586 for PO plans and 0.219 for POCL plans. 
+Also notable are the differences between the optimization of PO plans and POCL plans.
+For well justification algorithms every optimization metric except the computation time is much better for PO plans.
+Especially the amount of optimized plans and as a result of this also the optimization ratio.
+For PO plans the amount of optimized plans are almost doubled in comparison those of the POCL plans.
+The PO algorithm has a higher computation time since every removal of a plan step can cause the loop inside of the well justification algorithms to restart.
+Therefore, a lower plan step ratio does result in a higher computation time.
+For greedy justification the difference in optimization metrics for PO and POCL plans is much lower.
+In fact on regarding table 4.2 greedy POCL algorithm preforms better at optimizing makespan than 
+its PO counterpart. This effect is due to the random seed that has been used.
+With another random seed the PO algorithm might preform better as can be seen in Table 4.4. 
+
+
+In general better results for PO plans are excepted since 
+the lack of causal links make PO plans easier modifiable and more optimizations are possible.
+There are a lot of plans where an optimization can be done on the PO plan but not on the POCL plan.
+But there are also some plans that result in a better optimization for POCL plans than for PO plans.
+This can happen if there is a plan with multiple possible optimizations with some removing more
+and some removing less plan steps. If the optimization that is removing less plan steps can not 
+be chosen by the POCL algorithm, because of its added restrictions, the weaker optimization will only
+be possible in the PO algorithm. Therefore, such plans work better with the POCL algorithm. 
+
+\begin{table}[]
+    \begin{tabular}{lll}
+        \hline
+        Algorithm                 & Well justification on PO & Well justification on POCL \\ \hline
+        Makespan optimized plans  & 248737                   & 81327                      \\
+        Plan Step optimized plans & 270300                   & 100899                     \\
+        Optimized plan steps      & 790174                   & 386845                     \\
+        Optimized makespan        & 543264                   & 145243                     \\
+        Optimization ratio        & 0.586                    & 0.219                      \\
+        Plan step ratio           & 0.905                    & 0.948                      \\
+        Average plan step optimization &0.849                  &0.856                             \\
+        Makespan ratio            & 0.912                    & 0.969                      \\
+        Average makespan optimization & 0.839                  &0.862                              \\
+        Computation time in min   & 108.738                  & 66.767                    
+    \end{tabular}
+    \caption{Test result for well justification with 10 random seeds}
+\end{table}
+
+\begin{table}[]
+    \begin{tabular}{lll}
+        \hline
+        Algorithm                 & Greedy justification on PO & Greedy justification on POCL \\ \hline
+        Makespan optimized plans  & 432777                     & 431834                       \\
+        Plan Step optimized plans & 453117                     & 452423                       \\
+        Optimized plan steps      & 1939801                    & 1933375                      \\
+        Optimized makespan        & 1593006                    & 1586213                      \\
+        Optimization ratio        & 0.982                      & 0.981                        \\
+        Plan step ratio           & 0.768                      & 0.769                        \\
+        Average plan step optimization &0.751                  & 0.757                          \\
+        Makespan ratio            & 0.741                      & 0.742                        \\
+        Average makespan optimization &0.730                   & 0.737                             \\
+        Computation time in min   & 213.512                    & 183.604                     
+    \end{tabular}
+    \caption{Test result for greedy justification with 10 random seeds}
+\end{table}
+
+In the tested set of plans there are not many plans with different optimization options. Therefore, 
+the non-deterministic element of the algorithms did not matter for most plans.
+Nevertheless, slight improvements can be seen by comparing table 4.1 and 4.2 with table 4.3 and 4.4.
+The only algorithm where the usage of multiple different seeds had no impact is the 
+well justification algorithm on POCL plans.
+The obvious downside of using 10 random seeds is the increase in computation time by an approximate factor of 10. 
+
+
+In order to provide a perspective on the size of the plans (amount of plan steps),
+the justification algorithms have been tested on a second set of plans.
+The second set is designed to provide a greater diversity of plan sizes. 
+On the first set most of the plans had an approximate amount of 20-30 plan steps.
+In the second set the plans have a range of 5 to 70 plan steps.
+The algorithms will use 1 random seed per plan. 
+Table 4.5 to 4.8 display the test results for the second set while 
+being sorted by length of the plans. 
+To provide a more compact view the plans with similar plan length (e.g. size \textgreater{}10,size \textgreater{}20, size \textgreater{}30) have been 
+put together.
+
+
+In table 4.5 to 4.8 the biggest differences in optimization performances can be 
+observed in the smaller plans (size 0 to 20).  
+The greedy algorithms perform the best on smaller plans and get 
+worse the bigger the plans become.
+The plan and makespan ratios of well justification algorithms do not change a lot with the plan size.
+Therefore, the bigger the plans the smaller the difference in optimization metrics between the algorithms.
+Although, the lack of plans with a size $>$60 is causing some inconsistencies on the optimization ratios. 
+The difference between the PO and POCL algorithms in the second test set is similar to those from the
+first test. The PO algorithm perform, slightly better than its POCL counterpart and 
+scale similarly with their Plan size.
+
+
+\begin{table}[b]
+\begin{tabular}{llllllll}
+\cline{1-8}
+Plan size                     & \textgreater{}0 & \textgreater{}10 & \textgreater{}20 & \textgreater{}30 & \textgreater{}40 & \textgreater{}50 & \textgreater{}60 \\ \cline{1-8}
+Plans                          & 1908            & 1563             & 1812             & 830              & 1202             & 123              & 28               \\
+Plan step optimized plans      & 298             & 270              & 1786             & 822              & 1202             & 123              & 4                \\
+Makespan optimized plans       & 298             & 270              & 1249             & 656              & 1100             & 120              & 3                \\
+Optimized plan steps           & 495             & 508              & 4714             & 2348             & 2856             & 444              & 4                \\
+Optimized makespan             & 495             & 508              & 1848             & 1027             & 1561             & 233              & 3                \\
+Optimized plan ratio           & 0.844           & 0.827            & 0.014            & 0.010            & 0.000            & 0.000            & 0.857            \\
+Plan step ratio                & 0.967           & 0.976            & 0.895            & 0.917            & 0.947            & 0.928            & 0.998            \\
+Average plan step optimization & 0.787           & 0.864            & 0.894            & 0.915            & 0.947            & 0.928            & 0.986            \\
+Makespan ratio                 & 0.961           & 0.971            & 0.909            & 0.914            & 0.929            & 0.900            & 0.993            \\
+Average makespan optimization  & 0.756           & 0.853            & 0.874            & 0.893            & 0.924            & 0.898            & 0.936            \\
+Computation time in min        & 0.001           & 0.025            & 0.158            & 0.362            & 1.787            & 0.192            & 0.069           
+\end{tabular}
+\caption{Results sorted by plan size for well justification on PO plans}
+\end{table}
+
+
+\begin{table}[]
+\begin{tabular}{llllllll}
+\cline{1-8}
+Plan size                     & \textgreater{}0 & \textgreater{}10 & \textgreater{}20 & \textgreater{}30 & \textgreater{}40 & \textgreater{}50 & \textgreater{}60 \\ \cline{1-8}
+Plans                          & 1908            & 1563             & 1812             & 830              & 1202             & 123              & 28               \\
+Plan step optimized plans      & 118             & 0                & 1786             & 822              & 1202             & 123              & 4                \\
+Makespan optimized plans       & 118             & 0                & 1249             & 656              & 1100             & 120              & 3                \\
+Optimized plan steps           & 135             & 0                & 4714             & 2348             & 2709             & 434              & 4                \\
+Optimized makespan             & 135             & 0                & 1848             & 1027             & 1477             & 233              & 3                \\
+Optimized plan ratio           & 0.938           & 1.000            & 0.014            & 0.010            & 0.000            & 0.000            & 0.857            \\
+Plan step ratio                & 0.991           & 1.000            & 0.895            & 0.917            & 0.950            & 0.929            & 0.998            \\
+Average plan step optimization & 0.844           & 1.000            & 0.894            & 0.915            & 0.950            & 0.929            & 0.986            \\
+Makespan ratio                 & 0.989           & 1.000            & 0.909            & 0.914            & 0.933            & 0.900            & 0.993            \\
+Average makespan optimization  & 0.819           & 1.000            & 0.874            & 0.893            & 0.927            & 0.898            & 0.936            \\
+Computation time in min        & 0.002           & 0.019            & 0.087            & 0.176            & 0.705            & 0.073            & 0.033           
+\end{tabular}
+\caption{Results sorted by plan size for well justification on POCL plans}
+\end{table}
+\newpage
+
+\begin{table}[]
+\begin{tabular}{llllllll}
+\cline{1-8}
+Plan size                     & \textgreater{}0 & \textgreater{}10 & \textgreater{}20 & \textgreater{}30 & \textgreater{}40 & \textgreater{}50 & \textgreater{}60 \\ \cline{1-8}
+Plans                          & 1908            & 1563             & 1812             & 830              & 1202             & 123              & 28               \\
+Plan step optimized plans      & 1880            & 1258             & 1807             & 822              & 1202             & 123              & 4                \\
+Makespan optimized plans       & 1876            & 1182             & 1278             & 659              & 1100             & 120              & 3                \\
+Optimized plan steps           & 6993            & 4880             & 4872             & 2358             & 2884             & 444              & 4                \\
+Optimized makespan             & 6731            & 4575             & 1954             & 1037             & 1593             & 233              & 3                \\
+Optimized plan ratio           & 0.015           & 0.195            & 0.003            & 0.010            & 0.000            & 0.000            & 0.857            \\
+Plan step ratio                & 0.528           & 0.773            & 0.891            & 0.917            & 0.946            & 0.928            & 0.998            \\
+Average plan step optimization & 0.524           & 0.718            & 0.891            & 0.914            & 0.947            & 0.928            & 0.986            \\
+Makespan ratio                 & 0.468           & 0.739            & 0.903            & 0.913            & 0.928            & 0.900            & 0.993            \\
+Average makespan optimization  & 0.464           & 0.682            & 0.871            & 0.893            & 0.922            & 0.898            & 0.936            \\
+Computation time in min        & 0.002           & 0.039            & 0.374            & 0.708            & 3.787            & 0.503            & 0.322           
+\end{tabular}
+\caption{Results sorted by plan size for greedy justification on PO plans}
+\end{table}
+
+
+\begin{table}[]
+    \begin{tabular}{llllllll}
+    \cline{1-8}
+    Plan size                     & \textgreater{}0 & \textgreater{}10 & \textgreater{}20 & \textgreater{}30 & \textgreater{}40 & \textgreater{}50 & \textgreater{}60 \\ \cline{1-8}
+    Plans                          & 1908            & 1563             & 1812             & 830              & 1202             & 123              & 28               \\
+    Plan step optimized plans      & 1880            & 1258             & 1807             & 822              & 1202             & 123              & 4                \\
+    Makespan optimized plans       & 1876            & 1182             & 1278             & 659              & 1100             & 120              & 3                \\
+    Optimized plan steps           & 6993            & 4952             & 4872             & 2358             & 2741             & 434              & 4                \\
+    Optimized makespan             & 6731            & 4647             & 1954             & 1037             & 1509             & 233              & 3                \\
+    Optimized plan ratio           & 0.015           & 0.195            & 0.003            & 0.010            & 0.000            & 0.000            & 0.857            \\
+    Plan step ratio                & 0.528           & 0.770            & 0.891            & 0.917            & 0.949            & 0.929            & 0.998            \\
+    Average plan step optimization & 0.524           & 0.714            & 0.891            & 0.914            & 0.949            & 0.929            & 0.986            \\
+    Makespan ratio                 & 0.468           & 0.735            & 0.903            & 0.913            & 0.931            & 0.900            & 0.993            \\
+    Average makespan optimization  & 0.464           & 0.678            & 0.871            & 0.893            & 0.926            & 0.898            & 0.936            \\
+    Computation time in min        & 0.006           & 0.037            & 0.355            & 0.570            & 3.114            & 0.518            & 0.338           
+    \end{tabular}
+    \caption{Results sorted by plan size for greedy justification on POCL plans}
+\end{table}

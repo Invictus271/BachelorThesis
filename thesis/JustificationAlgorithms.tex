@@ -1,0 +1,631 @@
+\chapter{Justification Algorithms}
+The basic idea behind Justification is to define a criterion for a plan step that describes its necessity for a plan. 
+Different kinds of justification have been formalized and applied in algorithms by Fink and Yang
+\cite{Justification}. These algorithms deployed on PO and POCL plans can find unjustified plan steps that can be removed
+in order to create smaller, less complex plans. Smaller plans are in general more useful since they contain less \enquote{useless} plan steps
+and are therefore easier and faster to execute, so the goal is to remove as many plan steps as possible. 
+For some plans the amount of unjustified plan steps can vary on the justification type.
+The algorithms can be sorted by their justification strength. A stronger algorithm can remove all plan steps that can be removed
+by a weaker algorithm and possibly more. However, the runtime of the related algorithm also increases with the justification strength. 
+There is a tradeoff between the amount of removed plan steps and the computation time.
+
+\begin{figure}[h]
+    \begin{tabular}{|l|l||l|}
+        \hline
+        \textbf{kind of justification} & \textbf{calculation time} & stronger justification\\
+        \cline{1-2}
+        greedy justification & $\mathcal{O}(P\cdot\vert \Pi \vert ^{5}] )$ & $\uparrow$\\
+        \cline{1-2}
+        well justification & $\mathcal{O}(P\cdot\vert \Pi \vert ^{4}] )$ & $\downarrow$\\
+        \cline{1-2}
+        backward justification &$\mathcal{O}(E\cdot\vert \Pi \vert ^{2}] )$ & weaker justification\\
+        \hline
+    \end{tabular}
+    \caption{Three different types of justification and the runtime of its related algorithms on a PO plan $\Pi$,
+    with $\vert \Pi \vert$ being the number of plan steps, $E$ the number of effects $E=\sum_{ps \in \Pi} \vert e^+(action(ps))\vert$ 
+    and $P$ the number of preconditions $P=\sum_{ps \in \Pi} \vert p(action(ps))\vert$. Table taken from \cite{Justification}.}
+\end{figure}
+ 
+For each of the three justification types in figure 3.1 there is an algorithm for PO and POCL plans. The characteristics of these
+algorithms will be discussed in the following sections.
+
+
+\section{Backward Justification} 
+
+\begin{Definition}
+    \normalfont \textbf{Backward Justification \cite{Justification}}
+    \textit{Let $\Pi$ be a PO plan that achieves the goal $g$. A plan step $ps \in \Pi$
+is called backward justified if $\exists v\in e^+(action(ps))$ such that $ps$
+possibly establishes $v$ either for the goal $g$ or for another backward justified plan step. 
+We say that $ps$ possibly establishes a variable $v$ for a plan step $ps'$ in
+a partially ordered plan $\Pi$ if $ps$ establishes $v$ for $ps'$ in at
+least one linearization of $\Pi$.
+}
+\end{Definition}
+\begin{algorithm}[H]
+    \SetAlgoLined
+    \KwData{let $\overline{\Pi}$ be some linearization of $\Pi$}
+    \For{$ps$ := (last plan step of $\overline{\Pi})$ \KwTo (first plan step of $\overline{\Pi}$ )}{
+        Justified=False\;
+        \ForEach{$v \in e^+(action(ps))$}{
+            \If{$\exists ps' \in \Pi$ s.t. $ps$ establishes $v$ for $ps'$ \textbf{or} $ps$ establishes $v$ for $g$}{
+            \tcc{$ps$ is backward justified}
+            Justified=True\;
+        }
+    }
+    \If{Justified=False}{
+        \tcc{$ps$ is not backward justified}
+        remove ps from the plan $\Pi$\;
+    }
+}
+\vspace{2em}
+\caption{\cite{Justification} a backward justified subplan of a given plan}
+\end{algorithm}
+Algorithm 2 iterates through every variable in the add effect of each plan step and checks if these variables are established for other plan steps.
+If there is a plan step that is not part of any establishment, the plan step is not justified in the given linearization of the plan.
+Therefore, the plan step is also not justified in the related PO plan and can be removed.
+
+
+As mentioned in section 2.2 a causal link $(ps_1,l,ps_2)$ means that $ps_1$ establishes $l$ for $ps_2$.
+So every plan step in a POCL plan which is a producer of a causal link, does establish a variable for another plan step or goal in 
+every linearization of the plan. So every plan step that is producer of a causal link is a backward justified plan step.
+This the reason why backward justification is easy to establish with POCL plans. On the flip side most planners already create backward justified POCL plans,
+therefore the related algorithm will most likely not optimize the plan. Above reasons show that the optimization of PO plans through 
+backward justification is more effective than the optimization of POCL plans. 
+
+
+\newpage
+\begin{figure}[h]
+    %\begin{tabular}{c|c|c}
+    %  \toprule
+    %state variables & initial state & goal description\\
+    %\midrule
+    %  \{money, friend called\} &  \{$\lnot$ money, $\lnot$ friend called\} & \{money\}\\
+    %  \bottomrule
+    %\end{tabular}
+    %\newline
+    %\vspace{2em}
+    %\newline
+    %\begin{tabular}{l|ccc}
+    %    \toprule
+    %    action name & precondition & add effects & delete effects \\
+    %    \midrule
+    %    go to ATM & $\emptyset$ & \{money\} & $\emptyset$ \\
+    %    call friend & $\emptyset$ & \{friend   \link{init/eff/4}{pay1/pre/3}{edge[out=0,in=180,looseness=2,->]}called\} & $\emptyset$ \\
+    %    borrow money from friend& \{friend called\} &\{money\}& $\emptyset$ \\
+    %    \bottomrule
+    %\end{tabular}
+    %\newline
+    %\vspace{2em}
+    %\newline
+    %\begin{tabular}{l|c}
+    %    \toprule
+    %    set of plan steps & ordering constraints \\
+    %    \midrule
+    %    0: go to ATM &  $1 \prec 2$ \\
+    %    1: call friend & \\
+    %    2: borrow money from friend & \\
+    %    \bottomrule
+    %\end{tabular}
+    %\vspace{2em}
+    %\newline
+    \scheme{ATM}{0}{
+        text={\textbf{0: go to ATM}},
+        pres={},
+        effs={money}
+    }
+    \scheme{friend}{0}{
+        text={\textbf{1: call friend}},
+        pres={},
+        effs={friend called}
+    }
+    \scheme{borrow}{0}{
+        text={\textbf{2: borrow money from friend}},
+        pres={friend called},
+        effs={money}
+    }
+    \begin{tikzpicture}
+        \stage{20em}{27em}
+        {effs = {}, eff length = 2em}
+        {pres = {money},
+        pre length = 2em,
+        }{start}{end}
+        \action{ATM1}{ATM={},
+        body={below right = 2em and 20 em of init.north east},
+        eff length= 3em,
+        pre length= 3em}
+        \action{friend1}{friend={},
+        body={above right = 4em and 6 em of init.south east},
+        eff length = 5em,
+        pre length = 3em}
+        \action{borrow}{borrow={},
+        body ={right = 13em of friend1},
+        eff length = 3em,
+        pre length = 3em}
+        \ordering{borrow.north}{goal}
+        \ordering{init}{ATM1.north}
+        \ordering{init}{friend1.north}
+        \ordering{ATM1.north}{goal}
+        \ordering{friend1.north}{borrow.north}
+    \end{tikzpicture}
+    \caption{Example: PO plan with two alternate linearizations}
+\end{figure}
+
+In PO plan there are no causal links that define the establishment of a variable. In two different linearizations 
+of a PO plan one variable can be established by two different plan steps as can be seen in the example of Figure 3.2.
+Plan step 1 establishes 'called friend' for plan step 2, and the plan steps 0 and 2 establish 'money' for the goal.
+The PO plan in Figure 3.2 allows for three different linearizations: 
+\begin{enumerate}
+    \item $0 \to 1 \to 2 $
+    \item $1 \to 2 \to 0$
+    \item $1 \to 0 \to 2$
+\end{enumerate}
+In the first linearization plan step 0 is not backward justified, because plan step 2 establishes also the variable \enquote{money} but later.
+In the second linearization plan step 1 and 2 are both not backward justified. The algorithm first removes plan step 2 
+because plan step 0 is executed later. Then plan step 1 is removed because plan step 2 is deleted, so there is no precondition that needs the
+establishment of \enquote*{friend called}. Notice the optimization of plan step 1 is only possible because the algorithm removes the plan steps from last to first.
+The third linearization would be optimized like the first one because plan step 0 is executed before plan step 2. 
+The example also showcases that backward justification can depend on the observed linearization. The algorithm deals with this problem 
+by choosing a random linearization of the PO plan. The random decision of the linearization results in some non-deterministic justifications.
+A strategy to get an optimal and deterministic result would be to observe every possible linearization and choose the optimization with the least
+remaining plan steps. If there are plan steps that have no add effect, then they are always going to be removed, because there is no 
+linearization where those plan step could possibly establish a variable. However, plan steps that have variables in their add effects that are already true
+in the initial state cannot be removed by the backward justification algorithm.
+
+
+Regarding the complexity of backward justification, for every variable $v$ which is part of an add effect 
+the algorithm needs to check whether it is part of an establishment or not which equals the complexity $\mathcal{O}(E=\sum_{ps \in \Pi} \vert e^+(action(ps))\vert)$.
+Then the algorithm needs to check for every plan step that is ahead, whether $v$ can be established for this plan step or not with the complexity $\mathcal{O}(\vert \Pi \vert)$.
+Then for every possible establishment the algorithm needs to check, if there can be a plan step with $v$ as a delete effect which also has the complexity of $\mathcal{O}(\vert \Pi \vert)$.
+Therefore, the overall running time of the algorithm is $\mathcal{O}(E\cdot\vert \Pi \vert ^{2}] )$.
+\section{Well Justification}
+
+\begin{Definition}
+    \normalfont \textbf{Well Justification \cite{Justification}}
+    \textit{A plan step $ps_i$ in a total-order plan $\overline{\Pi}$ is called well-justified if $\exists v \in e^+(action(ps))$
+such that $ps_i$ establishes $v$ for some plan steps or
+for the goal $g$, and $v$ does not hold before $ps_i$, that is
+$v \notin s_{i-1}$. A plan step in a partially ordered plan is called well-justified if it is 
+well-justified in at least one linearization of the plan.
+}
+\end{Definition}
+A difference between well justification and backward justification is that a variable $v$ that is already true in a state $s$ 
+can no longer be established by other plan steps. If the variable $v$ is true either in the initial state or through the add effect of $ps_1$ 
+and there are two plan steps $ps_2$ $ps_3$ with $ps_1 \prec ps_2 \prec ps_3$ and $ps_2$ establishes $v$ for $ps_3$. $ps_2$ would be backward justified but not 
+well justified, given that there is no plan step $ps_4$ with $v \in e^-(action(ps_3))$ that can be executed before $ps_2$.
+The backward justifications criteria are included in the definition of well justification alongside the above explained criterion.
+Therefore, every well justified plan step is also backward justified, but not every backward justified plan step is 
+well justified.
+Because every plan step is only well justified if it establishes some variable that was not established before (or is true in the initial state) the
+removal of a well justified plan step will lead to the incorrectness of the plan. Therefore, the following lemma holds.
+
+\newtheorem{Lemma}{Lemma}
+\begin{Lemma}
+    \cite{Justification} \textit{A plan step is well-justified if and only if we
+    cannot remove it from the plan without violating correctness of the plan.}
+\end{Lemma}
+  The next theorem follows directly from the lemma.
+\newtheorem{theorem}{Theorem}
+\begin{theorem}
+    \cite{Justification} \textit{A plan is well-justified if and only if there
+    is no plan step that can be removed without violating correctness of the plan.}
+\end{theorem}
+In order to find a well-justified subplan of a PO plan, algorithm 2 needs to be applied.
+\newline
+\vspace{1em}
+\newline
+\begin{algorithm}[H]
+    \SetAlgoLined
+    \KwData{let $\Pi$ be a PO plan}
+    \Repeat{no plan step is removed durning the last execution of the loop}{
+        \ForEach{$ps \in \Pi$}{
+            \If{$\Pi$ without ps is legal and achieves the goal}{
+                remove ps from $\Pi$\;
+            }
+        }
+    }
+    \vspace{2em}
+    \caption{Finding a well justified subplan of a given PO plan}
+\end{algorithm}
+
+Algorithm 2 tries to remove all plan steps one by one and then checks whether the plan is still legal.
+If a plan step gets removed, some establishments might be removed with it. 
+Therefore, if a plan step is being removed the algorithm tries again to remove plan steps.
+This leads to the removal of plan steps that only establish variables for not well justified plan steps.
+This algorithm uses a similar non-determinism like the backward justification algorithm. Depending on the
+choice of the plan step in line 2, different subplans will emerge. The choice is, in general, random and an optimal reduction of 
+plan steps for a plan is achieved if every possible order of plan step choices is computed and the plan with the least amount 
+of plan steps is selected. This random ordering also determines if a chain of plan steps can be removed. For example in Figure 3.2. plan step 2
+needs a variable that is created by plan step 1, so if plan step 2 is being removed plan step 1 is also being removed.
+If plan step 1 is attempted to be removed first the plan without it is not legal anymore,
+because the precondition of plan step 2 is not satisfied anymore, therefore 2 needs to be eliminated first. This kind of ordering problem is already addressed in the
+backward justification algorithm because the plan steps are being selected in a reversed order. One way to optimize the well justification algorithm would be 
+to select the plan steps with the least plan steps ordered behind them first.
+
+
+In order to execute algorithm 2, we need to be able to check the condition in line 3. This can be accomplished with algorithm 3.
+\newpage
+
+\begin{algorithm}[h]
+    \SetAlgoLined
+    \SetKwInOut{Input}{input}\SetKwInOut{Output}{output} 
+    \Input{$\Pi$ a PO plan}
+    \Output{True if $\Pi$ is correct, False otherwise}
+    \ForEach{$ps_1 \in \Pi$}{
+        \ForEach{$v \in p(action(ps_1))$}{
+            established $\leftarrow$ False\;
+            \ForEach{$ps_2 \in predecessors(ps_1)$}{
+                \If{$\exists v \in e^+(action(ps_2))$ \textbf{and} $v \in p(action(ps_1))$}{
+                    established $\leftarrow$ true\;
+                    \ForEach{$ps_3 \in possiblePredecessors(ps_1) \cap possibleSuccessors(ps_2)$}{
+                        \If{$v \in e^-(ps_3)$}{
+                            established $\leftarrow$ False\;
+                        }
+                    }
+                }
+            }
+            \If{established=False}{
+                \Return False\;
+            }
+        }
+    }
+    \Return True \;
+    \caption{Checking the correctness of a PO plan}
+\end{algorithm}
+
+Algorithm 3 checks for every precondition variable of every plan step if there is a predecessor plan step that establishes this variable.
+Therefore, the algorithm needs to check if there is a predecessors with the variable in its add effects and if there could be a delete effect 
+which destroys the establishment. 
+For this computation Algorithm 3 uses the functions $predecessors$, $successors$, $possiblePredecessors$ and $possibleSuccessors$, that each return a set of plan step.
+They are defined as follows.
+
+\begin{itemize}
+    \item predecessors($ps_1$)=$\{ps \in \Pi \setminus ps_1 \mid ps \prec ps_1 \}$
+    \item successors($ps_1$)=$\{ps \in \Pi \setminus ps_1 \mid ps_1 \prec ps \}$
+    \item possibleSuccessors($ps_1$)=$\{ps \in \Pi \setminus ps_1 \mid ps \notin predecessors\}$
+    \item possiblePredecessors($ps_1$)=$\{ps \in \Pi \setminus ps_1 \mid ps \notin successors \}$
+\end{itemize}
+
+To compute these functions efficiently an ordering matrix needs be created. 
+An ordering matrix is a squared matrix with the height/length of the amount of plan steps, filled with boolean values. For an ordering matrix $om$ the value 
+$om[1][2]$ would state whether the ordering constraint $ps_1 \prec ps_2$ would hold.
+As discussed in section 2.2 ordering constraints are transitive, to avoid redundant computation the ordering matrix can be replaced
+by its transitive closure. This can be accomplished with the Floyd-Warshall Algorithm \cite{Floyd}. 
+From such a transitive closure the sets $predecessors$, $successors$, $possiblePredeccessors$ and $possibleSuccesors$ can directly be computed.
+
+
+The well justification algorithm can also be extended for POCL plans unlike the backward justification algorithm.
+This is because of the way the algorithm selects the plan steps in line 2.
+If a plan step that produces a causal link gets removed from the plan, it can still be a 
+legal plan if there is another plan step that can also produce the same variable.
+So if replacements for all removed causal links are added before checking the correctness of the plan an optimization can be accomplished.
+Algorithm 6 searches such replacements for causal links that have been produced by a removed plan step.
+
+
+In order to extend the well justification algorithm to POCL plans the condition in line 3 needs to be computed differently.
+If we remove a plan step from a POCL plan that produced a causal link the plan is illegal because there would be an open precondition.
+Therefore, replacements for such causal links need to be found without creating causal threats.
+This problem is known as Remove and Repair and is addressed in \cite{RemoveRepair}.
+
+\begin{algorithm}[H]
+    \SetAlgoLined
+    \KwData{let $\Pi$ be a POCL plan}
+    \Repeat{no plan step is removed durning the last execution of the loop}{
+        \ForEach{$ps \in \Pi$}{
+            \If{replacementFound($\Pi$,$\{ps\}$)=(True,$\Pi'$) \textbf{and} checkCausalThreats($\Pi'$)=True}{
+                $\Pi$ $\leftarrow$ $\Pi'$
+            }
+        }
+    }
+    \vspace{2em}
+    \caption{Finding a well justified subplan of a given POCL plan}
+\end{algorithm}
+
+Algorithm 5 describes the extended well justification algorithm for POCL plans.
+The condition in line 3 of algorithm 3 is replaced by two algorithms that are described in algorithm 5 and 6. 
+
+\newpage
+\begin{algorithm}[h]
+    \SetAlgoLined
+    \SetKwInOut{Input}{input}\SetKwInOut{Output}{output} 
+    \Input{$\Pi=(PS,\prec,CL)$ a POCL plan, $PS'$ a set of plan steps that should be removed}
+    \Output{(True,$\Pi$ with new Causal Links and without $PS'$) if replacements could be found, (False,$\Pi$) otherwise}
+    oldCL $\leftarrow$ CL\;
+    \ForEach{$ps_1 \in PS'$}{
+    \ForEach{$cl \in CL$}
+    {
+        \If{$cl=(ps_1,v_1,ps_2)$}{
+            \ForEach{$ps_3 \in possiblePredeccessors(ps_2)$}{
+                \If{$\exists v_1 \in p(action(ps_3))$}{
+                    replacementFound $\leftarrow$ True\;
+                   % \ForEach{$cl \in CL$}{
+                   %     \If{$\exists ps_4 \in possibleSuccesors(ps_3) \cap possiblePredeccessors(ps_2)$ \textbf{with} $v_1 \in e^-(action(ps_4))$}{
+                   %         replacementFound $\leftarrow$ False\;
+                   %     }
+                   %}
+                }
+                \If{replacementFound=True}{
+                    remove $cl$ from $CL$\;
+                    add $cl':=(ps_3,v_1,ps_2)$ to $CL$\;
+                }
+                \Else{
+                    \Return (False,$\Pi$ with oldCL)\;
+                }
+            }
+        }
+    }
+    }
+    remove $PS'$ from $\Pi$\;
+    \Return (True,$\Pi$ with CL)\;
+    \caption{Finding replacements for causal links: searchReplacements($\Pi$,$PS'$)}
+\end{algorithm}
+
+Algorithm 6 needs to replace all causal links $(ps_1,v,ps_2)$ where a removed plan step $ps_1$ was the producer with a causal link that has a new producer $ps_3$.
+In order to accomplish this every $possiblePredeccessors(ps_2)$ is checked if they can establish $v$.
+
+
+\begin{algorithm}[H]
+    \SetAlgoLined
+    \SetKwInOut{Input}{input}\SetKwInOut{Output}{output} 
+    \Input{$\Pi=(PS,\prec,CL)$ a pocl plan}
+    \Output{True, if $\Pi$ has no causal threat, False otherwise}
+    \ForEach{$cl=(ps_1,v,ps_2) \in CL$}{
+        \ForEach{$ps \in \Pi$}{
+            \If{$v \in e^-(action(ps))$ \textbf{and} $ps \in possibleSuccesors(ps_1) \cup possiblePredeccessors(ps_2)$}{
+                \Return False;
+            }
+        }
+    }
+    \Return True;
+    \caption{Checking a POCL plan for causal threats: checkCausalThreats($\Pi$)}
+\end{algorithm}
+
+Algorithm 7 checks for every causal link $(ps_1,v,ps_2)$ if there is a plan step that can be ordered between $ps_1$ and $ps_2$ that 
+has $v$ in its delete effects.
+
+In the well justification algorithms (algorithm 2 and 4) there are $\mathcal{O}(\vert \Pi \vert^{2})$
+attempts at removing plan steps from the plan. To check whether a PO plan is legal a running time 
+of $\mathcal{O}(P\cdot\vert\Pi\vert^{2})$ ($P=\sum_{ps \in \Pi} \vert p(action(ps))\vert$) is needed.
+For POCL plans the running time of searchReplacements and checkCausalThreats are both
+ $\mathcal{O}(\vert CL \vert \cdot \vert \Pi \vert)$.
+So the overall running time of the PO algorithm is $\mathcal{O}(P\cdot\vert\Pi\vert^{4})$ while 
+the running time of the POCL algorithm is $\mathcal{O}(P \cdot \vert CL \vert \cdot \vert \Pi \vert^3)$.
+\newpage
+
+
+\section{Greedy Justification}
+
+To check if a plan step $ps$ is greedily justified in a plan $\Pi$ algorithm 7 \cite{Justification} needs to be applied. 
+If $ps$ is greedily justified the original plan, $\Pi$ is returned. If $ps$ is not greedily justified, a reduced plan $\Pi'$ is returned.
+In $\Pi'$ $ps$ and possibly other also not greedily justified plan steps have been removed.
+
+
+\begin{algorithm}[h]
+    \SetAlgoLined
+    \SetKwInOut{Input}{input}
+    \SetKwInOut{Output}{output} 
+     \Input{$\Pi$ a PO plan, $ps \in \Pi$ a plan step}
+    \Output{A possibly reduced PO plan $\Pi$}
+    remove $ps$ from $\Pi'$ \;
+    \Repeat{$\Pi$ does not contain illegal plan steps}{
+        Illegals := findIllegalsPO($\Pi$)\;
+        EarliestIllegals :=  $\{ ps' \in \text{Illegals} \mid (\forall ps_1 \in \Pi): ps_1 \prec ps' \Rightarrow ps_1 \notin \text{Illegals}\}$ \;
+        remove all plan steps of the set EarlieastIllegals from $\Pi$\;
+    }
+    \uIf{$\Pi$ still achieves the goal and is legal}{
+        \Return{$\Pi$ with removed plan steps}\;
+        \tcc{$\Pi$ is a legal subplan of the initial plan}
+    }
+    \Else{
+        \Return{the initial plan $\Pi$}\;
+        \tcc{$ps$ in the initial plan is greedily justified}
+    }
+        
+    \caption{GreedyJustifyChecking($\Pi$,$ps$)}
+\end{algorithm}
+
+
+A plan step $ps$ in a PO plan $\Pi$ is considered illegal if a precondition $v \in p(action(ps))$ is not established.
+This is the case if there is no $ps' \in \Pi$ that establishes $v$ for $ps$ according to Definition 1. 
+Therefore, the set of illegals in PO plans is defined by
+
+
+$illegals = \{ps \in \Pi \mid  \exists v \in p(action(ps)) \forall ps' \in \Pi \text{: ps' does not establishes v for ps}\}$ 
+
+
+The set of illegal plan steps in a PO plan can be found with algorithm 8 which is a modified version of algorithm 3.
+\newpage
+
+\begin{algorithm}[H]
+    \SetAlgoLined
+    \SetKwInOut{Input}{input}
+    \SetKwInOut{Output}{output}
+    \Input{$\Pi$ a PO plan with possibly illegal plan steps}
+    \Output{$illegals$,   a set containing all illegal plan steps of $\Pi$}
+    $illegals$ $\leftarrow$ $\emptyset$ \;
+    \ForEach{$ps_1 \in \Pi$}{
+        \ForEach{$v \in p(action(ps_1))$}{
+            established $\leftarrow$ False\;
+            \ForEach{$ps_2 \in predecessors(ps_1)$}{
+                \If{$\exists v \in e^+(action(ps_2))$ \textbf{and} $v \in p(action(ps_1))$}{
+                    established $\leftarrow$ true\;
+                    \ForEach{$ps_3 \in possiblePredecessors(ps_1) \cap possibleSuccessors(ps_2)$}{
+                        \If{$v \in e^-(ps_3)$}{
+                            established $\leftarrow$ False\;
+                        }
+                    }
+                }
+            }
+            \If{established=False}{
+               add $ps_1$ to $illegals$ 
+            }
+        }
+    }
+    \Return illegals \;ö
+    \caption{Finding illegal plan steps in a PO plan: findIllegalsPO($\Pi$)}
+\end{algorithm}
+
+Well justification can also be applied to POCL plans. An illegal plan step in a POCL plan is defined by either missing  
+a causal link to protect one of its precondition or by being the consumer of a threatened causal link.
+Let $ps_1,ps_2 \in \Pi$ be two plan steps of a POCL plan. $ps_1$ is considered an illegal plan step if:
+\begin{itemize}
+    \item $\exists v \in p(action(ps_1))$ and $\lnot \exists cl \in CL$ with $cl=(ps_2,v,ps_1)$ or
+    \item $\exists cl \in Cl$ with $cl=(ps_2,v,ps_1)$ and $\exists ps_3 \in possiblePredecessors(ps_1)\text{ }\cap \text{ }possibleSuccesors(ps_2)$
+    with $v \in e^-(action(ps_3))$
+\end{itemize}
+
+
+In order to find the illegal plan steps of a POCL plan algorithm 9 needs to be applied.
+\newpage
+
+\begin{algorithm}[H]
+    \SetAlgoLined
+    \SetKwInOut{Input}{input}
+    \SetKwInOut{Output}{output}
+    \Input{$\Pi$ a POCL plan with possibly illegal plan steps}
+    \Output{$illegals$ a set containing all illegal plan steps of $\Pi$}
+    $illegals$ $\leftarrow$ $\emptyset$ \;
+    \ForEach{$ps_1 \in \Pi$}{
+        \ForEach{$v \in p(action(ps_1))$}{
+            protected $\leftarrow$ False \;
+            \ForEach{$cl \in CL$}{
+                \If{$cl=(ps_2,v,ps_1)$}{
+                    protected $\leftarrow$ True \;
+                    \ForEach{$ps_3 \in possiblePredecessors(ps_1) \cap possibleSuccesors(ps_2)$}{
+                        \If{$v \in e^-(ps_3)$}{
+                            protected $\leftarrow$ False \;
+                        }
+                    }
+                }
+            }
+            \If{protected=False}{
+                add $ps_1$ to $illegals$\;
+            }
+        }
+    }
+    \caption{Finding illegal plan steps in a POCL plan: findIllegalsPOCL($\Pi$)}
+\end{algorithm}
+\newpage
+
+With algorithm 9 and the algorithms from section 3.2 (algorithm 4 and 5) GreedyJustifyChecking
+can be extended to POCL plans through algorithm 10.
+
+\begin{algorithm}[H]
+
+    \SetAlgoLined
+    \SetKwInOut{Input}{input}
+    \SetKwInOut{Output}{output} 
+    \Input{$\Pi$ a POCL plan, $ps \in \Pi$ a plan step}
+    \Output{A possibly reduced PO plan $\Pi$}
+    remove $ps$ from $\Pi$ \;
+    $PS'$ $\leftarrow$ $\emptyset$\;
+    \tcc{$PS'$ tracks all removed plan steps}
+    \Repeat{$\Pi$ does not contain illegal plan steps}{
+        Illegals := findIllegalsPOCL($\Pi$) \;
+        EarliestIllegals :=  $\{ \alpha' \in \text{Illegals} \mid (\forall \alpha_1 \in \Pi): \alpha_1 \prec \alpha' \Rightarrow \alpha_1 \notin \text{Illegals}\}$ \;
+        remove all plan steps of the set EarlieastIllegals from $\Pi$\;
+        add EarlieastIllegals to $PS'$\;
+    }
+    \If{replacementFound($\Pi$,$PS'$)=(True,$\Pi'$) \textbf{and} checkCausalThreats($\Pi'$)=True}{
+        \Return{$\Pi'$ with removed plan steps}\;
+        \tcc{$\Pi'$ is a legal subplan of the initial plan}
+    }
+    \Else{
+        \Return{the initial plan $\Pi$}\;
+        \tcc{$ps$ in the initial plan is greedily justified}
+    }
+    
+    \caption{GreedyJustifyChecking($\Pi$,$ps$) extended to POCL plans}
+\end{algorithm}
+
+
+While GreedyJustifyChecking($\Pi$,$ps$) (algorithm 7 and 9) only examines one plan step, GreedyJustification($\Pi$) (algorithm 11) tries to 
+remove all non greedy justified plan steps from $\Pi$.
+
+
+\begin{algorithm}[H]
+    \SetAlgoLined
+    \SetKwInOut{Input}{input}
+    \SetKwInOut{Output}{output} 
+    \Input{$\Pi$ a PO or POCL plan}
+    \Output{$\Pi$ a PO or POCL plan with possibly reduced plan steps}
+    \ForEach{$ps \in \Pi$}{
+        $\Pi'$ $\leftarrow$ GreedyJustifyChecking($\Pi$,$ps$)\;
+        \If{$ps$ is not greedily justified in $\Pi$}
+        {
+            \Return{GreedyJustification($\Pi'$)}
+        }
+    }
+    \Return{$\Pi$}
+    \caption{GreedyJustification($\Pi$)}
+\end{algorithm}
+
+
+Greedy justification creates a stronger justification than well justification, but not a perfect one.
+A perfect justified plan would be defined by creating a plan with no legal subplan. However, the problem of 
+creating a perfect justified subplan is NP-complete. That is why greedy justification is used, it delivers an 
+almost perfect justification in polynomial time. Figure 3.4 shows the big improvement to well and backward justification, the 
+elimination of action cycles that destroy and reestablish variables. The actions $driveSchool$ and $driveBack$ destroy and 
+reestablish the variable $at school$. However, they are both well justified because they establish preconditions for other plan steps.
+They can only be removed using greedy justification.
+\begin{figure}
+
+    \scheme{driveSchool}{0}{
+        text={\textbf{0: drive to school}},
+        pres={at home},
+        effs={at school}
+    }
+    \scheme{driveBack}{0}{
+        text={\textbf{1: drive back}},
+        pres={at school},
+        effs = {
+        {at home},
+        {$\neg$at school}
+  }
+    }
+    \scheme{driveSchool2}{0}{
+        text={\textbf{2: drive to school}},
+        pres={at home},
+        effs={
+            {at school},
+            {$\neg$at home}
+            }
+    }
+    \begin{tikzpicture}
+        \stage{15em}{27em}
+        {effs = {at home},eff length = 5em}
+        {pres = {at school},
+        pre length = 5em
+        }{start}{end} 
+        \action{driveSchool}{driveSchool={},
+        body={above right = 2em and 5em of init.south},
+        eff length= 5em,
+        pre length=4em}
+        \action{driveBack}{driveBack={},
+        body={above right= 1/2em and 2em of driveSchool},
+        eff length = 5em,
+        pre length = 5em}
+        \action{driveSchool1}{driveSchool2={},
+        body={above right = 1/2em and 2em of driveBack},
+        eff length= 5em,
+        pre length = 5em}
+        \ordering{init}{driveSchool.north}
+        \ordering{driveSchool.north}{driveBack.north}
+        \ordering{driveBack.north}{driveSchool1.north}
+        \ordering{driveSchool1.north}{goal}
+    \end{tikzpicture}
+    \caption{In this PO plan all plan steps are well and backward justified. However the greedy justification algorithm
+    would remove either the first or the last two plan steps.}
+\end{figure}
+The greedy justification algorithm also includes some non-deterministic decisions. Whether the first or the 
+last two plan steps are going to be removed depends on line 2 of GreedyJustification($\Pi$). The iteration of \enquote{drive to school} which is chosen
+first is going to be removed. As already mentioned for well justification, to get the best optimization every possible order of choices needs to
+be computed and the solution with the least plan steps has to be selected.
+
+
+The algorithm GreedyJustifyChecking for PO plans requires $\mathcal{O}(P \cdot \vert \Pi \vert ^{3})$ time.
+For POCL plans GreedyJustifyChecking needs $\mathcal{O}(P \cdot \vert \Pi \vert \cdot \vert CL \vert^{2})$ time.
+The algorithm GreedyJustification calls GreedyJustifyChecking at most $\vert \Pi \vert ^{2}$ times. 
+So the overall complexity of the PO plan algorithm is $\mathcal{O}(P \cdot \vert \Pi \vert ^{5})$,
+while the complexity for the POCL plan algorithm is $\mathcal{O}(P \cdot \vert \Pi \vert ^{3} \cdot \vert CL \vert^{2})$.
+

@@ -1,0 +1,62 @@
+\chapter{Evaluation Makespan Optimization}
+
+In this chapter the effectiveness of the optimization strategy from Chapter 5 will be evaluated.
+The metrics that have been used are similar to the metrics in Chapter 3.
+Plan step related metrics will not be featured because the amount of plan steps is not affected 
+by the optimizations of Chapter 5.
+The set of tested plans were selected similarly to the second test set of Chapter 3 which vary in size
+from $<$10 up to 50 plan steps. In total 7429 plans have been tested.
+The added makespan of all plans is 79530. 
+Table 6.1 provides the compact results for all plans, while in table 6.2 the tested plans are sorted by their size.
+
+
+\begin{table}[h]
+    \begin{tabular}{ll}
+    \hline
+    Plans                   & 7429    \\ \hline
+    Optimized Plans         & 2198    \\
+    Optimization Ratio      & 0.295   \\
+    Optimized Makespan      & 3454    \\
+    Makespan Ratio          & 0.957   \\
+    average optimization    & 0.888   \\
+    Computation Time in min & 922.110
+    \end{tabular}
+    \caption{Optimization results for all 7429 plans}
+\end{table}
+
+In comparison, the makespan ratio is worse than all makespan ratios from the justification algorithms.
+Also, the optimization ratio is relatively low but is able to beat the results of the well justification algorithm on POCL plans.
+The average makespan optimization is on the same level as those of the justification algorithm optimizations.
+Therefore, a low percentage of plans have been optimized, but the optimizations that have been made are significant.
+The computation time is really high, in comparison the slowest justification algorithm (greedy justification on POCL plans) 
+required for a similar amount of plans only 5 minutes.
+
+\begin{table}
+    \begin{tabular}{llllll}
+    \cline{1-6}
+    Plan size                    & \textgreater{}0 & \textgreater{}10 & \textgreater{}20 & \textgreater{}30 & \textgreater{}40 \\ \cline{1-6}
+    Plans                         & 1921            & 1547             & 2054             & 911              & 996              \\
+    Optimized problems            & 56              & 215              & 1010             & 431              & 507              \\
+    Optimized plan ratio          & 0.029           & 0.139            & 0.492            & 0.473            & 0.509            \\
+    Optimized makespan            & 72              & 231              & 1353             & 740              & 1126             \\
+    Average makespan optimization & 0.748           & 0.887            & 0.883            & 0.892            & 0.875            \\
+    Makespan ratio                & 0.993           & 0.985            & 0.937            & 0.944            & 0.937            \\
+    Computation time in min       & 85.855          & 78.549           & 156.861          & 68.005           & 473.858         
+    \end{tabular}
+    \caption{Optimization results sorted by the plan size}
+\end{table}
+
+Regarding table 6.2 the most significant change throughout the size of the tested plans is the optimized plan ratio. 
+The bigger the plans get the more likely an optimization can be found.
+Although the average makespan optimization seems to get worse for plans with a size \textgreater{}10, in total more makespan is getting optimized on the bigger plans. 
+Those differences are most significant for plans with a size \textless{}10 plan steps.
+Only 2.9$\%$ of those plans were optimized with an average makespan optimization of 74.8$\%$.
+74.8$\%$ seems like a really high average optimization, but we have to consider on a plan size \textless{}10 the removal of only one plan step 
+will yield a makespan optimization of at least 90$\%$. 
+For plans that have more than 20 plan steps the results have rather insignificant variations. 
+
+Overall justification algorithms provide better makespan optimization in less computation time.
+On top of that, justification algorithms have the ability to remove plan steps.
+Therefore, justification algorithms are more effective for optimizing plans.
+Although it has to be considered that both methods create different kinds of optimization
+which means they can be used consecutively on the same plans. 

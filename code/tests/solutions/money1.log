@@ -1,0 +1,7 @@
+3
+0 init {} {} {}
+1 goal {money} {} {}
+2 ATM {} {money} {}
+2
+0 2
+2 1

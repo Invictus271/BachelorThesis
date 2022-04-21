@@ -1,0 +1,178 @@
+% author: Mario Schmautz
+
+% version: 1.01
+% 
+
+\documentclass{beamer}
+
+% use a scaling friendly font
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{tikz}
+\usetikzlibrary{aiplans}
+
+
+
+% http://tex.stackexchange.com/questions/122235/set-fontsize-for-tikz-figure
+\tikzset{
+  every picture/.style = {font issue=\tiny},
+  font issue/.style = {execute at begin picture={#1\selectfont}}
+}
+
+\begin{document}
+
+\scheme{plugin}{3}{
+  text = {\textbf{plugIn}(#1,#2,#3)},
+  pres = {
+    {signal(#1,#3)},
+    {{$\neg$connected(#1,#2)}}},
+  effs = {
+    {signal(#2,#3)},
+    {connected(#1,#2)}
+  }
+}
+
+\scheme{foobar}{3}{
+  text = {\textbf{plugIn}(#1,#2,#3)},
+  pre = {{$\neg$}connected(#1,#2)},
+  effs = {
+    {foo(#1)},
+    {bar(#3)},
+    {signal(#2,#3)},
+    {connected(#1,#2)}
+  }
+}
+
+\scheme{setup}{3}{
+  text = {\textbf{setup}(#1,#2,#3)},
+  pre  = {signal(#1,#3)},
+  eff  = {signal(#2,#3)},
+}
+
+% Frames have to be fragile if schemes are defined within the frame.
+% (caused by #n)
+\begin{frame}[fragile]
+\frametitle{Simple Example}
+\begin{tikzpicture}
+  %\draw [use as bounding box] (-40mm,-60mm) rectangle (75mm,5mm);
+  \clip [use as bounding box] (-40mm,-60mm) rectangle (75mm,5mm);
+
+  \action{plugin1}{plugin = {BR}{CINCH}{AUDIO}}
+
+  % absolute positioning is possible with: \body{at = {(x,y)}}
+  \action{plugin2}{plugin = {CINCH}{AV-Rec}{AUDIO},
+    body = {below right = 10em and 1em of plugin1}
+  }
+
+  \link{plugin1/eff/1}{plugin2/pre/1}{edge[out=0,in=180,looseness=2,->]}
+
+  \action{setup}{setup = {?dev{$_2$}}{TV}{VIDEO},
+    limb length = 9em,
+    body = {below = of plugin2, rounded corners, draw=blue}
+  }
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Miscellaneous Features}
+\begin{tikzpicture}
+
+  \action{foo}{foobar = {BR}{CINCH}{AUDIO},
+    pre length = 10em,
+    eff length = 15em,
+    eff lengths = {1/10em, 4/10em},
+    width  = 19em,
+    height = 20ex,
+    body = {rounded corners, draw=blue},
+    limb = {draw=red}
+  }
+
+  \action{plugin2}{plugin = {CINCH}{AV-Rec}{AUDIO},
+    pre lengths = {1/10em, 2/20em},
+    limb = {draw},
+    body = {below = of plugin1}
+  }
+
+  \action{setup}{setup = {?dev{$_2$}}{TV}{VIDEO},
+    limb length = 15em,
+    body = {below = of plugin2, rounded corners, draw=blue}
+  }
+
+  % The limb-ends can all be accessed in the following way:
+  % (name/eff/index)
+  % (name/pre/index)
+  \node (c1) [label,below = 1em of setup/pre/1] {setup/pre/1};
+  \node (c1) [label,below = 1em of setup/eff/1] {setup/eff/1};
+
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Start And Goal}
+\makebox[\textwidth][c]{
+\begin{tikzpicture}
+  %\draw [use as bounding box] (-63mm,-40mm) rectangle (63mm,40mm);
+  \clip [use as bounding box] (-63mm,-40mm) rectangle (63mm,40mm);
+
+
+  \stage{35em}{26em}
+    {effs = {, , , ,}, eff length = 2em}
+    {pres = {,{signal(AV-Rec,AUDIO)}, ,},
+      pre length = 2em,
+      pre lengths = {2/10em}
+    }{start}{end}
+
+  \action{plugin1}{plugin = {BR}{CINCH}{AUDIO},
+    body = {below right = 5em and 15em of init.north east},
+    eff lengths = {3/10em}
+  }
+
+  \action{plugin2}{plugin = {CINCH}{AV-Rec}{AUDIO},
+    body = {below right = 15em and -5em of plugin1}
+  }
+
+  \link{plugin1/eff/1}{plugin2/pre/1}{edge[out=0,in=180,looseness=2,->]}
+
+  \link{init/eff/1}{plugin1/pre/1}{edge[bend left,->]}
+
+  \link{plugin2/eff/1}{goal/pre/2}{edge[bend left,->]}
+
+\end{tikzpicture}}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Start And Goal With Different Style}
+\makebox[\textwidth][c]{
+\begin{tikzpicture}
+  \clip [use as bounding box] (-63mm,-40mm) rectangle (63mm,40mm);
+
+  \tikzset{aiplans emph/.style = {draw}}
+
+  \stage{35em}{26em}
+    {effs = {, , , ,}, eff length = 2em}
+    {pres = {,{signal(AV-Rec,AUDIO)}, ,},
+      pre length = 2em,
+      pre lengths = {2/10em}
+    }{start}{end}
+
+  \action{plugin1}{plugin = {BR}{CINCH}{AUDIO},
+    body = {below right = 5em and 15em of init.north east},
+    eff lengths = {3/10em}
+  }
+
+  \action{plugin2}{plugin = {CINCH}{AV-Rec}{AUDIO},
+    body = {below right = 15em and -5em of plugin1}
+  }
+
+  \link{plugin1/eff/1}{plugin2/pre/1}{edge[out=0,in=180,looseness=2,->]}
+
+  \link{init/eff/1}{plugin1/pre/1}{edge[bend left,->]}
+
+  \link{plugin2/eff/1}{goal/pre/2}{edge[bend left,->]}
+
+\end{tikzpicture}}
+\end{frame}
+
+\end{document}
+

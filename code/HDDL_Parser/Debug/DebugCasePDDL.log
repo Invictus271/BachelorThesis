@@ -1,0 +1,236 @@
+23
+0 init(<Instance>)driver1driver2package1package2package3package4package5package6truck1truck2truck3s0s1s2s3s4s5p1-0p1-4p1-5p2-1p2-3p3-0p3-1p3-5p4-5 {} {atpackage6s2,atdriver1s4,attruck3s5,emptytruck3,emptytruck2,atpackage2s0,attruck1s0,atdriver2s0,attruck2s4,atpackage5s4,atpackage3s4,atpackage1s1,atpackage4s4,emptytruck1} {}
+1 goal(<Instance>)driver1driver2package1package2package3package4package5package6truck1truck2truck3s0s1s2s3s4s5p1-0p1-4p1-5p2-1p2-3p3-0p3-1p3-5p4-5 {atdriver1s1,atdriver2s0,atpackage1s5,atpackage2s1,atpackage3s5,atpackage4s1,atpackage5s3,atpackage6s2} {} {}
+2 LOAD-TRUCKpackage3truck2s4 {attruck2s4,atpackage3s4} {inpackage3truck2} {atpackage3s4}
+3 LOAD-TRUCKpackage2truck1s0 {attruck1s0,atpackage2s0} {inpackage2truck1} {atpackage2s0}
+4 LOAD-TRUCKpackage4truck2s4 {attruck2s4,atpackage4s4} {inpackage4truck2} {atpackage4s4}
+5 BOARD-TRUCKdriver1truck2s4 {attruck2s4,atdriver1s4,emptytruck2} {drivingdriver1truck2} {atdriver1s4,emptytruck2}
+6 DRIVE-TRUCKtruck2s4s1driver1 {attruck2s4,drivingdriver1truck2} {attruck2s1} {attruck2s4}
+7 BOARD-TRUCKdriver2truck1s0 {attruck1s0,atdriver2s0,emptytruck1} {drivingdriver2truck1} {atdriver2s0,emptytruck1}
+8 LOAD-TRUCKpackage1truck2s1 {attruck2s1,atpackage1s1} {inpackage1truck2} {atpackage1s1}
+9 DRIVE-TRUCKtruck1s0s1driver2 {attruck1s0,drivingdriver2truck1} {attruck1s1} {attruck1s0}
+10 UNLOAD-TRUCKpackage2truck1s1 {attruck1s1,inpackage2truck1} {atpackage2s1} {inpackage2truck1}
+11 DRIVE-TRUCKtruck1s1s0driver2 {attruck1s1,drivingdriver2truck1} {attruck1s0} {attruck1s1}
+12 DISEMBARK-TRUCKdriver2truck1s0 {attruck1s0,drivingdriver2truck1} {atdriver2s0,emptytruck1} {drivingdriver2truck1}
+13 DRIVE-TRUCKtruck2s1s4driver1 {attruck2s1,drivingdriver1truck2} {attruck2s4} {attruck2s1}
+14 LOAD-TRUCKpackage5truck2s4 {attruck2s4,atpackage5s4} {inpackage5truck2} {atpackage5s4}
+15 DRIVE-TRUCKtruck2s4s5driver1 {attruck2s4,drivingdriver1truck2} {attruck2s5} {attruck2s4}
+16 UNLOAD-TRUCKpackage3truck2s5 {attruck2s5,inpackage3truck2} {atpackage3s5} {inpackage3truck2}
+17 UNLOAD-TRUCKpackage1truck2s5 {attruck2s5,inpackage1truck2} {atpackage1s5} {inpackage1truck2}
+18 DRIVE-TRUCKtruck2s5s3driver1 {attruck2s5,drivingdriver1truck2} {attruck2s3} {attruck2s5}
+19 UNLOAD-TRUCKpackage5truck2s3 {attruck2s3,inpackage5truck2} {atpackage5s3} {inpackage5truck2}
+20 DRIVE-TRUCKtruck2s3s1driver1 {attruck2s3,drivingdriver1truck2} {attruck2s1} {attruck2s3}
+21 DISEMBARK-TRUCKdriver1truck2s1 {attruck2s1,drivingdriver1truck2} {atdriver1s1,emptytruck2} {drivingdriver1truck2}
+22 UNLOAD-TRUCKpackage4truck2s1 {attruck2s1,inpackage4truck2} {atpackage4s1} {inpackage4truck2}
+52
+2 +at[package1,s5] 1
+3 +at[package2,s1] 1
+4 +at[package3,s5] 1
+5 +at[package4,s1] 1
+6 +at[package5,s3] 1
+0 +at[package6,s2] 1
+7 +in[package1,truck2] 2
+0 +at[package1,s1] 7
+8 +in[package2,truck1] 3
+0 +at[package2,s0] 8
+9 +in[package3,truck2] 4
+0 +at[package3,s4] 9
+10 +in[package4,truck2] 5
+0 +at[package4,s4] 10
+11 +in[package5,truck2] 6
+0 +at[package5,s4] 11
+12 +at[driver2,s0] 1
+13 +driving[driver2,truck1] 12
+0 +at[driver2,s0] 13
+14 +at[driver1,s1] 1
+15 +driving[driver1,truck2] 14
+0 +at[driver1,s4] 15
+16 +at[truck2,s5] 2
+15 +driving[driver1,truck2] 16
+16 +at[truck2,s5] 4
+17 +at[truck1,s1] 3
+13 +driving[driver2,truck1] 17
+18 +at[truck2,s1] 5
+15 +driving[driver1,truck2] 18
+19 +at[truck2,s3] 6
+15 +driving[driver1,truck2] 19
+16 +at[truck2,s5] 19
+0 +at[truck2,s4] 9
+0 +at[truck2,s4] 10
+0 +at[truck2,s4] 11
+0 +at[truck2,s4] 15
+20 +at[truck2,s4] 16
+15 +driving[driver1,truck2] 20
+0 +at[truck2,s4] 18
+18 +at[truck2,s1] 7
+21 +at[truck2,s1] 14
+15 +driving[driver1,truck2] 21
+18 +at[truck2,s1] 20
+19 +at[truck2,s3] 21
+0 +at[truck1,s0] 8
+22 +at[truck1,s0] 12
+13 +driving[driver2,truck1] 22
+17 +at[truck1,s1] 22
+0 +at[truck1,s0] 13
+0 +at[truck1,s0] 17
+0 +empty[truck1] 13
+0 +empty[truck2] 15
+158
+0 1
+0 2
+0 3
+0 4
+0 5
+0 6
+0 7
+0 8
+0 9
+0 10
+0 11
+0 12
+0 13
+0 14
+0 15
+0 16
+0 17
+0 18
+0 19
+0 20
+0 21
+0 22
+0 1
+2 1
+3 1
+4 1
+5 1
+6 1
+7 1
+8 1
+9 1
+10 1
+11 1
+12 1
+13 1
+14 1
+15 1
+16 1
+17 1
+18 1
+19 1
+20 1
+21 1
+22 1
+13 18
+13 17
+13 14
+13 20
+13 22
+13 19
+13 16
+13 21
+13 15
+9 12
+9 11
+9 10
+8 13
+8 18
+8 17
+8 14
+8 20
+8 22
+8 19
+8 16
+8 21
+8 15
+18 20
+18 22
+18 19
+18 21
+7 12
+7 9
+7 11
+7 10
+17 18
+17 20
+17 22
+17 19
+17 21
+5 13
+5 8
+5 18
+5 17
+5 14
+5 20
+5 22
+5 19
+5 16
+5 21
+5 6
+5 15
+14 18
+14 17
+14 20
+14 22
+14 19
+14 16
+14 21
+14 15
+20 22
+20 21
+19 20
+19 22
+19 21
+4 13
+4 8
+4 18
+4 17
+4 14
+4 20
+4 22
+4 19
+4 16
+4 21
+4 6
+4 15
+11 12
+16 18
+16 20
+16 22
+16 19
+16 21
+6 13
+6 8
+6 18
+6 17
+6 14
+6 20
+6 22
+6 19
+6 16
+6 21
+6 15
+3 12
+3 9
+3 11
+3 10
+2 13
+2 8
+2 18
+2 17
+2 14
+2 20
+2 22
+2 19
+2 16
+2 21
+2 6
+2 15
+10 12
+10 11
+15 18
+15 17
+15 20
+15 22
+15 19
+15 16
+15 21

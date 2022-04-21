@@ -1,0 +1,744 @@
+Domain: ../resources/IPC2/blocks/domain/domain.pddl
+Problem: ../resources/IPC2/blocks/problems/probBLOCKS-04-0.pddl
+DETAILED SOLUTION
+8
+0 init(<Instance>)[d,b,a,c] {} {+ontable[a],+clear[a],+clear[b],+ontable[d],+clear[c],+handempty[],+ontable[c],+clear[d],+ontable[b]} {}
+1 goal(<Instance>)[d,b,a,c] {+on[d,c],+on[c,b],+on[b,a]} {} {}
+2 stack[d,c] {+holding[d],+clear[c]} {+on[d,c],+handempty[],+clear[d]} {+clear[c],+holding[d]}
+3 stack[c,b] {+holding[c],+clear[b]} {+clear[c],+handempty[],+on[c,b]} {+clear[b],+holding[c]}
+4 stack[b,a] {+holding[b],+clear[a]} {+clear[b],+on[b,a],+handempty[]} {+holding[b],+clear[a]}
+5 pick-up[d] {+clear[d],+ontable[d],+handempty[]} {+holding[d]} {+ontable[d],+clear[d],+handempty[]}
+6 pick-up[c] {+clear[c],+ontable[c],+handempty[]} {+holding[c]} {+ontable[c],+clear[c],+handempty[]}
+7 pick-up[b] {+clear[b],+ontable[b],+handempty[]} {+holding[b]} {+ontable[b],+clear[b],+handempty[]}
+18
+2 +on[d,c] 1
+3 +on[c,b] 1
+4 +on[b,a] 1
+5 +holding[d] 2
+0 +ontable[d] 5
+6 +holding[c] 3
+0 +ontable[c] 6
+7 +holding[b] 4
+0 +ontable[b] 7
+0 +clear[a] 4
+0 +clear[d] 5
+0 +clear[c] 6
+0 +clear[b] 7
+3 +clear[c] 2
+4 +clear[b] 3
+0 +handempty[] 7
+4 +handempty[] 6
+3 +handempty[] 5
+28
+0 1
+0 2
+0 3
+0 4
+0 5
+0 6
+0 7
+5 1
+5 2
+6 1
+6 2
+6 3
+6 5
+2 1
+7 1
+7 2
+7 3
+7 4
+7 5
+7 6
+3 1
+3 2
+3 5
+4 1
+4 2
+4 3
+4 5
+4 6
+Domain: ../resources/IPC2/blocks/domain/domain.pddl
+Problem: ../resources/IPC2/blocks/problems/probBLOCKS-04-1.pddl
+DETAILED SOLUTION
+12
+0 init(<Instance>)[a,c,d,b] {} {+clear[b],+ontable[d],+handempty[],+on[b,c],+on[c,a],+on[a,d]} {}
+1 goal(<Instance>)[a,c,d,b] {+on[d,c],+on[c,a],+on[a,b]} {} {}
+2 stack[d,c] {+holding[d],+clear[c]} {+on[d,c],+handempty[],+clear[d]} {+clear[c],+holding[d]}
+3 stack[a,b] {+holding[a],+clear[b]} {+clear[a],+on[a,b],+handempty[]} {+holding[a],+clear[b]}
+4 stack[c,a] {+holding[c],+clear[a]} {+clear[c],+handempty[],+on[c,a]} {+clear[a],+holding[c]}
+5 pick-up[d] {+clear[d],+ontable[d],+handempty[]} {+holding[d]} {+ontable[d],+clear[d],+handempty[]}
+6 unstack[a,d] {+on[a,d],+clear[a],+handempty[]} {+holding[a],+clear[d]} {+handempty[],+on[a,d],+clear[a]}
+7 pick-up[c] {+clear[c],+ontable[c],+handempty[]} {+holding[c]} {+ontable[c],+clear[c],+handempty[]}
+8 put-down[c] {+holding[c]} {+clear[c],+handempty[],+ontable[c]} {+holding[c]}
+9 unstack[c,a] {+on[c,a],+clear[c],+handempty[]} {+clear[a],+holding[c]} {+clear[c],+on[c,a],+handempty[]}
+10 unstack[b,c] {+on[b,c],+clear[b],+handempty[]} {+holding[b],+clear[c]} {+on[b,c],+handempty[],+clear[b]}
+11 put-down[b] {+holding[b]} {+clear[b],+handempty[],+ontable[b]} {+holding[b]}
+26
+2 +on[d,c] 1
+3 +on[a,b] 1
+4 +on[c,a] 1
+5 +holding[d] 2
+0 +ontable[d] 5
+6 +holding[a] 3
+0 +on[a,d] 6
+7 +holding[c] 4
+8 +ontable[c] 7
+9 +holding[c] 8
+0 +on[c,a] 9
+10 +clear[c] 9
+0 +on[b,c] 10
+6 +clear[d] 5
+9 +clear[a] 6
+11 +clear[b] 3
+10 +holding[b] 11
+3 +clear[a] 4
+8 +clear[c] 7
+0 +clear[b] 10
+4 +clear[c] 2
+0 +handempty[] 10
+11 +handempty[] 9
+8 +handempty[] 6
+3 +handempty[] 7
+4 +handempty[] 5
+66
+0 1
+0 2
+0 3
+0 4
+0 5
+0 6
+0 7
+0 8
+0 9
+0 10
+0 11
+5 1
+5 2
+10 1
+10 2
+10 3
+10 4
+10 5
+10 6
+10 7
+10 8
+10 9
+10 11
+6 1
+6 2
+6 3
+6 4
+6 5
+6 7
+9 1
+9 2
+9 3
+9 4
+9 5
+9 6
+9 7
+9 8
+2 1
+7 1
+7 2
+7 4
+7 5
+3 1
+3 2
+3 4
+3 5
+3 7
+11 1
+11 2
+11 3
+11 4
+11 5
+11 6
+11 7
+11 8
+11 9
+8 1
+8 2
+8 3
+8 4
+8 5
+8 6
+8 7
+4 1
+4 2
+4 5
+Domain: ../resources/IPC2/blocks/domain/domain.pddl
+Problem: ../resources/IPC2/blocks/problems/probBLOCKS-04-2.pddl
+DETAILED SOLUTION
+8
+0 init(<Instance>)[b,d,c,a] {} {+ontable[a],+clear[a],+ontable[d],+clear[c],+handempty[],+clear[d],+on[c,b],+ontable[b]} {}
+1 goal(<Instance>)[b,d,c,a] {+on[a,b],+on[b,c],+on[c,d]} {} {}
+2 stack[a,b] {+holding[a],+clear[b]} {+clear[a],+on[a,b],+handempty[]} {+holding[a],+clear[b]}
+3 stack[b,c] {+holding[b],+clear[c]} {+clear[b],+handempty[],+on[b,c]} {+holding[b],+clear[c]}
+4 stack[c,d] {+holding[c],+clear[d]} {+on[c,d],+clear[c],+handempty[]} {+clear[d],+holding[c]}
+5 pick-up[a] {+clear[a],+ontable[a],+handempty[]} {+holding[a]} {+ontable[a],+clear[a],+handempty[]}
+6 pick-up[b] {+clear[b],+ontable[b],+handempty[]} {+holding[b]} {+ontable[b],+clear[b],+handempty[]}
+7 unstack[c,b] {+on[c,b],+clear[c],+handempty[]} {+clear[b],+holding[c]} {+clear[c],+on[c,b],+handempty[]}
+18
+2 +on[a,b] 1
+3 +on[b,c] 1
+4 +on[c,d] 1
+5 +holding[a] 2
+0 +ontable[a] 5
+6 +holding[b] 3
+0 +ontable[b] 6
+7 +holding[c] 4
+0 +on[c,b] 7
+7 +clear[b] 6
+3 +clear[b] 2
+0 +clear[d] 4
+0 +clear[a] 5
+0 +clear[c] 7
+4 +clear[c] 3
+0 +handempty[] 7
+4 +handempty[] 6
+3 +handempty[] 5
+28
+0 1
+0 2
+0 3
+0 4
+0 5
+0 6
+0 7
+5 1
+5 2
+6 1
+6 2
+6 3
+6 5
+2 1
+7 1
+7 2
+7 3
+7 4
+7 5
+7 6
+3 1
+3 2
+3 5
+4 1
+4 2
+4 3
+4 5
+4 6
+Domain: ../resources/IPC2/blocks/domain/domain.pddl
+Problem: ../resources/IPC2/blocks/problems/probBLOCKS-05-0.pddl
+DETAILED SOLUTION
+14
+0 init(<Instance>)[b,e,a,c,d] {} {+ontable[a],+ontable[d],+on[e,b],+clear[c],+on[c,e],+on[b,a],+handempty[],+clear[d]} {}
+1 goal(<Instance>)[b,e,a,c,d] {+on[a,e],+on[e,b],+on[b,d],+on[d,c]} {} {}
+2 stack[a,e] {+holding[a],+clear[e]} {+clear[a],+on[a,e],+handempty[]} {+holding[a],+clear[e]}
+3 stack[b,d] {+holding[b],+clear[d]} {+clear[b],+handempty[],+on[b,d]} {+holding[b],+clear[d]}
+4 stack[d,c] {+holding[d],+clear[c]} {+on[d,c],+handempty[],+clear[d]} {+clear[c],+holding[d]}
+5 stack[e,b] {+holding[e],+clear[b]} {+on[e,b],+handempty[],+clear[e]} {+holding[e],+clear[b]}
+6 pick-up[a] {+clear[a],+ontable[a],+handempty[]} {+holding[a]} {+ontable[a],+clear[a],+handempty[]}
+7 unstack[b,a] {+on[b,a],+clear[b],+handempty[]} {+clear[a],+holding[b]} {+on[b,a],+handempty[],+clear[b]}
+8 pick-up[d] {+clear[d],+ontable[d],+handempty[]} {+holding[d]} {+ontable[d],+clear[d],+handempty[]}
+9 pick-up[e] {+clear[e],+ontable[e],+handempty[]} {+holding[e]} {+ontable[e],+clear[e],+handempty[]}
+10 put-down[e] {+holding[e]} {+clear[e],+handempty[],+ontable[e]} {+holding[e]}
+11 unstack[e,b] {+on[e,b],+clear[e],+handempty[]} {+clear[b],+holding[e]} {+handempty[],+on[e,b],+clear[e]}
+12 unstack[c,e] {+on[c,e],+clear[c],+handempty[]} {+clear[e],+holding[c]} {+on[c,e],+clear[c],+handempty[]}
+13 put-down[c] {+holding[c]} {+clear[c],+handempty[],+ontable[c]} {+holding[c]}
+32
+2 +on[a,e] 1
+3 +on[b,d] 1
+4 +on[d,c] 1
+5 +on[e,b] 1
+6 +holding[a] 2
+0 +ontable[a] 6
+7 +holding[b] 3
+0 +on[b,a] 7
+8 +holding[d] 4
+0 +ontable[d] 8
+9 +holding[e] 5
+10 +ontable[e] 9
+11 +holding[e] 10
+0 +on[e,b] 11
+12 +clear[e] 11
+0 +on[c,e] 12
+7 +clear[a] 6
+11 +clear[b] 7
+13 +clear[c] 4
+12 +holding[c] 13
+3 +clear[b] 5
+0 +clear[d] 8
+10 +clear[e] 9
+0 +clear[c] 12
+5 +clear[e] 2
+4 +clear[d] 3
+0 +handempty[] 12
+10 +handempty[] 8
+13 +handempty[] 11
+4 +handempty[] 7
+3 +handempty[] 9
+5 +handempty[] 6
+91
+0 1
+0 2
+0 3
+0 4
+0 5
+0 6
+0 7
+0 8
+0 9
+0 10
+0 11
+0 12
+0 13
+5 1
+5 2
+5 6
+10 1
+10 2
+10 3
+10 4
+10 5
+10 6
+10 7
+10 8
+10 9
+6 1
+6 2
+9 1
+9 2
+9 5
+9 6
+13 1
+13 2
+13 3
+13 4
+13 5
+13 6
+13 7
+13 8
+13 9
+13 10
+13 11
+2 1
+12 1
+12 2
+12 3
+12 4
+12 5
+12 6
+12 7
+12 8
+12 9
+12 10
+12 11
+12 13
+7 1
+7 2
+7 3
+7 5
+7 6
+7 9
+3 1
+3 2
+3 5
+3 6
+3 9
+11 1
+11 2
+11 3
+11 4
+11 5
+11 6
+11 7
+11 8
+11 9
+11 10
+8 1
+8 2
+8 3
+8 4
+8 5
+8 6
+8 7
+8 9
+4 1
+4 2
+4 3
+4 5
+4 6
+4 7
+4 9
+Domain: ../resources/IPC2/blocks/domain/domain.pddl
+Problem: ../resources/IPC2/blocks/problems/probBLOCKS-05-1.pddl
+DETAILED SOLUTION
+12
+0 init(<Instance>)[a,d,c,e,b] {} {+clear[b],+ontable[d],+ontable[e],+clear[c],+on[b,a],+handempty[],+clear[e],+ontable[c],+on[a,d]} {}
+1 goal(<Instance>)[a,d,c,e,b] {+on[d,c],+on[c,b],+on[b,a],+on[a,e]} {} {}
+2 stack[d,c] {+holding[d],+clear[c]} {+on[d,c],+handempty[],+clear[d]} {+clear[c],+holding[d]}
+3 stack[c,b] {+holding[c],+clear[b]} {+clear[c],+handempty[],+on[c,b]} {+clear[b],+holding[c]}
+4 stack[a,e] {+holding[a],+clear[e]} {+clear[a],+on[a,e],+handempty[]} {+holding[a],+clear[e]}
+5 stack[b,a] {+holding[b],+clear[a]} {+clear[b],+on[b,a],+handempty[]} {+holding[b],+clear[a]}
+6 pick-up[d] {+clear[d],+ontable[d],+handempty[]} {+holding[d]} {+ontable[d],+clear[d],+handempty[]}
+7 pick-up[c] {+clear[c],+ontable[c],+handempty[]} {+holding[c]} {+ontable[c],+clear[c],+handempty[]}
+8 unstack[a,d] {+on[a,d],+clear[a],+handempty[]} {+holding[a],+clear[d]} {+handempty[],+on[a,d],+clear[a]}
+9 pick-up[b] {+clear[b],+ontable[b],+handempty[]} {+holding[b]} {+ontable[b],+clear[b],+handempty[]}
+10 put-down[b] {+holding[b]} {+clear[b],+handempty[],+ontable[b]} {+holding[b]}
+11 unstack[b,a] {+on[b,a],+clear[b],+handempty[]} {+clear[a],+holding[b]} {+on[b,a],+handempty[],+clear[b]}
+28
+2 +on[d,c] 1
+3 +on[c,b] 1
+4 +on[a,e] 1
+5 +on[b,a] 1
+6 +holding[d] 2
+0 +ontable[d] 6
+7 +holding[c] 3
+0 +ontable[c] 7
+8 +holding[a] 4
+0 +on[a,d] 8
+9 +holding[b] 5
+10 +ontable[b] 9
+11 +holding[b] 10
+0 +on[b,a] 11
+8 +clear[d] 6
+11 +clear[a] 8
+0 +clear[e] 4
+4 +clear[a] 5
+0 +clear[c] 7
+0 +clear[b] 11
+3 +clear[c] 2
+10 +clear[b] 9
+5 +clear[b] 3
+0 +handempty[] 11
+10 +handempty[] 8
+4 +handempty[] 9
+5 +handempty[] 7
+3 +handempty[] 6
+66
+0 1
+0 2
+0 3
+0 4
+0 5
+0 6
+0 7
+0 8
+0 9
+0 10
+0 11
+5 1
+5 2
+5 3
+5 6
+5 7
+10 1
+10 2
+10 3
+10 4
+10 5
+10 6
+10 7
+10 8
+10 9
+6 1
+6 2
+9 1
+9 2
+9 3
+9 5
+9 6
+9 7
+2 1
+7 1
+7 2
+7 3
+7 6
+3 1
+3 2
+3 6
+11 1
+11 2
+11 3
+11 4
+11 5
+11 6
+11 7
+11 8
+11 9
+11 10
+8 1
+8 2
+8 3
+8 4
+8 5
+8 6
+8 7
+8 9
+4 1
+4 2
+4 3
+4 5
+4 6
+4 7
+4 9
+Domain: ../resources/IPC2/blocks/domain/domain.pddl
+Problem: ../resources/IPC2/blocks/problems/probBLOCKS-06-0.pddl
+DETAILED SOLUTION
+14
+0 init(<Instance>)[E,A,B,C,F,D] {} {+clear[D],+on[E,B],+on[F,E],+ontable[C],+on[D,A],+handempty[],+clear[F],+on[A,C],+ontable[B]} {}
+1 goal(<Instance>)[E,A,B,C,F,D] {+on[C,B],+on[B,A],+on[A,E],+on[E,F],+on[F,D]} {} {}
+2 stack[C,B] {+holding[C],+clear[B]} {+on[C,B],+handempty[],+clear[C]} {+clear[B],+holding[C]}
+3 stack[B,A] {+holding[B],+clear[A]} {+on[B,A],+handempty[],+clear[B]} {+holding[B],+clear[A]}
+4 stack[A,E] {+holding[A],+clear[E]} {+clear[A],+handempty[],+on[A,E]} {+holding[A],+clear[E]}
+5 stack[E,F] {+holding[E],+clear[F]} {+clear[E],+handempty[],+on[E,F]} {+clear[F],+holding[E]}
+6 stack[F,D] {+holding[F],+clear[D]} {+on[F,D],+handempty[],+clear[F]} {+clear[D],+holding[F]}
+7 pick-up[C] {+clear[C],+ontable[C],+handempty[]} {+holding[C]} {+ontable[C],+clear[C],+handempty[]}
+8 pick-up[B] {+clear[B],+ontable[B],+handempty[]} {+holding[B]} {+ontable[B],+clear[B],+handempty[]}
+9 unstack[A,C] {+on[A,C],+clear[A],+handempty[]} {+clear[C],+holding[A]} {+on[A,C],+handempty[],+clear[A]}
+10 unstack[E,B] {+on[E,B],+clear[E],+handempty[]} {+holding[E],+clear[B]} {+on[E,B],+handempty[],+clear[E]}
+11 unstack[F,E] {+on[F,E],+clear[F],+handempty[]} {+clear[E],+holding[F]} {+on[F,E],+handempty[],+clear[F]}
+12 unstack[D,A] {+on[D,A],+clear[D],+handempty[]} {+clear[A],+holding[D]} {+clear[D],+on[D,A],+handempty[]}
+13 put-down[D] {+holding[D]} {+clear[D],+handempty[],+ontable[D]} {+holding[D]}
+34
+2 +on[C,B] 1
+3 +on[B,A] 1
+4 +on[A,E] 1
+5 +on[E,F] 1
+6 +on[F,D] 1
+7 +holding[C] 2
+0 +ontable[C] 7
+8 +holding[B] 3
+0 +ontable[B] 8
+9 +holding[A] 4
+0 +on[A,C] 9
+10 +holding[E] 5
+0 +on[E,B] 10
+11 +holding[F] 6
+0 +on[F,E] 11
+12 +clear[A] 9
+0 +on[D,A] 12
+9 +clear[C] 7
+10 +clear[B] 8
+11 +clear[E] 10
+3 +clear[B] 2
+4 +clear[A] 3
+5 +clear[E] 4
+13 +clear[D] 6
+12 +holding[D] 13
+0 +clear[F] 11
+0 +clear[D] 12
+6 +clear[F] 5
+0 +handempty[] 12
+13 +handempty[] 11
+6 +handempty[] 10
+5 +handempty[] 9
+4 +handempty[] 8
+3 +handempty[] 7
+91
+0 1
+0 2
+0 3
+0 4
+0 5
+0 6
+0 7
+0 8
+0 9
+0 10
+0 11
+0 12
+0 13
+5 1
+5 2
+5 3
+5 4
+5 7
+5 8
+5 9
+10 1
+10 2
+10 3
+10 4
+10 5
+10 7
+10 8
+10 9
+6 1
+6 2
+6 3
+6 4
+6 5
+6 7
+6 8
+6 9
+6 10
+9 1
+9 2
+9 3
+9 4
+9 7
+9 8
+13 1
+13 2
+13 3
+13 4
+13 5
+13 6
+13 7
+13 8
+13 9
+13 10
+13 11
+2 1
+12 1
+12 2
+12 3
+12 4
+12 5
+12 6
+12 7
+12 8
+12 9
+12 10
+12 11
+12 13
+7 1
+7 2
+3 1
+3 2
+3 7
+11 1
+11 2
+11 3
+11 4
+11 5
+11 6
+11 7
+11 8
+11 9
+11 10
+8 1
+8 2
+8 3
+8 7
+4 1
+4 2
+4 3
+4 7
+4 8
+Domain: ../resources/IPC2/blocks/domain/domain.pddl
+Problem: ../resources/IPC2/blocks/problems/probBLOCKS-06-1.pddl
+DETAILED SOLUTION
+12
+0 init(<Instance>)[F,D,C,E,B,A] {} {+clear[D],+clear[E],+ontable[C],+clear[A],+on[A,F],+handempty[],+clear[C],+ontable[F],+clear[B],+ontable[D],+ontable[B],+ontable[E]} {}
+1 goal(<Instance>)[F,D,C,E,B,A] {+on[E,F],+on[F,C],+on[C,B],+on[B,A],+on[A,D]} {} {}
+2 stack[E,F] {+holding[E],+clear[F]} {+clear[E],+handempty[],+on[E,F]} {+clear[F],+holding[E]}
+3 stack[F,C] {+holding[F],+clear[C]} {+on[F,C],+handempty[],+clear[F]} {+holding[F],+clear[C]}
+4 stack[C,B] {+holding[C],+clear[B]} {+on[C,B],+handempty[],+clear[C]} {+clear[B],+holding[C]}
+5 stack[B,A] {+holding[B],+clear[A]} {+on[B,A],+handempty[],+clear[B]} {+holding[B],+clear[A]}
+6 stack[A,D] {+holding[A],+clear[D]} {+on[A,D],+clear[A],+handempty[]} {+holding[A],+clear[D]}
+7 pick-up[E] {+clear[E],+ontable[E],+handempty[]} {+holding[E]} {+ontable[E],+clear[E],+handempty[]}
+8 pick-up[F] {+clear[F],+ontable[F],+handempty[]} {+holding[F]} {+ontable[F],+clear[F],+handempty[]}
+9 pick-up[C] {+clear[C],+ontable[C],+handempty[]} {+holding[C]} {+ontable[C],+clear[C],+handempty[]}
+10 pick-up[B] {+clear[B],+ontable[B],+handempty[]} {+holding[B]} {+ontable[B],+clear[B],+handempty[]}
+11 unstack[A,F] {+on[A,F],+clear[A],+handempty[]} {+clear[F],+holding[A]} {+on[A,F],+handempty[],+clear[A]}
+30
+2 +on[E,F] 1
+3 +on[F,C] 1
+4 +on[C,B] 1
+5 +on[B,A] 1
+6 +on[A,D] 1
+7 +holding[E] 2
+0 +ontable[E] 7
+8 +holding[F] 3
+0 +ontable[F] 8
+9 +holding[C] 4
+0 +ontable[C] 9
+10 +holding[B] 5
+0 +ontable[B] 10
+11 +holding[A] 6
+0 +on[A,F] 11
+11 +clear[F] 8
+3 +clear[F] 2
+0 +clear[D] 6
+0 +clear[E] 7
+0 +clear[C] 9
+0 +clear[B] 10
+0 +clear[A] 11
+4 +clear[C] 3
+5 +clear[B] 4
+6 +clear[A] 5
+0 +handempty[] 11
+6 +handempty[] 10
+5 +handempty[] 9
+4 +handempty[] 8
+3 +handempty[] 7
+66
+0 1
+0 2
+0 3
+0 4
+0 5
+0 6
+0 7
+0 8
+0 9
+0 10
+0 11
+5 1
+5 2
+5 3
+5 4
+5 7
+5 8
+5 9
+10 1
+10 2
+10 3
+10 4
+10 5
+10 7
+10 8
+10 9
+6 1
+6 2
+6 3
+6 4
+6 5
+6 7
+6 8
+6 9
+6 10
+9 1
+9 2
+9 3
+9 4
+9 7
+9 8
+2 1
+7 1
+7 2
+3 1
+3 2
+3 7
+11 1
+11 2
+11 3
+11 4
+11 5
+11 6
+11 7
+11 8
+11 9
+11 10
+8 1
+8 2
+8 3
+8 7
+4 1
+4 2
+4 3
+4 7
+4 8

@@ -1,0 +1,120 @@
+Domain: ../resources/IPC1/gripper/domain/domain.pddl
+Problem: ../resources/IPC1/gripper/problems/prob01.pddl
+DETAILED SOLUTION
+13
+0 init(<Instance>)[rooma,roomb,ball4,ball3,ball2,ball1,left,right] {} {+at[ball2,rooma],+at[ball3,rooma],+at[ball1,rooma],+at-robby[rooma],+at[ball4,rooma],+free[left],+free[right]} {}
+1 goal(<Instance>)[rooma,roomb,ball4,ball3,ball2,ball1,left,right] {+at[ball4,roomb],+at[ball3,roomb],+at[ball2,roomb],+at[ball1,roomb]} {} {}
+2 drop[ball4,roomb,right] {+carry[ball4,right],+at-robby[roomb]} {+at[ball4,roomb],+free[right]} {+carry[ball4,right]}
+3 drop[ball3,roomb,left] {+carry[ball3,left],+at-robby[roomb]} {+at[ball3,roomb],+free[left]} {+carry[ball3,left]}
+4 drop[ball2,roomb,left] {+carry[ball2,left],+at-robby[roomb]} {+at[ball2,roomb],+free[left]} {+carry[ball2,left]}
+5 drop[ball1,roomb,right] {+carry[ball1,right],+at-robby[roomb]} {+at[ball1,roomb],+free[right]} {+carry[ball1,right]}
+6 pick[ball4,rooma,right] {+at[ball4,rooma],+at-robby[rooma],+free[right]} {+carry[ball4,right]} {+at[ball4,rooma],+free[right]}
+7 move[rooma,roomb] {+at-robby[rooma]} {+at-robby[roomb]} {+at-robby[rooma]}
+8 pick[ball3,rooma,left] {+at[ball3,rooma],+at-robby[rooma],+free[left]} {+carry[ball3,left]} {+at[ball3,rooma],+free[left]}
+9 pick[ball2,rooma,left] {+at[ball2,rooma],+at-robby[rooma],+free[left]} {+carry[ball2,left]} {+at[ball2,rooma],+free[left]}
+10 pick[ball1,rooma,right] {+at[ball1,rooma],+at-robby[rooma],+free[right]} {+carry[ball1,right]} {+at[ball1,rooma],+free[right]}
+11 move[rooma,roomb] {+at-robby[rooma]} {+at-robby[roomb]} {+at-robby[rooma]}
+12 move[roomb,rooma] {+at-robby[roomb]} {+at-robby[rooma]} {+at-robby[roomb]}
+27
+2 +at[ball4,roomb] 1
+3 +at[ball3,roomb] 1
+4 +at[ball2,roomb] 1
+5 +at[ball1,roomb] 1
+6 +carry[ball4,right] 2
+7 +at-robby[roomb] 2
+8 +carry[ball3,left] 3
+9 +carry[ball2,left] 4
+10 +carry[ball1,right] 5
+7 +at-robby[roomb] 3
+11 +at-robby[roomb] 4
+11 +at-robby[roomb] 5
+0 +at[ball4,rooma] 6
+12 +at-robby[rooma] 6
+11 +at-robby[roomb] 12
+0 +at[ball3,rooma] 8
+0 +at[ball2,rooma] 9
+0 +at-robby[rooma] 9
+0 +at[ball1,rooma] 10
+0 +at-robby[rooma] 10
+0 +at-robby[rooma] 11
+12 +at-robby[rooma] 7
+12 +at-robby[rooma] 8
+0 +free[left] 9
+0 +free[right] 10
+5 +free[right] 6
+4 +free[left] 8
+74
+0 1
+0 2
+0 3
+0 4
+0 5
+0 6
+0 7
+0 8
+0 9
+0 10
+0 11
+0 12
+5 1
+5 2
+5 3
+5 6
+5 7
+5 8
+5 12
+10 1
+10 2
+10 3
+10 4
+10 5
+10 6
+10 7
+10 8
+10 11
+10 12
+6 1
+6 2
+6 3
+6 7
+9 1
+9 2
+9 3
+9 4
+9 5
+9 6
+9 7
+9 8
+9 11
+9 12
+2 1
+12 1
+12 2
+12 3
+12 6
+12 7
+12 8
+7 1
+7 2
+7 3
+3 1
+11 1
+11 2
+11 3
+11 4
+11 5
+11 6
+11 7
+11 8
+11 12
+8 1
+8 2
+8 3
+8 7
+4 1
+4 2
+4 3
+4 6
+4 7
+4 8
+4 12

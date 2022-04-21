@@ -1,0 +1,89 @@
+\documentclass[a4paper,parskip=half*,twoside,numbers=noenddot]{scrbook}
+
+
+\usepackage[a4paper]{geometry}                  % used for defining the title page
+\usepackage[ngerman,english]{babel}                     % use german language
+\usepackage[utf8]{inputenc}                     % allows to use mutated vowels like ä, ö, etc.  
+\usepackage{hyperref}                           % defines style of references / links
+\hypersetup{
+linktocpage,                                      % in the table of contents, the numbers serve as links, not the entries
+colorlinks  = true,                               % the items are colored instead of colored boxes around them
+urlcolor    = cyan,
+linkcolor   = red,
+citecolor   = blue,
+pdftitle    = {Optimization of Partially Ordered Plans Through Justification Algorithms},
+pdfauthor   = {Linus Diepold},
+pdfkeywords = {},
+}
+\urlstyle{rm}                                     % use a special formatting for URLs
+
+\usepackage{amssymb,amsthm,amsmath}             % math symbols, defining theorem/proof environments, fancy math environments
+\usepackage{graphicx}                           % allows including graphics
+\usepackage{tikz}                               % draw fancy graphics with tikz, although "tikz ist kein Zeichenprogramm"
+\usetikzlibrary{aiplans}                                 % special libraries for tikz
+\usepackage[linesnumbered,vlined]{algorithm2e}  % allows to define cool-looking algorithms
+\usepackage{booktabs}
+\usepackage{csquotes}
+%%
+%% PLEASE READ THIS !!!
+%% 
+%% (1)
+%% Note that this master file does neither throw errors nor warnings!
+%% That is, if pdflatex throws any warning (or error, of course), you have not
+%% set up your system correctly; google for the warnings if some occur.
+%%
+%% (2)
+%% Do not put any derived files into our SVN! Only ".tex" files and other input 
+%% files are allowed, but not temporary files like ".toc" or ".log". Put them to
+%% your local ignore list: under linux, edit /home/userName/.subversion/config and
+%% uncomment  the line starting with "# global-ignores = " and edit it accordingly.
+%%
+
+
+
+% define here all own macros and commands
+\include{macros}
+
+
+
+\begin{document}
+
+\pagenumbering{roman}
+\input{Titelseite}
+\newpage
+
+% abstract
+\input{Zusammenfassung}
+
+% table of contents
+\cleardoublepage
+\tableofcontents
+\cleardoublepage
+\pagenumbering{arabic}
+
+% actual content
+
+\input{Einleitung}
+\input{Grundlagen}
+\input{JustificationAlgorithms}
+\input{Evaluation}
+\input{MakespanOptimization}
+\input{EvaluationMkspan}
+\input{Conclusion}
+
+% appendix
+%\input{Anhang}
+
+% literature
+\bibliographystyle{alpha}
+\bibliography{bib}
+\cleardoublepage
+
+% affirmation
+\input{Eid}
+
+%\bibliography{bib}
+
+
+
+\end{document}

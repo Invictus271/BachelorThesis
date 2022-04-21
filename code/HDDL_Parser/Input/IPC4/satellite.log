@@ -1,0 +1,370 @@
+Domain: ../resources/IPC4/SATELLITE/domain/DOMAIN.PDDL
+Problem: ../resources/IPC4/SATELLITE/problems/P01_PFILE1.PDDL
+DETAILED SOLUTION
+11
+0 init(<Instance>)[image1,spectrograph2,thermograph0,instrument0,satellite0,Star0,GroundStation1,GroundStation2,Phenomenon3,Phenomenon4,Star5,Phenomenon6] {} {+pointing[satellite0,Phenomenon6],+power_avail[satellite0]} {}
+1 goal(<Instance>)[image1,spectrograph2,thermograph0,instrument0,satellite0,Star0,GroundStation1,GroundStation2,Phenomenon3,Phenomenon4,Star5,Phenomenon6] {+have_image[Phenomenon4,thermograph0],+have_image[Star5,thermograph0],+have_image[Phenomenon6,thermograph0]} {} {}
+2 take_image[satellite0,Phenomenon4,instrument0,thermograph0] {+calibrated[instrument0],+power_on[instrument0],+pointing[satellite0,Phenomenon4]} {+have_image[Phenomenon4,thermograph0]} {}
+3 take_image[satellite0,Star5,instrument0,thermograph0] {+calibrated[instrument0],+power_on[instrument0],+pointing[satellite0,Star5]} {+have_image[Star5,thermograph0]} {}
+4 take_image[satellite0,Phenomenon6,instrument0,thermograph0] {+calibrated[instrument0],+power_on[instrument0],+pointing[satellite0,Phenomenon6]} {+have_image[Phenomenon6,thermograph0]} {}
+5 calibrate[satellite0,instrument0,GroundStation2] {+pointing[satellite0,GroundStation2],+power_on[instrument0]} {+calibrated[instrument0]} {}
+6 switch_on[instrument0,satellite0] {+power_avail[satellite0]} {+power_on[instrument0]} {+calibrated[instrument0],+power_avail[satellite0]}
+7 turn_to[satellite0,Phenomenon4,Phenomenon6] {+pointing[satellite0,Phenomenon6]} {+pointing[satellite0,Phenomenon4]} {+pointing[satellite0,Phenomenon6]}
+8 turn_to[satellite0,Star5,Phenomenon4] {+pointing[satellite0,Phenomenon4]} {+pointing[satellite0,Star5]} {+pointing[satellite0,Phenomenon4]}
+9 turn_to[satellite0,GroundStation2,Phenomenon6] {+pointing[satellite0,Phenomenon6]} {+pointing[satellite0,GroundStation2]} {+pointing[satellite0,Phenomenon6]}
+10 turn_to[satellite0,Phenomenon6,GroundStation2] {+pointing[satellite0,GroundStation2]} {+pointing[satellite0,Phenomenon6]} {+pointing[satellite0,GroundStation2]}
+19
+2 +have_image[Phenomenon4,thermograph0] 1
+3 +have_image[Star5,thermograph0] 1
+4 +have_image[Phenomenon6,thermograph0] 1
+5 +calibrated[instrument0] 2
+6 +power_on[instrument0] 2
+5 +calibrated[instrument0] 3
+6 +power_on[instrument0] 3
+5 +calibrated[instrument0] 4
+6 +power_on[instrument0] 4
+6 +power_on[instrument0] 5
+0 +power_avail[satellite0] 6
+7 +pointing[satellite0,Phenomenon4] 2
+8 +pointing[satellite0,Star5] 3
+9 +pointing[satellite0,GroundStation2] 5
+7 +pointing[satellite0,Phenomenon4] 8
+10 +pointing[satellite0,Phenomenon6] 4
+9 +pointing[satellite0,GroundStation2] 10
+0 +pointing[satellite0,Phenomenon6] 9
+10 +pointing[satellite0,Phenomenon6] 7
+54
+0 1
+0 2
+0 3
+0 4
+0 5
+0 6
+0 7
+0 8
+0 9
+0 10
+5 1
+5 2
+5 3
+5 4
+5 7
+5 8
+5 10
+10 1
+10 2
+10 3
+10 4
+10 7
+10 8
+6 1
+6 2
+6 3
+6 4
+6 5
+6 7
+6 8
+6 10
+9 1
+9 2
+9 3
+9 4
+9 5
+9 7
+9 8
+9 10
+2 1
+2 3
+2 8
+7 1
+7 2
+7 3
+7 8
+3 1
+8 1
+8 3
+4 1
+4 2
+4 3
+4 7
+4 8
+Domain: ../resources/IPC4/SATELLITE/domain/DOMAIN.PDDL
+Problem: ../resources/IPC4/SATELLITE/problems/P02_PFILE2.PDDL
+DETAILED SOLUTION
+15
+0 init(<Instance>)[infrared0,infrared1,image2,instrument0,instrument1,satellite0,GroundStation1,Star0,GroundStation2,Planet3,Planet4,Phenomenon5,Phenomenon6,Star7] {} {+pointing[satellite0,Planet4],+power_avail[satellite0]} {}
+1 goal(<Instance>)[infrared0,infrared1,image2,instrument0,instrument1,satellite0,GroundStation1,Star0,GroundStation2,Planet3,Planet4,Phenomenon5,Phenomenon6,Star7] {+have_image[Planet3,infrared0],+have_image[Planet4,infrared0],+have_image[Phenomenon5,image2],+have_image[Phenomenon6,infrared0],+have_image[Star7,infrared0]} {} {}
+2 take_image[satellite0,Phenomenon5,instrument1,image2] {+calibrated[instrument1],+power_on[instrument1],+pointing[satellite0,Phenomenon5]} {+have_image[Phenomenon5,image2]} {}
+3 calibrate[satellite0,instrument1,GroundStation2] {+pointing[satellite0,GroundStation2],+power_on[instrument1]} {+calibrated[instrument1]} {}
+4 switch_on[instrument1,satellite0] {+power_avail[satellite0]} {+power_on[instrument1]} {+calibrated[instrument1],+power_avail[satellite0]}
+5 take_image[satellite0,Planet3,instrument1,infrared0] {+calibrated[instrument1],+power_on[instrument1],+pointing[satellite0,Planet3]} {+have_image[Planet3,infrared0]} {}
+6 take_image[satellite0,Planet4,instrument1,infrared0] {+calibrated[instrument1],+power_on[instrument1],+pointing[satellite0,Planet4]} {+have_image[Planet4,infrared0]} {}
+7 take_image[satellite0,Phenomenon6,instrument1,infrared0] {+calibrated[instrument1],+power_on[instrument1],+pointing[satellite0,Phenomenon6]} {+have_image[Phenomenon6,infrared0]} {}
+8 take_image[satellite0,Star7,instrument1,infrared0] {+calibrated[instrument1],+power_on[instrument1],+pointing[satellite0,Star7]} {+have_image[Star7,infrared0]} {}
+9 turn_to[satellite0,Phenomenon5,Planet4] {+pointing[satellite0,Planet4]} {+pointing[satellite0,Phenomenon5]} {+pointing[satellite0,Planet4]}
+10 turn_to[satellite0,GroundStation2,Planet4] {+pointing[satellite0,Planet4]} {+pointing[satellite0,GroundStation2]} {+pointing[satellite0,Planet4]}
+11 turn_to[satellite0,Planet3,GroundStation2] {+pointing[satellite0,GroundStation2]} {+pointing[satellite0,Planet3]} {+pointing[satellite0,GroundStation2]}
+12 turn_to[satellite0,Phenomenon6,Phenomenon5] {+pointing[satellite0,Phenomenon5]} {+pointing[satellite0,Phenomenon6]} {+pointing[satellite0,Phenomenon5]}
+13 turn_to[satellite0,Star7,Planet3] {+pointing[satellite0,Planet3]} {+pointing[satellite0,Star7]} {+pointing[satellite0,Planet3]}
+14 turn_to[satellite0,Planet4,Star7] {+pointing[satellite0,Star7]} {+pointing[satellite0,Planet4]} {+pointing[satellite0,Star7]}
+29
+2 +have_image[Phenomenon5,image2] 1
+3 +calibrated[instrument1] 2
+4 +power_on[instrument1] 2
+5 +have_image[Planet3,infrared0] 1
+6 +have_image[Planet4,infrared0] 1
+7 +have_image[Phenomenon6,infrared0] 1
+8 +have_image[Star7,infrared0] 1
+4 +power_on[instrument1] 3
+3 +calibrated[instrument1] 5
+4 +power_on[instrument1] 5
+3 +calibrated[instrument1] 6
+4 +power_on[instrument1] 6
+3 +calibrated[instrument1] 7
+4 +power_on[instrument1] 7
+3 +calibrated[instrument1] 8
+4 +power_on[instrument1] 8
+0 +power_avail[satellite0] 4
+9 +pointing[satellite0,Phenomenon5] 2
+10 +pointing[satellite0,GroundStation2] 3
+11 +pointing[satellite0,Planet3] 5
+12 +pointing[satellite0,Phenomenon6] 7
+13 +pointing[satellite0,Star7] 8
+10 +pointing[satellite0,GroundStation2] 11
+9 +pointing[satellite0,Phenomenon5] 12
+11 +pointing[satellite0,Planet3] 13
+14 +pointing[satellite0,Planet4] 6
+13 +pointing[satellite0,Star7] 14
+0 +pointing[satellite0,Planet4] 10
+14 +pointing[satellite0,Planet4] 9
+104
+0 1
+0 2
+0 3
+0 4
+0 5
+0 6
+0 7
+0 8
+0 9
+0 10
+0 11
+0 12
+0 13
+0 14
+5 1
+5 2
+5 6
+5 7
+5 8
+5 9
+5 12
+5 13
+5 14
+10 1
+10 2
+10 3
+10 5
+10 6
+10 7
+10 8
+10 9
+10 11
+10 12
+10 13
+10 14
+14 1
+14 2
+14 6
+14 7
+14 9
+14 12
+6 1
+6 2
+6 7
+6 9
+6 12
+9 1
+9 2
+9 7
+9 12
+13 1
+13 2
+13 6
+13 7
+13 8
+13 9
+13 12
+13 14
+2 1
+2 7
+2 12
+12 1
+12 7
+7 1
+3 1
+3 2
+3 5
+3 6
+3 7
+3 8
+3 9
+3 11
+3 12
+3 13
+3 14
+11 1
+11 2
+11 5
+11 6
+11 7
+11 8
+11 9
+11 12
+11 13
+11 14
+8 1
+8 2
+8 6
+8 7
+8 9
+8 12
+8 14
+4 1
+4 2
+4 3
+4 5
+4 6
+4 7
+4 8
+4 9
+4 11
+4 12
+4 13
+4 14
+Domain: ../resources/IPC4/SATELLITE/domain/DOMAIN.PDDL
+Problem: ../resources/IPC4/SATELLITE/problems/P03_PFILE3.PDDL
+DETAILED SOLUTION
+14
+0 init(<Instance>)[image1,infrared0,spectrograph2,instrument0,instrument1,instrument2,instrument3,satellite0,satellite1,Star1,Star2,Star0,Star3,Star4,Phenomenon5,Phenomenon6,Phenomenon7] {} {+pointing[satellite1,Star0],+power_avail[satellite0],+pointing[satellite0,Star4],+power_avail[satellite1]} {}
+1 goal(<Instance>)[image1,infrared0,spectrograph2,instrument0,instrument1,instrument2,instrument3,satellite0,satellite1,Star1,Star2,Star0,Star3,Star4,Phenomenon5,Phenomenon6,Phenomenon7] {+pointing[satellite0,Phenomenon5],+have_image[Star3,infrared0],+have_image[Star4,spectrograph2],+have_image[Phenomenon5,spectrograph2],+have_image[Phenomenon7,spectrograph2]} {} {}
+2 take_image[satellite1,Star4,instrument3,spectrograph2] {+calibrated[instrument3],+power_on[instrument3],+pointing[satellite1,Star4]} {+have_image[Star4,spectrograph2]} {}
+3 calibrate[satellite1,instrument3,Star0] {+pointing[satellite1,Star0],+power_on[instrument3]} {+calibrated[instrument3]} {}
+4 switch_on[instrument3,satellite1] {+power_avail[satellite1]} {+power_on[instrument3]} {+calibrated[instrument3],+power_avail[satellite1]}
+5 take_image[satellite1,Phenomenon5,instrument3,spectrograph2] {+calibrated[instrument3],+power_on[instrument3],+pointing[satellite1,Phenomenon5]} {+have_image[Phenomenon5,spectrograph2]} {}
+6 take_image[satellite1,Phenomenon7,instrument3,spectrograph2] {+calibrated[instrument3],+power_on[instrument3],+pointing[satellite1,Phenomenon7]} {+have_image[Phenomenon7,spectrograph2]} {}
+7 take_image[satellite1,Star3,instrument3,infrared0] {+calibrated[instrument3],+power_on[instrument3],+pointing[satellite1,Star3]} {+have_image[Star3,infrared0]} {}
+8 turn_to[satellite0,Phenomenon5,Star4] {+pointing[satellite0,Star4]} {+pointing[satellite0,Phenomenon5]} {+pointing[satellite0,Star4]}
+9 turn_to[satellite1,Star4,Star0] {+pointing[satellite1,Star0]} {+pointing[satellite1,Star4]} {+pointing[satellite1,Star0]}
+10 turn_to[satellite1,Phenomenon5,Star0] {+pointing[satellite1,Star0]} {+pointing[satellite1,Phenomenon5]} {+pointing[satellite1,Star0]}
+11 turn_to[satellite1,Phenomenon7,Phenomenon5] {+pointing[satellite1,Phenomenon5]} {+pointing[satellite1,Phenomenon7]} {+pointing[satellite1,Phenomenon5]}
+12 turn_to[satellite1,Star3,Phenomenon7] {+pointing[satellite1,Phenomenon7]} {+pointing[satellite1,Star3]} {+pointing[satellite1,Phenomenon7]}
+13 turn_to[satellite1,Star0,Star3] {+pointing[satellite1,Star3]} {+pointing[satellite1,Star0]} {+pointing[satellite1,Star3]}
+26
+2 +have_image[Star4,spectrograph2] 1
+3 +calibrated[instrument3] 2
+4 +power_on[instrument3] 2
+5 +have_image[Phenomenon5,spectrograph2] 1
+6 +have_image[Phenomenon7,spectrograph2] 1
+4 +power_on[instrument3] 3
+3 +calibrated[instrument3] 5
+4 +power_on[instrument3] 5
+3 +calibrated[instrument3] 6
+4 +power_on[instrument3] 6
+7 +have_image[Star3,infrared0] 1
+3 +calibrated[instrument3] 7
+4 +power_on[instrument3] 7
+0 +power_avail[satellite1] 4
+8 +pointing[satellite0,Phenomenon5] 1
+9 +pointing[satellite1,Star4] 2
+10 +pointing[satellite1,Phenomenon5] 5
+11 +pointing[satellite1,Phenomenon7] 6
+12 +pointing[satellite1,Star3] 7
+10 +pointing[satellite1,Phenomenon5] 11
+11 +pointing[satellite1,Phenomenon7] 12
+0 +pointing[satellite1,Star0] 3
+0 +pointing[satellite0,Star4] 8
+13 +pointing[satellite1,Star0] 9
+12 +pointing[satellite1,Star3] 13
+0 +pointing[satellite1,Star0] 10
+80
+0 1
+0 2
+0 3
+0 4
+0 5
+0 6
+0 7
+0 8
+0 9
+0 10
+0 11
+0 12
+0 13
+5 1
+5 2
+5 6
+5 7
+5 9
+5 11
+5 12
+5 13
+10 1
+10 2
+10 5
+10 6
+10 7
+10 9
+10 11
+10 12
+10 13
+6 1
+6 2
+6 7
+6 9
+6 12
+6 13
+9 1
+9 2
+13 1
+13 2
+13 9
+2 1
+12 1
+12 2
+12 7
+12 9
+12 13
+7 1
+7 2
+7 9
+7 13
+3 1
+3 2
+3 5
+3 6
+3 7
+3 9
+3 10
+3 11
+3 12
+3 13
+11 1
+11 2
+11 6
+11 7
+11 9
+11 12
+11 13
+8 1
+4 1
+4 2
+4 3
+4 5
+4 6
+4 7
+4 9
+4 10
+4 11
+4 12
+4 13

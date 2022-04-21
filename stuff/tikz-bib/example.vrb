@@ -1,0 +1,30 @@
+\frametitle{Start And Goal With Different Style}
+\makebox[\textwidth][c]{
+\begin{tikzpicture}
+  \clip [use as bounding box] (-63mm,-40mm) rectangle (63mm,40mm);
+
+  \tikzset{aiplans emph/.style = {draw}}
+
+  \stage{35em}{26em}
+    {effs = {, , , ,}, eff length = 2em}
+    {pres = {,{signal(AV-Rec,AUDIO)}, ,},
+      pre length = 2em,
+      pre lengths = {2/10em}
+    }{start}{end}
+
+  \action{plugin1}{plugin = {BR}{CINCH}{AUDIO},
+    body = {below right = 5em and 15em of init.north east},
+    eff lengths = {3/10em}
+  }
+
+  \action{plugin2}{plugin = {CINCH}{AV-Rec}{AUDIO},
+    body = {below right = 15em and -5em of plugin1}
+  }
+
+  \link{plugin1/eff/1}{plugin2/pre/1}{edge[out=0,in=180,looseness=2,->]}
+
+  \link{init/eff/1}{plugin1/pre/1}{edge[bend left,->]}
+
+  \link{plugin2/eff/1}{goal/pre/2}{edge[bend left,->]}
+
+\end{tikzpicture}}

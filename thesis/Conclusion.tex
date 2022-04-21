@@ -1,0 +1,53 @@
+\chapter{Conclusion}
+%After applying the concept of justification from \cite{Justification} on PO and POCL plans.
+%The effectiveness of justification algorithm on PO and POCL plans was tested on test sets with more than 400\,000 plans.
+%The Table 4.1-4.4 show the resulting optimizations, with the
+%greedy justification algorithms as the top perfoming algorithms by reaching plan step ratios of $\approx$ 77\%. 
+%Which approves the correlation of justification strength with the algorithm running time see Figure 3.1. 
+%Furthermore the effectiveness over differently sized plans has also been evaluated.
+%The results are displayed in Table 4.5 to 4.8 which showed the weakness of well justification algorithm on small plans.
+%By comparing Table 4.1 and 4.2 with Table 4.3 and 4.4 the rather small impact of the plan step ordering choise comes apparent.
+%Another important observations is the superiority of PO optimization over POCL optimization due to increased ability to change plans. 
+
+%As a second optimization method the rearrangement of ordering constraints in order to reduce the makespan has been evaluated.
+%For this purpose the hybrid planning system PANDA\cite{Panda} has been used to create a makespan optimal ordering for the plan steps of the tested plans.
+%Table 6.1 and 6.2 are showcasing the results of this evaluation. 
+%The most noteable observations is the computation time of 922 minutes for 7429 plans with 2198 optimized plans.
+%All the justification algorithms achieve better optimizations in less time.
+%Therefore rearrangement can be used as way to further optimize plans with already optimal plan steps.
+%For general optimization purposes the justification algorithms with their ability to remove plan steps proved to be more effective. 
+
+In this work the justification algorithms which were featured in \cite{Justification} have been deployed on PO and POCL plans,
+this led to two versions of the well and greedy justification algorithms, a PO and a POCL version.
+These have been tested on a set of plans with more than 400\,000 plans.
+The tests were able to prove that using a stronger justification type will yield better optimization results,
+while also using a significantly higher computation time.
+This confirms the justification hierarchy that has been described in \cite{Justification}.
+Another important observation is the superiority of PO optimization over POCL optimization due to increased ability to change plans. 
+The PO algorithms also had higher computation times,
+which results in another tradeoff between computation time and optimization effectiveness. 
+The combination of these factors leads to the following hierarchy between the four algorithms.
+
+\begin{tabular}{|l|l|}
+    \hline
+    Greedy justification on PO plans&better optimization\\
+    \cline{1-1}
+    Greedy justification on POCL plans& $\uparrow$\\
+    \cline{1-1}
+    Well justification on PO plans & $\downarrow$\\
+    \cline{1-1}
+    Well justification on POCL plans &lower computation time\\
+    \hline
+\end{tabular}
+\newline
+
+
+Additionally, a way to reduce the makespan of a plan by rearranging its ordering constraints has been tested.
+For this the initial ordering constraints were removed and the resulting incomplete plan would be transformed in a hybrid planning problem,
+which would be solved with the hybrid planning system PANDA \cite{Panda} by inserting ordering constraints that result in an optimal makespan. 
+This method proved to have much higher computation time than justification algorithms.
+Also all the justification algorithms were better in optimizing the makespan of the tested plans.
+Therefore, the rearrangement of ordering constraints can be used as a way to further optimize plans with already optimal plan steps.
+For general optimization purposes the justification algorithms with their ability to remove plan steps proved to be more effective. 
+
+

@@ -1,0 +1,5 @@
+4
+0 init(<Instance>)[p0,f0,f1] {} {+lift-at[f0]} {}
+1 goal(<Instance>)[p0,f0,f1] {+served[p0]} {} {}
+2 jump[f1,p0] {+lift-at[f1]} {+served[p0]} {}
+3 up[f0,f1] {+lift-at[f0]} {+lift-at[f1]} {+lift-at[f0]}

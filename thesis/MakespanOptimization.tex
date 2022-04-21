@@ -1,0 +1,127 @@
+\chapter{Makespan Optimization}
+There are more ways to optimize the makespan of a plan than just the removal of plan steps as it is done by the justification algorithms. 
+In this chapter the goal is to minimize the makespan of a plan without changing any the set of plan steps. 
+If no plan steps may be removed, the ordering of the plan steps has to be changed. 
+\begin{figure}[h]
+        \scheme{ATM}{0}{
+        text={\textbf{0: go to ATM}},
+        pres={},
+        effs={money}
+    }
+    \scheme{friend}{0}{
+        text={\textbf{1: call friend}},
+        pres={},
+        effs={friend called}
+    }
+    \scheme{borrow}{0}{
+        text={\textbf{2: borrow money from friend}},
+        pres={friend called},
+        effs={money}
+    }
+    \begin{tikzpicture}
+        \stage{20em}{27em}
+        {effs = {}, eff length = 2em}
+        {pres = {money},
+        pre length = 2em,
+        }{start}{end}
+        \action{friend1}{friend={},
+        body={above right = 4em and 3em of init.south},
+        eff length = 6em,
+        pre length = 3em}
+        \action{ATM1}{ATM={},
+        body={above right= 1/2em and 3em of friend1},
+        eff length= 3em,
+        pre length= 3em}
+        \action{borrow}{borrow={},
+        body={above right = 1/2em and 3em of ATM1},
+        eff length = 3em,
+        pre length = 6em}
+        \ordering{borrow.north}{goal}
+        \ordering{friend1.north}{ATM1.north}
+        \ordering{init}{friend1.north}
+        \ordering{ATM1.north}{borrow.north}
+    \end{tikzpicture}
+    \caption{Example: PO-plan with non-optimal ordering and a makespan of length 3}
+\end{figure}
+\begin{figure}[h!]
+    \scheme{ATM}{0}{
+        text={\textbf{0: go to ATM}},
+        pres={},
+        effs={money}
+    }
+    \scheme{friend}{0}{
+        text={\textbf{1: call friend}},
+        pres={},
+        effs={friend called}
+    }
+    \scheme{borrow}{0}{
+        text={\textbf{2: borrow money from friend}},
+        pres={friend called},
+        effs={money}
+    }
+    \begin{tikzpicture}
+        \stage{20em}{27em}
+        {effs = {}, eff length = 2em}
+        {pres = {money},
+        pre length = 2em,
+        }{start}{end}
+        \action{ATM1}{ATM={},
+        body={below right = 2em and 20 em of init.north east},
+        eff length= 3em,
+        pre length= 3em}
+        \action{friend1}{friend={},
+        body={above right = 4em and 7 em of init.south east},
+        eff length = 6em,
+        pre length = 3em}
+        \action{borrow}{borrow={},
+        body ={right = 13em of friend1},
+        eff length = 3em,
+        pre length = 6em}
+        \ordering{borrow.north}{goal}
+        \ordering{init}{ATM1.north}
+        \ordering{init}{friend1.north}
+        \ordering{ATM1.north}{goal}
+        \ordering{friend1.north}{borrow.north}
+    \end{tikzpicture}
+    \caption{Example: PO-plan with optimal ordering and a makespan of length 2}
+\end{figure}
+
+Figure 5.1 and 5.2 show how the ordering of plan steps can impact the makespan of a plan by using an example from Chapter 3.
+
+For this approach we are using the hybrid planning system PANDA \cite{Panda}.
+Hybrid Planning is a mixture of Hierarchical Task Network planning \cite{HTN} and POCL planning \cite{McAllester}.
+Since, the goal is to find new ordering constraints for the given plan steps.
+We define a hybrid planning problem that is solved by a 
+PO plan with possibly new ordering constraints to the given plan steps.
+ 
+A hybrid planning domain is defined by the tuple ($T_a$,$T_p$,$M$).
+$T_a$ and $T_p$ are sets of primitive and abstract tasks and $M$ is a set of decomposition methods.
+A primitive task is an unlabeled plan step i.e. an action.
+An abstract task can be decomposed into a various amount of primitive and abstract tasks using decomposition methods.
+Using abstract tasks can cause a variation in the resulting plan steps.
+Therefore, to neither remove nor add additional plan steps, all given plan steps will be primitive tasks in our
+hybrid planning domain.
+
+A hybrid planning problem is defined by a hybrid planning domain and an initial Plan $P_{init}$.
+It is solved by inserting ordering constraints and decomposition of abstract tasks, resulting in
+a correct PO plan $P_{sol}$.
+
+To find an optimal ordering of plan step, we need to discard all possibly suboptimal ordering constraints
+in order to find better constraints.
+Therefore, $P_{init}$  will not contain any ordering constraints. 
+
+In conclusion the hybrid planning problem for reordering the PO plan $\Pi=(PS,\prec)$ has to satisfy the following criteria.
+
+\begin{itemize}
+    \item $T_a=\emptyset$
+    \item $M=\emptyset$
+    \item $T_p=PS$ 
+    \item $P_{init}=(PS,\prec)$ with $\prec=\emptyset$ and $PS=\{init,goal\}$
+\end{itemize}
+
+Since, there are no abstract tasks PANDA solves this Hybrid planning problem with just the insertion of ordering constraints.
+PANDA is also able to run on an A-star heuristic that minimizes the makespan.
+In this configuration PANDA will create ordering constraints that will have the minimal possible makespan for 
+the given plan steps.
+The new plan will have the same plan steps as the old plan while also having makespan optimal ordering constraints.
+

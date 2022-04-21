@@ -1,0 +1,7 @@
+6
+0 init(<Instance>)[p0,f0,f1] {} {+lift-at[f0]} {}
+1 goal(<Instance>)[p0,f0,f1] {+served[p0]} {} {}
+2 depart[f0,p0] {+lift-at[f0],+boarded[p0]} {+served[p0]} {+boarded[p0]}
+3 board[f1,p0] {+lift-at[f1]} {+boarded[p0]} {}
+4 up[f0,f1] {+lift-at[f0]} {+lift-at[f1]} {+lift-at[f0]}
+5 down[f1,f0] {+lift-at[f1]} {+lift-at[f0]} {+lift-at[f1]}

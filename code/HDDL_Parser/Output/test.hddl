@@ -1,0 +1,23 @@
+(define (domain satellite)
+(:requirements :equality :typing :conditional-effects :negative-preconditions)
+(:types object)
+(:predicates
+    (a)
+    (b)
+    (c)
+)
+    (:action X
+    :parameters()
+    :effect(and  (a)  (not (b)) )
+)
+    (:action Y
+    :parameters()
+    :precondition (and  (a) )
+    :effect(and  (b) )
+)
+    (:action Z
+    :parameters()
+    :precondition (and  (a)  (b) )
+    :effect(and  (c) )
+)
+)
